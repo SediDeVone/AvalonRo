@@ -17,92 +17,62 @@ prontera.gat,154,184,5	script	Premium Buffer	861,{
 		set Zeny, Zeny-10000;
 		sc_start SC_BLESSING,240000,10;
 		skilleffect 34,0;
-		mes "[Premium Buffer]";
-		mes "Wonderful, You are now buffed!.";
-		mes "Have fun!!";
-		close;
+		goto FAREWELL;
 	L_AGI:
 		if(Zeny < 10000) goto NeedZeny;
 		set Zeny, Zeny-10000;
 		sc_start SC_INC_AGI,240000,10;
 		skilleffect 29,0;
-		mes "[Premium Buffer]";
-		mes "Wonderful, You are now buffed!.";
-		mes "Have fun!!";
-		close;
+		goto FAREWELL;
 	L_ANGELUS:
 		if(Zeny < 10000) goto NeedZeny;
 		set Zeny, Zeny-10000;
 		sc_start SC_ANGELUS,300000,10;
 		skilleffect 33,0;
-		mes "[Premium Buffer]";
-		mes "Wonderful, You are now buffed!.";
-		mes "Have fun!!";
-		close;
+		goto FAREWELL;
 	L_MAGNI:
 		if(Zeny < 10000) goto NeedZeny;
 		set Zeny, Zeny-10000;
 		sc_start SC_MAGNIFICAT,300000,5;
 		skilleffect 74,0;
-		mes "[Premium Buffer]";
-		mes "Wonderful, You are now buffed!.";
-		mes "Have fun!!";
-		close;
+		goto FAREWELL;
 	L_ASSUMP:
 		if(Zeny < 20000) goto NeedZeny;
 		set Zeny, Zeny-20000;
 		sc_start SC_ASSUMPTIO,100000,5;
 		skilleffect 361,0;
-		mes "[Premium Buffer]";
-		mes "Wonderful, You are now buffed!.";
-		mes "Have fun!!";
-		close;
+		goto FAREWELL;
 	L_MANUS:
 		if(Zeny < 20000) goto NeedZeny;
 		set Zeny, Zeny-20000;
 		sc_start SC_IMPOSITIO,60000,5;
 		skilleffect 66,0;
-		mes "[Premium Buffer]";
-		mes "Wonderful, You are now buffed!.";
-		mes "Have fun!!";
-		close;
+		goto FAREWELL;
 	L_ASPERSIO:
 		if(Zeny < 45000) goto NeedZeny;
 		if(countitem(523) < 1) goto NeedWater;
 		delitem 523, 1;
 		set Zeny, Zeny-45000;
 		sc_start SC_ASPERSIO,180000,5;
-		mes "[Premium Buffer]";
-		mes "Wonderful, You are now buffed!.";
-		mes "Have fun!!";
-		close;
+		goto FAREWELL;
 	L_SUFFRAGIUM:
 		if(Zeny < 20000) goto NeedZeny;
 		set Zeny, Zeny-20000;
 		sc_start SC_SUFFRAGIUM,30000,3;
 		skilleffect 67,0;
-		mes "[Premium Buffer]";
-		mes "Wonderful, You are now buffed!.";
-		mes "Have fun!!";
-		close;
+		goto FAREWELL;
 	L_GLORIA:
 		if(Zeny < 20000) goto NeedZeny;
 		set Zeny, Zeny-20000;
 		sc_start SC_GLORIA,30000,5;
 		skilleffect 75,0;
-		mes "[Premium Buffer]";
-		mes "Wonderful, You are now buffed!.";
-		mes "Have fun!!";
-		close;
+		goto FAREWELL;
 	L_Windwalk:
 		if(Zeny < 20000) goto NeedZeny;
 		set Zeny, Zeny-20000;
 		sc_start SC_WINDWALK,240000,5; 
 		skilleffect 75,0;
-		mes "[Premium Buffer]";
-		mes "Wonderful, You are now buffed!.";
-		mes "Have fun!!";
-		close;
+		goto FAREWELL;
 	L_PROTECTION:
 		if (.protected == 2) {
 			set #time, 0;
@@ -335,6 +305,12 @@ prontera.gat,154,184,5	script	Premium Buffer	861,{
 		mes "[Premium Buffer]";
 		mes "Alright, come back if you need a buff.";
 		close;
+
+	FAREWELL:
+		mes "[Premium Buffer]";
+		mes "Wonderful, You are now buffed!.";
+		mes "Have fun!!";
+		close;		
 	
 	OnInit:
 		set .protected, 1;
