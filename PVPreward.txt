@@ -1,0 +1,36 @@
+// Script for PvP System. Author: Sebastian Łasisz.
+// AvalonRO
+
+-	script	PVPreward	-1,{
+	OnPCKillEvent:
+		dispbottom killedrid;
+		dispbottom last_kill;
+		if (killedrid != last_kill && killedrid != getcharid(3)) {
+			getmapxy (.@map$, .@x, .@y, 0);
+			if( .@map$ == "pvp_y_1-2" ){
+				set .@random, rand(1,100);
+				if(.@random < 101){
+					getitem 640, 1;
+				}
+			}
+		}
+		set last_kill, killedrid;
+		end;
+}
+
+/*
+	1. Players cant kill himself.
+	2. Last kill cant be equal current kill.
+	3. Chance to get item (<30%).
+	4. No ressurection, no leaves.
+	5. Base lvl of killer has to be equal to base lvl of victim.
+	6. Possibly adding cooldown on getting item.
+
+	7. No soul linkers
+	8. Kills on certain maps give more score.
+	9. Players within same range ~20 lvls
+
+	On Event map -> always count
+	if in party -> divide on party members
+
+*/

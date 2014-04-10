@@ -1,0 +1,88 @@
+// Script for Premium Warper. Author: Sebastian Łasisz.
+// AvalonRO
+
+prontera.gat,158,184,7	script	Premium Warper	58,{
+	mes "[Premium Warper]";
+	mes "Greetings " + strcharinfo(0) + ",";
+	mes "I have amazing warping powers!!";
+	mes "You look like a person who needs them";
+	mes "I can warp you to any city or any dungeon";
+	mes "But remember, it isn't free so choose wisely";
+	mes "Which do you want?";
+	next;
+	switch(select("To a Town:To a Dungeon")){
+		case 1:
+			mes "Select which town you want to visit";
+			switch(select("Alberta:Aldebaran:Amatsu:Ayothaya:Comodo:Einbroch:Einbech:Geffen:Gonryun:Hugel:Izlude:Lighthalzen:Louyang:Lutie:Morroc:Payon:Prontera:Umbala:Yuno")) {
+				case 1:
+					warp "alberta",27,236;
+					break;
+				case 2:
+					warp "aldebaran",145,120;
+					break;
+				case 3:
+					warp "amatsu",197,86;
+					break;
+				case 4:
+					warp "ayothaya",149,118;
+					break;
+				case 5:
+					warp "comodo",188,161;
+					break;
+				case 6:
+					warp "einbroch",64,200;
+					break;
+				case 7:
+					warp "einbech",70,95;
+					break;
+				case 8:
+					warp "geffen",119,66;
+					break;
+				case 9:
+					warp "gonryun",150,130;
+					break;
+				case 10:
+					warp "hugel",96,145;
+					break;
+				case 11:
+					warp "izlude",128,111;
+					break;
+				case 12:
+					warp "lighthalzen",158,92;
+					break;
+				case 13:
+					warp "louyang",210,108;
+					break;
+				case 14:
+					warp "xmas",150,133;
+					break;
+				case 15:
+					warp "morocc",159,93;
+					break;
+				case 16:
+					warp "payon",152,75;
+					break;
+				case 17:
+					warp "prontera",156,187;
+					break;
+				case 18:
+					warp "umbala",130,130;
+					break;
+				case 19:
+					warp "xmas",148,131;
+					break;
+				case 20:
+					warp "yuno",160,168;
+					break;
+				}
+				break;
+		case 2:
+			mes "Select which dungeon you want to visit";
+			break;
+	}
+	OnInit:
+		set .townportal, 1000000;
+		set .dungeonportal, 5000000;
+		set .questportal, 20000000;
+		end;
+}
