@@ -28,7 +28,7 @@
 		end;
 }
 
-prontera,150,150,6 script	Undisguise	52,{
+prontera,150,150,6	script	Undisguise	52,{
 	mes "[Undisguise]";
 	mes "Hello. I should disguise you now. Also dispell you.";
 	undisguise;
