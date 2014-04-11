@@ -74,15 +74,15 @@ prontera.gat,154,184,5	script	Premium Buffer	861,{
 		skilleffect 75,0;
 		goto FAREWELL;
 	L_PROTECTION:
-		if(#time_regain > gettimetick(2)){
-			mes "I cant do fcp yet";
-			close;
-		}
-		if(#time_regain < gettimetick(2) && #time=0){
+		if(#time_regain < gettimetick(2)){
 			set #time, 5;
+			set #time_regain, gettimetick(2) + 3600;
 		}
 		if(#time == 0){
-			set #time_regain, gettimetick(2) + 3600;
+			mes "[Premium Buffer]";
+			mes "M..my powers, are g..gone..";
+			mes "Let me rest for another " + (#time_regain - gettimetick(2))/60 + " minutes before giving you protection.";
+			close;
 		}
 		if(countitem(7139) < 4) goto NeedGlist;
 		delitem 7139, 4;			
@@ -120,16 +120,16 @@ prontera.gat,154,184,5	script	Premium Buffer	861,{
 		skilleffect 67,0; sc_start SC_SUFFRAGIUM,30000,3;
 		skilleffect 34,0; sc_start SC_BLESSING,240000,10;
 		skilleffect 29,0; sc_start SC_INC_AGI,240000,10;
-		skilleffect 361,0; sc_start SC_ASSUMPTIO,100000,5;		
-		if(#time_regain > gettimetick(2)){
-			mes "I cant do fcp yet";
-			close;
-		}
-		if(#time_regain < gettimetick(2) && #time=0){
+		skilleffect 361,0; sc_start SC_ASSUMPTIO,100000,5;				
+		if(#time_regain < gettimetick(2)){
 			set #time, 5;
+			set #time_regain, gettimetick(2) + 3600;
 		}
 		if(#time == 0){
-			set #time_regain, gettimetick(2) + 3600;
+			mes "[Premium Buffer]";
+			mes "M..my powers, are g..gone..";
+			mes "Let me rest for another " + (#time_regain - gettimetick(2))/60 + " minutes before giving you protection.";
+			close;
 		}
 		if(countitem(7139) < 4) goto NeedGlist;
 		delitem 7139, 4;			
@@ -260,16 +260,16 @@ prontera.gat,154,184,5	script	Premium Buffer	861,{
 				set Zeny, Zeny - 20000; 
 				skilleffect 75,0; sc_start SC_GLORIA,30000,5;
 			}
-			if(#tenth_buff$ == "fcp"){	
-				if(#time_regain > gettimetick(2)){
-					mes "I cant do fcp yet";
-					close;
-				}
-				if(#time_regain < gettimetick(2) && #time=0){
+			if(#tenth_buff$ == "fcp"){		
+				if(#time_regain < gettimetick(2)){
 					set #time, 5;
+					set #time_regain, gettimetick(2) + 3600;
 				}
 				if(#time == 0){
-					set #time_regain, gettimetick(2) + 3600;
+					mes "[Premium Buffer]";
+					mes "M..my powers, are g..gone..";
+					mes "Let me rest for another " + (#time_regain - gettimetick(2))/60 + " minutes before giving you protection.";
+					close;
 				}
 				if(countitem(7139) < 4) goto NeedGlist;
 				delitem 7139, 4;			

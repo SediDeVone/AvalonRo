@@ -33,6 +33,18 @@ prontera,150,150,6	script	Undisguise	52,{
 	mes "Hello. I should disguise you now. Also dispell you.";
 	undisguise;
 	sc_end SC_ALL;
+	close;
+}
+
+prontera,155,155,6	script	GTB CHeck	52,{
+	mes "[GTB Check]";
+	if(countitem(4128) > 0){
+		mes "You have GTB card on";
+	}
+	else{
+		mes "You dont have GTB card";
+	}
+	close;
 }
 
 /*
