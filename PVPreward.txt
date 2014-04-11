@@ -37,22 +37,43 @@ prontera,150,150,6	script	Frank	52,{
 	end;
 }
 
-prontera,155,155,6	script	GTB	52,{
+prontera,155,155,6	script	Tom	52,{
+	mes "[Tom]";
+	mes "Hello. I'm Tom and I'm Jette's helper";
+	mes "I will decide if you are eligble to join this event.";
+	mes "You better have your gear prepared properly!";
+	next;
+
 	//setarray .@mvp_cards[0], ;
-	//asprika, brynhild, mjolnir (meg id?!)
-	setarray .@god_items[0],2541,2383,1530;
-	//from 501 to 599 + 607, 608
-	//consumable item except holy water;
+
+	//consumable items except holy water;
 	for( set .@i, 501; .@i <= 599; set .@i, .@i +1 ){
 		if(countitem(.@i) > 0 && .@i != 523){
-			mes "You've got " + .@i + " , I can't let you in.";
+			mes "[Tom]";
+			mes "YOU ARE NOT PREPARED!!";
+			mes "Get rid of your consumables and talk to me again.";
+			close;
 		}
+	}
+	//berry and seed
+	if(countitem(607) > 0 || countitem(608) > 0){
+		mes "[Tom]";
+		mes "Duuude... berries? seeds? Get rid of them now!";
+		mes "When you are ready talk to me again.";
+		close;
+	}
+	//god items: asprika, brynhild, mjolnir
+	if(countitem(2541) > 0 || countitem(2382) > 0 || countitem(1530) > 0){
+		mes "[Tom]";
+		mes "Nice try, but ... YOU ARE NOT PREPARED!!";
+		mes "Drop your god items to storage and talk to me.";
+		close;
 	}
 	//setarray .@magic_gear[0], ;
 
 	mes "[GTB Check]";
 	if(countitem(4128) > 0 || checkequipedcard(4128)){
-		mes "You have GTB card on";
+		mes "YOU ARE NOT PREPARED!!";
 	}
 	else{
 		mes "You dont have GTB card";
