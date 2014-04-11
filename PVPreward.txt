@@ -30,32 +30,21 @@
 
 prontera,150,150,6	script	Undisguise	52,{
 	mes "[Undisguise]";
-	mes "Hello. I should disguise you now. Also dispell you.";
+	mes "HUe hue hue, you have been dispelled.";
 	undisguise;
 	sc_end SC_ALL;
 	close;
+	end;
 }
 
-prontera,155,155,6	script	GTB CHeck	52,{
+prontera,155,155,6	script	GTB	52,{
 	mes "[GTB Check]";
-	if(countitem(4128) > 0){
+	if(countitem(4128) > 0|| checkequipedcard(4128)){
 		mes "You have GTB card on";
 	}
 	else{
 		mes "You dont have GTB card";
 	}
 	close;
+	end;
 }
-
-/*
-	1. Players cant kill himself.
-	2. Last kill cant be equal current kill.
-	3. Chance to get item (<30%).
-	4. No ressurection, no leaves.
-	5. Base lvl of killer has to be equal to base lvl of victim.
-	6. Possibly adding cooldown on getting item.
-
-	7. No soul linkers
-	8. Kills on certain maps give more score.
-	9. Players within same range ~20 lvls
-*/
