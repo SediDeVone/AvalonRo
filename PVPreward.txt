@@ -28,6 +28,13 @@
 		end;
 }
 
+prontera,150,150,6 script	Undisguise	52,{
+	mes "[Undisguise]";
+	mes "Hello. I should disguise you now. Also dispell you.";
+	undisguise;
+	sc_end SC_ALL;
+}
+
 /*
 	1. Players cant kill himself.
 	2. Last kill cant be equal current kill.
