@@ -28,9 +28,9 @@
 		end;
 }
 
-prontera,150,150,6	script	Undisguise	52,{
-	mes "[Undisguise]";
-	mes "HUe hue hue, you have been dispelled.";
+prontera,150,150,6	script	Frank	52,{
+	mes "[Frank]";
+	mes "You call me dispeller, but maybe my name is Frank?";
 	undisguise;
 	sc_end SC_ALL;
 	close;
@@ -38,8 +38,20 @@ prontera,150,150,6	script	Undisguise	52,{
 }
 
 prontera,155,155,6	script	GTB	52,{
+	//setarray .@mvp_cards[0], ;
+	//asprika, brynhild, mjolnir (meg id?!)
+	setarray .@god_items[0],2541,2383,1530;
+	//from 501 to 599 + 607, 608
+	//consumable item except holy water;
+	for( set .@i, 501; .@i <= 599; set .@i, .@i +1 ){
+		if(countitem(.@i) > 0 && .@i != 523){
+			mes "You've got " + .@i + " , I can't let you in.";
+		}
+	}
+	//setarray .@magic_gear[0], ;
+
 	mes "[GTB Check]";
-	if(countitem(4128) > 0|| checkequipedcard(4128)){
+	if(countitem(4128) > 0 || checkequipedcard(4128)){
 		mes "You have GTB card on";
 	}
 	else{
