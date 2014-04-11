@@ -3,18 +3,28 @@
 
 -	script	PVPreward	-1,{
 	OnPCKillEvent:
+		set .@killer, getcharid(3);
+		set .@victim, killerdid;
+
 		dispbottom killedrid;
 		dispbottom last_kill;
-		if (killedrid != last_kill && killedrid != getcharid(3)) {
+		set $@klvl, BaseLevel;
+		attachrid(.@victim);
+		set $@vlvl, BaseLevel;
+		attachrid(.@killer);
+		if (.@victim != last_kill && .@victim != getcharid(3) && $@klvl == $@vlvl) {
 			getmapxy (.@map$, .@x, .@y, 0);
 			if( .@map$ == "pvp_y_1-2" ){
 				set .@random, rand(1,100);
-				if(.@random < 101){
+				if(.@random < 30){
 					getitem 640, 1;
 				}
 			}
+			//if event map, random = 100;
+			//if pvp arena, random = 30;
+			//otherwise, random = 10;
 		}
-		set last_kill, killedrid;
+		set last_kill, .@victim;
 		end;
 }
 
@@ -29,8 +39,4 @@
 	7. No soul linkers
 	8. Kills on certain maps give more score.
 	9. Players within same range ~20 lvls
-
-	On Event map -> always count
-	if in party -> divide on party members
-
 */

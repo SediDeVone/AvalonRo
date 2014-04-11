@@ -99,7 +99,6 @@ prontera.gat,154,184,5	script	Premium Buffer	861,{
 		if(countitem(7139) < 4) goto NeedGlist;
 		delitem 7139, 4;
 		set Zeny, Zeny - 1000000; 
-
 		sc_start SC_FOOD_STR,360000,10;
 		sc_start SC_FOOD_AGI,360000,10;
 		sc_start SC_FOOD_VIT,360000,10;
