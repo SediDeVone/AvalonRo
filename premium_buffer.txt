@@ -74,30 +74,25 @@ prontera.gat,154,184,5	script	Premium Buffer	861,{
 		skilleffect 75,0;
 		goto FAREWELL;
 	L_PROTECTION:
-		if (.protected == 2) {
-			set #time, 0;
+		if(#time_regain > gettimetick(2)){
+			mes "I cant do fcp yet";
+			close;
 		}
-		if (#time > 0) {		
-			if(Zeny<45000) goto NeedZeny;
-			if(countitem(7139) < 4) goto NeedGlist;
-			set Zeny, Zeny - 45000; 
-			delitem 7139, 4;
-			sc_start SC_PROTECTWEAPON,600000,5;
-			sc_start SC_PROTECTSHIELD,600000,5;
-			sc_start SC_PROTECTARMOR,600000,5;
-			sc_start SC_PROTECTHELM,600000,5;
-			mes "[Premium Buffer]";
-			mes "Wonderful, You are now protected now!.";
-			mes "Have fun!!";
-			
-			set #time, #time - 1;
+		if(#time_regain < gettimetick(2) && #time=0){
+			set #time, 5;
 		}
-		else{
-			mes "[Premium Buffer]";
-			mes "... my powers ... are gone ...";
-			mes "Please come visit me later if you need protection.";
-			mes "Farewell traveler!";
+		if(#time == 0){
+			set #time_regain, gettimetick(2) + 3600;
 		}
+		if(countitem(7139) < 4) goto NeedGlist;
+		delitem 7139, 4;			
+		if(Zeny<45000) goto NeedZeny;
+		set Zeny, Zeny - 45000; 
+		sc_start SC_PROTECTWEAPON,600000,5;
+		sc_start SC_PROTECTSHIELD,600000,5;
+		sc_start SC_PROTECTARMOR,600000,5;
+		sc_start SC_PROTECTHELM,600000,5;
+		set #time, #time - 1;
 		close;
 	L_FOOD:
 		if(Zemy<1000000) goto NeedZeny;
@@ -126,24 +121,27 @@ prontera.gat,154,184,5	script	Premium Buffer	861,{
 		skilleffect 67,0; sc_start SC_SUFFRAGIUM,30000,3;
 		skilleffect 34,0; sc_start SC_BLESSING,240000,10;
 		skilleffect 29,0; sc_start SC_INC_AGI,240000,10;
-		skilleffect 361,0; sc_start SC_ASSUMPTIO,100000,5;
-		if (.protected == 2) {
+		skilleffect 361,0; sc_start SC_ASSUMPTIO,100000,5;		
+		if(#time_regain > gettimetick(2)){
+			mes "I cant do fcp yet";
+			close;
+		}
+		if(#time_regain < gettimetick(2) && #time=0){
 			set #time, 5;
 		}
-		if (#time > 0) {	
-			if(countitem(7139) < 4) goto NeedGlist;
-			delitem 7139, 4;			
-			sc_start SC_PROTECTWEAPON,600000,5;
-			sc_start SC_PROTECTSHIELD,600000,5;
-			sc_start SC_PROTECTARMOR,600000,5;
-			sc_start SC_PROTECTHELM,600000,5;
-			set #time, #time - 1;
+		if(#time == 0){
+			set #time_regain, gettimetick(2) + 3600;
 		}
-		else{
-			mes "[Premium Buffer]";
-			mes "...m-my powers...";
-			mes "I need some rest before I can cast protection again...";
-		}
+		if(countitem(7139) < 4) goto NeedGlist;
+		delitem 7139, 4;			
+		if(Zeny<45000) goto NeedZeny;
+		set Zeny, Zeny - 45000; 
+		sc_start SC_PROTECTWEAPON,600000,5;
+		sc_start SC_PROTECTSHIELD,600000,5;
+		sc_start SC_PROTECTARMOR,600000,5;
+		sc_start SC_PROTECTHELM,600000,5;
+		set #time, #time - 1;
+
 		if(countitem(523) < 1) goto NeedWater;
 		delitem 523, 1;
 		sc_start SC_ASPERSIO,180000,5;
@@ -263,21 +261,26 @@ prontera.gat,154,184,5	script	Premium Buffer	861,{
 				set Zeny, Zeny - 20000; 
 				skilleffect 75,0; sc_start SC_GLORIA,30000,5;
 			}
-			if(#tenth_buff$ == "fcp"){				
-				if (.protected == 2) {
+			if(#tenth_buff$ == "fcp"){	
+				if(#time_regain > gettimetick(2)){
+					mes "I cant do fcp yet";
+					close;
+				}
+				if(#time_regain < gettimetick(2) && #time=0){
 					set #time, 5;
 				}
-				if (#time > 0) {	
-					if(countitem(7139) < 4) goto NeedGlist;
-					delitem 7139, 4;			
-					if(Zeny<45000) goto NeedZeny;
-					set Zeny, Zeny - 45000; 
-					sc_start SC_PROTECTWEAPON,600000,5;
-					sc_start SC_PROTECTSHIELD,600000,5;
-					sc_start SC_PROTECTARMOR,600000,5;
-					sc_start SC_PROTECTHELM,600000,5;
-					set #time, #time - 1;
+				if(#time == 0){
+					set #time_regain, gettimetick(2) + 3600;
 				}
+				if(countitem(7139) < 4) goto NeedGlist;
+				delitem 7139, 4;			
+				if(Zeny<45000) goto NeedZeny;
+				set Zeny, Zeny - 45000; 
+				sc_start SC_PROTECTWEAPON,600000,5;
+				sc_start SC_PROTECTSHIELD,600000,5;
+				sc_start SC_PROTECTARMOR,600000,5;
+				sc_start SC_PROTECTHELM,600000,5;
+				set #time, #time - 1;
 			}
 		close;
 
@@ -311,31 +314,4 @@ prontera.gat,154,184,5	script	Premium Buffer	861,{
 		mes "Wonderful, You are now buffed!.";
 		mes "Have fun!!";
 		close;		
-	
-	OnInit:
-		set .protected, 1;
-		set #time, 5;
-		end;
-
-	OnMinute00:
-		set .protected, 1;
-		end;
-	OnMinute05:
-		set .protected, 2;
-		end;
-	OnMinute10:
-		set .protected, 1;
-		end;
-	OnMinute30:
-		set .protected, 2;
-		end;
-	OnMinute35:
-		set .protected, 1;
-		end;
-	OnMinute40:
-		set .protected, 2;
-		end;
-	OnMinute45:
-		set .protected, 1;
-		end;
 }
