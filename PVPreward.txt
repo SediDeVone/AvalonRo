@@ -55,39 +55,22 @@ prontera,155,155,6	script	Tom	52,{
 			close;
 		}
 	}
-	//berry and seed
-	if(countitem(607) > 0 || countitem(608) > 0){
-		mes "[Tom]";
-		mes "Duuude... berries? seeds? Get rid of them now!";
-		mes "When you are ready talk to me again.";
-		close;
+	setarray .@consumables[0], 607,608,4850,4851,13541,14515,6192,13539,1413,28238,28241,28243,28244,28247,12258;
+	for( set .@i, 0; .@i < getarraysize(.@consumables); set .@i, .@i +1 ){
+		if(countitem(.@consumables[.@i]) > 0){
+			mes "[Tom]";
+			mes "You've got item with id of " + getitemname(.@consumables[.@i]) + ".";
+			close;
+		}
 	}
-	//scrolls
-	if(countitem(4850) > 0 || countitem(4851) > 0 || countitem(13541) > 0 || countitem(14515) > 0 || countitem(6192) > 0 || countitem(13539) > 0 || countitem(14513) > 0 || countitem(282238) > 0){
-		mes "[Tom]";
-		mes "You cannot bring that items to the event";
-		close;
-	}
-	//god items: asprika, brynhild, mjolnir
-	if(countitem(2541) > 0 || countitem(2382) > 0 || countitem(1530) > 0){
-		mes "[Tom]";
-		mes "Nice try, but ... YOU ARE NOT PREPARED!!";
-		mes "Drop your god items to storage and talk to me.";
-		close;
-	}
+	setarray @equipment[0], 2541,2382,1530,1132,1565,1369,1141;
+
 	//MvP Cards
 	if(countitem(4128) > 0 || checkequipedcard(4128) || countitem(4276) > 0 || checkequipedcard(4276) || countitem(4361) > 0 || checkequipedcard(4361)){
 		mes "[Tom]";
 		mes "YOU ARE NOT PREPARED!!";
 		mes "Well... you've got either LoD, GTB or WS card...";
 		mes "Visit me when you store them all.";
-		close;
-	}
-	//coma items
-	if(countitem(1132) > 0 || countitem(1565) > 0 || countitem(1369) > 0 || countitem(1141) > 0){
-		mes "[Tom]";
-		mes "You cannot bring coma items with you.";
-		mes "Talk to me when you'll get rid of them.";
 		close;
 	}
 
