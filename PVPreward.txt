@@ -44,7 +44,7 @@ prontera,155,155,6	script	Tom	52,{
 	mes "You better have your gear prepared properly!";
 	next;
 
-	//setarray .@mvp_cards[0], ;
+	//GENERAL RESTRICIONS INC
 
 	//consumable items except holy water;
 	for( set .@i, 501; .@i <= 599; set .@i, .@i +1 ){
@@ -62,6 +62,12 @@ prontera,155,155,6	script	Tom	52,{
 		mes "When you are ready talk to me again.";
 		close;
 	}
+	//scrolls
+	if(countitem(4850) > 0 || countitem(4851) > 0 || countitem(13541) > 0 || countitem(14515) > 0 || countitem(6192) > 0 || countitem(13539) > 0 || countitem(14513) > 0 || countitem(282238) > 0){
+		mes "[Tom]";
+		mes "You cannot bring that items to the event";
+		close;
+	}
 	//god items: asprika, brynhild, mjolnir
 	if(countitem(2541) > 0 || countitem(2382) > 0 || countitem(1530) > 0){
 		mes "[Tom]";
@@ -69,15 +75,24 @@ prontera,155,155,6	script	Tom	52,{
 		mes "Drop your god items to storage and talk to me.";
 		close;
 	}
-	//setarray .@magic_gear[0], ;
+	//MvP Cards
+	if(countitem(4128) > 0 || checkequipedcard(4128) || countitem(4276) > 0 || checkequipedcard(4276) || countitem(4361) > 0 || checkequipedcard(4361)){
+		mes "[Tom]";
+		mes "YOU ARE NOT PREPARED!!";
+		mes "Well... you've got either LoD, GTB or WS card...";
+		mes "Visit me when you store them all.";
+		close;
+	}
+	//coma items
+	if(countitem(1132) > 0 || countitem(1565) > 0 || countitem(1369) > 0 || countitem(1141) > 0){
+		mes "[Tom]";
+		mes "You cannot bring coma items with you.";
+		mes "Talk to me when you'll get rid of them.";
+		close;
+	}
 
 	mes "[GTB Check]";
-	if(countitem(4128) > 0 || checkequipedcard(4128)){
-		mes "YOU ARE NOT PREPARED!!";
-	}
-	else{
-		mes "You dont have GTB card";
-	}
+	
 	close;
 	end;
 }
