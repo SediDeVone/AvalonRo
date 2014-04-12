@@ -59,12 +59,21 @@ prontera,155,155,6	script	Tom	52,{
 	for( set .@i, 0; .@i < getarraysize(.@consumables); set .@i, .@i +1 ){
 		if(countitem(.@consumables[.@i]) > 0){
 			mes "[Tom]";
-			mes "You've got item with id of " + getitemname(.@consumables[.@i]) + ".";
+			mes "YOU ARE NOT PREPARED!!";
+			mes "Oi! You can't bring " + getitemname(.@consumables[.@i]) + " with you.";
 			close;
 		}
 	}
-	setarray @equipment[0], 2541,2382,1530,1132,1565,1369,1141;
-
+	//equipment
+	setarray .@equipment[0], 2541,2382,1530,1132,1565,1369,1141;
+	for( set .@i, 0; .@i < getarraysize(.@equipment); set .@i, .@i +1 ){
+		if(countitem(.@equipment[.@i]) > 0){
+			mes "[Tom]";
+			mes "YOU ARE NOT PREPARED!!";
+			mes "Oi! You can't bring " + getitemname(.@equipment[.@i]) + " with you.";
+			close;
+		}
+	}
 	//MvP Cards
 	if(countitem(4128) > 0 || checkequipedcard(4128) || countitem(4276) > 0 || checkequipedcard(4276) || countitem(4361) > 0 || checkequipedcard(4361)){
 		mes "[Tom]";
@@ -73,8 +82,7 @@ prontera,155,155,6	script	Tom	52,{
 		mes "Visit me when you store them all.";
 		close;
 	}
-
-	mes "[GTB Check]";
+	mes "Oh, you've passed all restrictions";
 	
 	close;
 	end;
