@@ -37,6 +37,39 @@ prontera,150,150,6	script	Frank	52,{
 	end;
 }
 
+prontera,150,155,6	script	Jette's assistant	52,{
+	if(strcharinfo(0) == "Sedi"){
+		mes "[Jette's assistant]";
+		mes "Hello, " + strcharinfo(0) + " I can activate pvp script for you";
+		next;
+		mes "[Jette's assistant]";
+		mes "Which NPC version do you want?";
+		switch(select("General PvP:General PvP(no ValkC):General PVP(No HwC,FBHC,ValkC):Magic Classes:None")){
+			case 0:
+				set $pvp_npc, 0;
+				close;
+			case 1:
+				set $pvp_npc, 1;
+				close;
+			case 2:
+				set $pvp_npc, 2;
+				close;
+			case 3:
+				set $pvp_npc, 3;
+				close;
+			case 4:
+				close;
+		}		
+	}
+	else{
+		mes "[Jette's assistant]";
+		mes "Hello, " + strcharinfo(0) + ".";
+		mes "Sorry, but You aren't Jette. You can't activate the npc.";
+		close;
+	}
+	end;
+}
+
 prontera,155,155,6	script	Tom	52,{
 	mes "[Tom]";
 	mes "Hello. I'm Tom and I'm Jette's helper";
@@ -82,8 +115,13 @@ prontera,155,155,6	script	Tom	52,{
 		mes "Visit me when you store them all.";
 		close;
 	}
+	mes "[Tom]";
 	mes "Oh, you've passed all restrictions";
-	
+	next;
+	mes "[Tom]";
+	mes "I will teleport you to event map now.";
+	mes "Get ready! Geeeeeeeeeeeronimo!!";
+	warp "pvp_y_1-2",150,150;
 	close;
 	end;
 }
