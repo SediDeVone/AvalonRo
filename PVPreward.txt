@@ -26,6 +26,11 @@
 		}
 		set last_kill, .@victim;
 		end;
+	OnPCLogoutEvent:
+		getmapxy (.@map$, .@x, .@y, 0);
+		if( .@map$ == "quiz_01" ){
+			warp getsavepoint(0),getsavepoint(1),getsavepoint(2);
+		}
 }
 
 prontera,150,150,6	script	Frank	52,{
@@ -33,6 +38,10 @@ prontera,150,150,6	script	Frank	52,{
 	mes "You call me dispeller, but maybe my name is Frank?";
 	undisguise;
 	sc_end SC_ALL;
+	//atcommand "@hide";
+	atcommand "@mute 1";
+	atcommand "@unmute";
+	charcommand "@unmute";
 	close;
 	end;
 }
@@ -98,7 +107,7 @@ prontera,155,155,6	script	Tom	52,{
 		}
 	}
 	//equipment
-	setarray .@equipment[0], 2541,2382,1530,1132,1565,1369,1141;
+	setarray .@equipment[0], 2541,2382,1530,1132,1565,1369,1141,2629,2545;
 	for( set .@i, 0; .@i < getarraysize(.@equipment); set .@i, .@i +1 ){
 		if(countitem(.@equipment[.@i]) > 0){
 			mes "[Tom]";
@@ -156,6 +165,29 @@ prontera,155,155,6	script	Tom	52,{
 		case 3:
 			setarray .@magic[0],5058,5219,5230,5231,5232,5233,5234,5279,5623,13502,13676,13781,13800,14006,14070,28209,28218,28105,28106,5124;
 			setarray .@magic_cards[0],4146,4414,4087,4441,4365;
+			for( set .@i, 0; .@i < getarraysize(.@magic); set .@i, .@i +1 ){
+				if(countitem(.@magic[.@i]) > 0){
+					mes "[Tom]";
+					mes "YOU ARE NOT PREPARED!!";
+					mes "Oi! You can't bring " + getitemname(.@magic[.@i]) + " with you.";
+					close;
+				}
+			}
+			for( set .@i, 0; .@i < getarraysize(.@magic_cards); set .@i, .@i +1 ){
+				if(countitem(.@magic_cards[.@i]) > 0 || checkequipedcard(.@magic_cards[.@i])){
+					mes "[Tom]";
+					mes "YOU ARE NOT PREPARED!!";
+					mes "Oi! You can't bring " + getitemname(.@magic[.@i]) + " with you.";
+					close;
+				}
+			}
+			mes "[Tom]";
+			mes "Oh, you've passed all restrictions";
+			next;
+			mes "[Tom]";
+			mes "I will teleport you to event map now.";
+			mes "Get ready! Geronimoooooooooooooo!!";
+			warp "pvp_y_1-2",150,150;
 			close;
 	}
 	end;
