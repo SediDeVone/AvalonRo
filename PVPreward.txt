@@ -34,13 +34,15 @@
 }
 
 prontera,150,150,6	script	Spectator Mode	52,{
+	set .@player2, getcharid(0);
 	mes "[Frank]";
 	mes "You call me dispeller, but maybe my name is Frank?";
 	undisguise;
 	sc_end SC_ALL;
 	atcommand "@hide";
 	atcommand "@mute 1";
-	close;
+	detachrid;
+	warpchar "quiz_01",100,100,.@player2;
 	end;
 }
 
