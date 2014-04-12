@@ -33,7 +33,7 @@
 		}
 }
 
-prontera,150,150,6	script	Frank	52,{
+prontera,150,150,6	script	Spectator Mode	52,{
 	mes "[Frank]";
 	mes "You call me dispeller, but maybe my name is Frank?";
 	undisguise;
@@ -44,7 +44,7 @@ prontera,150,150,6	script	Frank	52,{
 	end;
 }
 
-prontera,153,151,6	script	Frank2	52,{
+prontera,153,151,6	script	Exit Arena	52,{
 	set .@players$, strcharinfo(0);
 	set .@player, getcharid(3);
 	detachrid;
