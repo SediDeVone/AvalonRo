@@ -38,11 +38,19 @@ prontera,150,150,6	script	Frank	52,{
 	mes "You call me dispeller, but maybe my name is Frank?";
 	undisguise;
 	sc_end SC_ALL;
-	//atcommand "@hide";
+	atcommand "@hide";
 	atcommand "@mute 1";
-	atcommand "@unmute";
-	charcommand "@unmute";
 	close;
+	end;
+}
+
+prontera,153,151,6	script	Frank2	52,{
+	set .@players$, strcharinfo(0);
+	set .@player, getcharid(3);
+	detachrid;
+	atcommand "@unmute "+ .@players$;
+	attachrid(.@player);
+	atcommand "@hide";
 	end;
 }
 
