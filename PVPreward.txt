@@ -255,13 +255,13 @@ prt_fild08,175,362,6	script	Tom	70,{
 			mes "I will teleport you to event map now.";
 			mes "Get ready! Geronimoooooooooooooo!!";
 			switch($pvp_map){
-				case 0:
+				case 1:
 					warp "quiz_01",63,183;
 					close;
-				case 1:
+				case 2:
 					warp "06guild01",49,49;
 					close;
-				case 2:
+				case 3:
 					warp "quiz02",304,249;
 					close;
 			}
