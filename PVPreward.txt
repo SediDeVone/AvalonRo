@@ -115,13 +115,48 @@ prontera,155,155,6	script	Tom	52,{
 		mes "Visit me when you store them all.";
 		close;
 	}
-	mes "[Tom]";
-	mes "Oh, you've passed all restrictions";
-	next;
-	mes "[Tom]";
-	mes "I will teleport you to event map now.";
-	mes "Get ready! Geeeeeeeeeeeronimo!!";
-	warp "pvp_y_1-2",150,150;
-	close;
+	switch($pvp_npc){
+		case 0:
+			mes "[Tom]";
+			mes "Oh, you've passed all restrictions";
+			next;
+			mes "[Tom]";
+			mes "I will teleport you to event map now.";
+			mes "Get ready! Geronimoooooooooooooo!!";
+			warp "pvp_y_1-2",150,150;
+			close;
+		case 1:
+			if( countitem(4407) > 0 || checkequipedcard(4407)){
+				mes "[Tom]";
+				mes "Oi! You can't bring Randgris Card with you.";
+				close;
+			}
+			mes "[Tom]";
+			mes "Oh, you've passed all restrictions";
+			next;
+			mes "[Tom]";
+			mes "I will teleport you to event map now.";
+			mes "Get ready! Geronimoooooooooooooo!!";
+			warp "pvp_y_1-2",150,150;
+			close;
+		case 2:
+			if(countitem(4441) > 0 || checkequipedcard(4441) || countitem(4365) > 0 || checkequipedcard(4365) || countitem(4407) > 0 || checkequipedcard(4407)){
+				mes "[Tom]";
+				mes "Oi! You can't bring Fallen Bishop Hibram Card or Randgris Card or High Wizard Card with you.";
+				close;
+			}
+			mes "[Tom]";
+			mes "Oh, you've passed all restrictions";
+			next;
+			mes "[Tom]";
+			mes "I will teleport you to event map now.";
+			mes "Get ready! Geronimoooooooooooooo!!";
+			warp "pvp_y_1-2",150,150;
+			close;
+		case 3:
+			setarray .@magic[0],5058,5219,5230,5231,5232,5233,5234,5279,5623,13502,13676,13781,13800,14006,14070,28209,28218,28105,28106,5124;
+			setarray .@magic_cards[0],4146,4414,4087,4441,4365;
+			close;
+	}
 	end;
 }
