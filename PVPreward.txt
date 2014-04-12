@@ -63,23 +63,45 @@ prontera,150,155,6	script	Jette's assistant	52,{
 		mes "Hello, " + strcharinfo(0) + " I can activate pvp script for you";
 		next;
 		mes "[Jette's assistant]";
-		mes "Which NPC version do you want?";
-		switch(select("General PvP:General PvP(no ValkC):General PVP(No HwC,FBHC,ValkC):Magic Classes:None")){
+		mes "What do you want to do?";
+		switch(select("Set restrictions:Set map:Nothing")){
 			case 0:
-				set $pvp_npc, 0;
-				close;
+				mes "[Jette's assistant]";
+				mes "Which NPC version do you want?";
+				switch(select("General PvP:General PvP(no ValkC):General PVP(No HwC,FBHC,ValkC):Magic Classes:None")){
+					case 0:
+						set $pvp_npc, 0;
+						close;
+					case 1:
+						set $pvp_npc, 1;
+						close;
+					case 2:
+						set $pvp_npc, 2;
+						close;
+					case 3:
+						set $pvp_npc, 3;
+						close;
+					case 4:
+						close;
+				}		
 			case 1:
-				set $pvp_npc, 1;
-				close;
+				mes "[Jette's assistant]";
+				mes "Which map do you want to enable?";
+				switch(select("1v1/2v2/5v5:Guild vs Guild:LMS:None")){
+					case 0:
+						set $pvp_map, 0;
+						close;
+					case 1:
+						set $pvp_map, 1;
+						close;
+					case 2:
+						set $pvp_map, 2;
+						close;
+					case 3:
+						close;
+				}
 			case 2:
-				set $pvp_npc, 2;
 				close;
-			case 3:
-				set $pvp_npc, 3;
-				close;
-			case 4:
-				close;
-		}		
 	}
 	else{
 		mes "[Jette's assistant]";
@@ -143,8 +165,17 @@ prt_fild08,175,362,6	script	Tom	70,{
 			mes "[Tom]";
 			mes "I will teleport you to event map now.";
 			mes "Get ready! Geronimoooooooooooooo!!";
-			warp "quiz_01",63,183;
-			close;
+			switch($pvp_map){
+				case 0:
+					warp "quiz_01",63,183;
+					close;
+				case 1:
+					warp "06guild01",49,49;
+					close;
+				case 2:
+					warp "quiz02",304,249;
+					close;
+			}
 		case 1:
 			if( countitem(4407) > 0 || checkequipedcard(4407)){
 				mes "[Tom]";
@@ -157,8 +188,17 @@ prt_fild08,175,362,6	script	Tom	70,{
 			mes "[Tom]";
 			mes "I will teleport you to event map now.";
 			mes "Get ready! Geronimoooooooooooooo!!";
-			warp "quiz_01",63,183;
-			close;
+			switch($pvp_map){
+				case 0:
+					warp "quiz_01",63,183;
+					close;
+				case 1:
+					warp "06guild01",49,49;
+					close;
+				case 2:
+					warp "quiz02",304,249;
+					close;
+			}
 		case 2:
 			if(countitem(4441) > 0 || checkequipedcard(4441) || countitem(4365) > 0 || checkequipedcard(4365) || countitem(4407) > 0 || checkequipedcard(4407)){
 				mes "[Tom]";
@@ -171,8 +211,17 @@ prt_fild08,175,362,6	script	Tom	70,{
 			mes "[Tom]";
 			mes "I will teleport you to event map now.";
 			mes "Get ready! Geronimoooooooooooooo!!";
-			warp "quiz_01",63,183;
-			close;
+			switch($pvp_map){
+				case 0:
+					warp "quiz_01",63,183;
+					close;
+				case 1:
+					warp "06guild01",49,49;
+					close;
+				case 2:
+					warp "quiz02",304,249;
+					close;
+			}
 		case 3:
 			setarray .@magic[0],5058,5219,5230,5231,5232,5233,5234,5279,5623,13502,13676,13781,13800,14006,14070,28209,28218,28105,28106,5124;
 			setarray .@magic_cards[0],4146,4414,4087,4441,4365;
@@ -198,8 +247,17 @@ prt_fild08,175,362,6	script	Tom	70,{
 			mes "[Tom]";
 			mes "I will teleport you to event map now.";
 			mes "Get ready! Geronimoooooooooooooo!!";
-			warp "quiz_01",63,183;
-			close;
+			switch($pvp_map){
+				case 0:
+					warp "quiz_01",63,183;
+					close;
+				case 1:
+					warp "06guild01",49,49;
+					close;
+				case 2:
+					warp "quiz02",304,249;
+					close;
+			}
 	}
 	end;
 }
