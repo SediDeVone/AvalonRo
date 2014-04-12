@@ -42,17 +42,18 @@ prt_fild08,167,362,6	script	Spectator Mode	72,{
 	atcommand "@hide";
 	atcommand "@mute 1";
 	detachrid;
-	warpchar "quiz_01",100,100,.@player2;
+	warpchar "quiz_01",63,183,.@player2;
 	end;
 }
 
-prontera,153,151,6	script	Exit Arena	52,{
+quiz_01,63,195,6	script	Exit Arena	49,{
 	set .@players$, strcharinfo(0);
 	set .@player, getcharid(3);
 	detachrid;
 	atcommand "@unmute "+ .@players$;
 	attachrid(.@player);
 	atcommand "@hide";
+	warp getsavepoint(0),getsavepoint(1),getsavepoint(2);
 	end;
 }
 
@@ -89,7 +90,7 @@ prontera,150,155,6	script	Jette's assistant	52,{
 	end;
 }
 
-prontera,155,155,6	script	Tom	52,{
+prt_fild08,175,362,6	script	Tom	70,{
 	mes "[Tom]";
 	mes "Hello. I'm Tom and I'm Jette's helper";
 	mes "I will decide if you are eligble to join this event.";
@@ -142,7 +143,7 @@ prontera,155,155,6	script	Tom	52,{
 			mes "[Tom]";
 			mes "I will teleport you to event map now.";
 			mes "Get ready! Geronimoooooooooooooo!!";
-			warp "pvp_y_1-2",150,150;
+			warp "quiz_01",63,183;
 			close;
 		case 1:
 			if( countitem(4407) > 0 || checkequipedcard(4407)){
@@ -156,7 +157,7 @@ prontera,155,155,6	script	Tom	52,{
 			mes "[Tom]";
 			mes "I will teleport you to event map now.";
 			mes "Get ready! Geronimoooooooooooooo!!";
-			warp "pvp_y_1-2",150,150;
+			warp "quiz_01",63,183;
 			close;
 		case 2:
 			if(countitem(4441) > 0 || checkequipedcard(4441) || countitem(4365) > 0 || checkequipedcard(4365) || countitem(4407) > 0 || checkequipedcard(4407)){
@@ -170,7 +171,7 @@ prontera,155,155,6	script	Tom	52,{
 			mes "[Tom]";
 			mes "I will teleport you to event map now.";
 			mes "Get ready! Geronimoooooooooooooo!!";
-			warp "pvp_y_1-2",150,150;
+			warp "quiz_01",63,183;
 			close;
 		case 3:
 			setarray .@magic[0],5058,5219,5230,5231,5232,5233,5234,5279,5623,13502,13676,13781,13800,14006,14070,28209,28218,28105,28106,5124;
@@ -197,7 +198,7 @@ prontera,155,155,6	script	Tom	52,{
 			mes "[Tom]";
 			mes "I will teleport you to event map now.";
 			mes "Get ready! Geronimoooooooooooooo!!";
-			warp "pvp_y_1-2",150,150;
+			warp "quiz_01",63,183;
 			close;
 	}
 	end;
