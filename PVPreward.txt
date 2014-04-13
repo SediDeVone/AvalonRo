@@ -41,7 +41,7 @@ prt_fild08,167,362,6	script	Spectator Mode	72,{
 	undisguise;
 	sc_end SC_ALL;
 	atcommand "@hide";
-	atcommand "@costume x_mas";
+	atcommand "@costume Xmas";
 	atcommand "@mute 1";
 	detachrid;
 	warpchar "quiz_01",63,183,.@player2;
@@ -55,8 +55,8 @@ quiz_01,63,195,6	script	Exit Arena	49,{
 		detachrid;
 		atcommand "@unmute "+ .@players$;
 		attachrid(.@player);
-		atcommand "@costume";
 		atcommand "@hide";
+		atcommand "@costume";
 		set #hidden, 0;
 	}
 	warp getsavepoint(0),getsavepoint(1),getsavepoint(2);
