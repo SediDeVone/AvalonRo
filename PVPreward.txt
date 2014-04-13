@@ -64,7 +64,7 @@ quiz_01,63,195,6	script	Exit Arena	49,{
 	end;
 }
 
-prontera,150,155,6	script	Jette's assistant	52,{
+lhz_que01,86,165,6	script	Jette's assistant	52,{
 	if(strcharinfo(0) == "Sedi" || strcharinfo(0) == "Alvaren"){
 		mes "[Jette's assistant]";
 		mes "Hello, " + strcharinfo(0) + " I can activate pvp script for you";
