@@ -64,7 +64,7 @@ quiz_01,63,195,6	script	Exit Arena	49,{
 }
 
 prontera,150,155,6	script	Jette's assistant	52,{
-	if(strcharinfo(0) == "Sedi"){
+	if(strcharinfo(0) == "Sedi" || strcharinfo(0) == "Alvaren"){
 		mes "[Jette's assistant]";
 		mes "Hello, " + strcharinfo(0) + " I can activate pvp script for you";
 		next;
@@ -76,16 +76,16 @@ prontera,150,155,6	script	Jette's assistant	52,{
 				mes "Which NPC version do you want?";
 				switch(select("General PvP:General PvP(no ValkC):General PVP(No HwC,FBHC,ValkC):Magic Classes:None")){
 					case 1:
-						set $pvp_npc, 0;
-						close;
-					case 2:
 						set $pvp_npc, 1;
 						close;
-					case 3:
+					case 2:
 						set $pvp_npc, 2;
 						close;
-					case 4:
+					case 3:
 						set $pvp_npc, 3;
+						close;
+					case 4:
+						set $pvp_npc, 4;
 						close;
 					case 5:
 						close;
@@ -95,13 +95,13 @@ prontera,150,155,6	script	Jette's assistant	52,{
 				mes "Which map do you want to enable?";
 				switch(select("1v1/2v2/5v5:Guild vs Guild:LMS:None")){
 					case 1:
-						set $pvp_map, 0;
-						close;
-					case 2:
 						set $pvp_map, 1;
 						close;
-					case 3:
+					case 2:
 						set $pvp_map, 2;
+						close;
+					case 3:
+						set $pvp_map, 3;
 						close;
 					case 4:
 						close;
@@ -177,10 +177,10 @@ prt_fild08,175,362,6	script	Tom	70,{
 					warp "quiz_01",63,183;
 					close;
 				case 2:
-					warp "06guild01",49,49;
+					warp "06guild_01",49,49;
 					close;
 				case 3:
-					warp "quiz02",304,249;
+					warp "quiz_02",304,249;
 					close;
 			}
 		case 2:
@@ -200,10 +200,10 @@ prt_fild08,175,362,6	script	Tom	70,{
 					warp "quiz_01",63,183;
 					close;
 				case 2:
-					warp "06guild01",49,49;
-						close;
+					warp "06guild_01",49,49;
+					close;
 				case 3:
-					warp "quiz02",304,249;
+					warp "quiz_02",304,249;
 					close;
 			}
 			close;
@@ -224,10 +224,10 @@ prt_fild08,175,362,6	script	Tom	70,{
 					warp "quiz_01",63,183;
 					close;
 				case 2:
-					warp "06guild01",49,49;
+					warp "06guild_01",49,49;
 					close;
 				case 3:
-					warp "quiz02",304,249;
+					warp "quiz_02",304,249;
 					close;
 			}
 			close;
@@ -261,14 +261,14 @@ prt_fild08,175,362,6	script	Tom	70,{
 					warp "quiz_01",63,183;
 					close;
 				case 2:
-					warp "06guild01",49,49;
+					warp "06guild_01",49,49;
 					close;
 				case 3:
-					warp "quiz02",304,249;
+					warp "quiz_02",304,249;
 					close;
 			}
 			close;
-		case 6:
+		case 5:
 			close;
 	}
 	end;
