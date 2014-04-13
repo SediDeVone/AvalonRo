@@ -11,8 +11,9 @@
 		set $@klvl, BaseLevel;
 		attachrid(.@victim);
 		set $@vlvl, BaseLevel;
+		set $@class, Class;
 		attachrid(.@killer);
-		if (.@victim != last_kill && .@victim != getcharid(3) && $@klvl == $@vlvl) {
+		if (.@victim != last_kill && .@victim != getcharid(3) && $@klvl == $@vlvl && jobname($@class) != "Soul Linker") {
 			getmapxy (.@map$, .@x, .@y, 0);
 			if( .@map$ == "pvp_y_1-2" ){
 				set .@random, rand(1,100);
