@@ -35,11 +35,13 @@
 
 prt_fild08,167,362,6	script	Spectator Mode	72,{
 	set .@player2, getcharid(0);
+	set #hidden, 1;
 	mes "[Frank]";
 	mes "You call me dispeller, but maybe my name is Frank?";
 	undisguise;
 	sc_end SC_ALL;
 	atcommand "@hide";
+	atcommand "@costume x_mas";
 	atcommand "@mute 1";
 	detachrid;
 	warpchar "quiz_01",63,183,.@player2;
@@ -47,12 +49,16 @@ prt_fild08,167,362,6	script	Spectator Mode	72,{
 }
 
 quiz_01,63,195,6	script	Exit Arena	49,{
-	set .@players$, strcharinfo(0);
-	set .@player, getcharid(3);
-	detachrid;
-	atcommand "@unmute "+ .@players$;
-	attachrid(.@player);
-	atcommand "@hide";
+	if(#hidden > 0){
+		set .@players$, strcharinfo(0);
+		set .@player, getcharid(3);
+		detachrid;
+		atcommand "@unmute "+ .@players$;
+		attachrid(.@player);
+		atcommand "@costume";
+		atcommand "@hide";
+		set #hidden, 0;
+	}
 	warp getsavepoint(0),getsavepoint(1),getsavepoint(2);
 	end;
 }
@@ -70,19 +76,15 @@ prontera,150,155,6	script	Jette's assistant	52,{
 				mes "Which NPC version do you want?";
 				switch(select("General PvP:General PvP(no ValkC):General PVP(No HwC,FBHC,ValkC):Magic Classes:None")){
 					case 1:
-						mes "normal pvp";
 						set $pvp_npc, 0;
 						close;
 					case 2:
-						mes "normal pvp no valk";
 						set $pvp_npc, 1;
 						close;
 					case 3:
-						mes "normal pvp no valk gtb fbh";
 						set $pvp_npc, 2;
 						close;
 					case 4:
-						mes "magic classes";
 						set $pvp_npc, 3;
 						close;
 					case 5:
