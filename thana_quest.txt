@@ -10,6 +10,7 @@
 //===== Additional Comments: =================================
 //= 1.0 Adapted from official release. [Euphy]
 //= 1.0a Added 'npcskill' command. [Euphy]
+//= 1.1 Added anti KS system. [Gurrath]
 //============================================================
 
 hu_fild01,140,163,5	script	Tower Keeper	4_M_EIN_SOLDIER,3,3,{
