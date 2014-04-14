@@ -341,41 +341,63 @@ prt_fild08,175,362,6	script	Tom	70,{
 
 
 -	script	EquipCheck	-1,{
-OnPCLoadMapEvent:
-	setarray .@restrictedmaps$[0], "prontera", "payon";
-	setarray .@itemsallowed[0], 1530,4147;
-	getmapxy(.@map$,.@x,.@y,0);
-	for(set .@m, 0; .@m < getarraysize(.@restrictedmaps$); set .@m, .@m + 1) {
-		while(.@map$ == .@restrictedmaps$[.@m]){
-			for(set .@e, 1; .@e < 11; set .@e, .@e + 1) {
-				for(set .@i, 0; .@i < getarraysize(.@itemsallowed); set .@i, .@i + 1) {
-					if(getequipid(.@e) == .@itemsallowed[.@i] || getequipid(.@e) == -1) {
-						set .@a, 1;
-						break;
-					}
-					else{
-						if(getequipcardid(.@e, 0) == 4147){
-							set .@a, 1;
-						}
-						else
-						set .@a, 0;
-					}
-					
-				}
-				if(.@a){
-					if(getitemname(getequipid(.@e)) != "null" ){
-						dispbottom "Item '"+getitemname(getequipid(.@e))+"' is not allowed in this map. It has been unequiped.";
-						unequip .@e;
-					}
-				}
-				set .@a, 0;
-			}
-			sleep2 10;
-			getmapxy(.@map$,.@x,.@y,0);
+	OnPCLoadMapEvent:
+		dispbottom $pvp_npc;
+		setarray .@restrictedmaps$[0], "prontera", "payon","quiz_01","quiz_02","06guild_01";
+		switch($pvp_npc){
+			case 0:
+				setarray .@itemsallowed[0],0;
+				setarray .@cardsnotallowed[0],0;
+				break;
+			case 1:
+				setarray .@itemsallowed[0],2541,2382,1530,1132,1565,1369,1141,2629,2545;
+				setarray .@cardsnotallowed[0],4128,4276,4361;
+				break;
+			case 2:
+				setarray .@itemsallowed[0],2541,2382,1530,1132,1565,1369,1141,2629,2545;
+				setarray .@cardsnotallowed[0],4407,4128,4276,4361;
+				break;
+			case 3:
+				setarray .@itemsallowed[0],2541,2382,1530,1132,1565,1369,1141,2629,2545;
+				setarray .@cardsnotallowed[0],4441,4365,4407,4128,4276,4361;
+				break;
+			case 4:
+				setarray .@itemsallowed[0],5058,5219,5230,5231,5232,5233,5234,5279,5623,13502,13676,13781,13800,14006,14070,28209,28218,28105,28106,5124;
+				setarray .@cardsnotallowed[0],4146,4414,4087,4441,4365,4128,4276,4361;
+				break;
 		}
-	}
-	end;
+		getmapxy(.@map$,.@x,.@y,0);
+		for(set .@m, 0; .@m < getarraysize(.@restrictedmaps$); set .@m, .@m + 1) {
+			while(.@map$ == .@restrictedmaps$[.@m]){
+				for(set .@e, 1; .@e < 11; set .@e, .@e + 1) {
+					for(set .@i, 0; .@i < getarraysize(.@itemsallowed); set .@i, .@i + 1) {
+						if(getequipid(.@e) == .@itemsallowed[.@i] || getequipid(.@e) == -1) {							
+							if(getitemname(getequipid(.@e)) != "null" ){
+								dispbottom "Item '"+getitemname(getequipid(.@e))+"' is not allowed in this map. It has been unequiped.";
+								unequip .@e;
+								break;
+							}
+						}
+						else{							
+							for(set .@n, 0; .@n < getarraysize(.@cardsnotallowed); set .@n, .@n + 1){
+								for(set .@b, 0; .@b < 4; set .@b, .@b + 1){
+									if(getequipcardid(.@e, .@b) == .@cardsnotallowed[.@n]){
+										dispbottom "Item '"+getitemname(getequipcardid(.@e, .@b))+"' is not allowed in this map. It has been unequiped.";
+										unequip .@e;
+										break;
+									}
+								}
+							}
+						}						
+					}
+				}
+				sleep2 10;
+				getmapxy(.@map$,.@x,.@y,0);
+			}
+		}
+		end;
 }
 
 payon	mapflag	loadevent
 prontera	mapflag	loadevent
+06guild_01	mapflag	loadevent
