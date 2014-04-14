@@ -1,0 +1,33 @@
+Player versus Player system:
+
+1. To obtain rewards for killing other people there must be passed some restrictions:
+	- your last kill can't be your current kill,
+	- your current kill can be yourself (you can't suicide),
+	- the level difference between you and the victim must be 0,
+	- the victim cannot be soul linker,
+After passing that there's certain chance to get reward:
+	- 100% on Event Maps,
+	- 30% on war zones,
+	- 10% on rest of the maps.
+2. [TO DO] NPC that will change the points to goodies.
+
+3. SPECTATOR MODE!!!111
+Spectator Mode allows people who are not part of the event to enjoy the show. The Mode is available for players when event GM activate special option on Event NPC. Players who are inside Spectator Mode are unable to do any actions except moving and talking to Exit NPC. 
+
+4. Exit NPC.
+NPC that let people go back to their save point. He enables attacking, casting spells and talking.
+
+5. Jette's Assitant.
+The NPC is located in GM Room. It allow Event GM to set certain conditions for his pvp event. He can choose to do:
+	- PvP with general restrictions,
+	- PvP with general restrictions + valk C,
+	- PvP with general restrictions + hw C, fbh C, valk C,
+	- PvP with magic restrictions,
+Also he can choose one of 3 maps:
+	- quiz01,
+	- quiz02,
+	- 06guild_01,
+Additionally he got option to spawn NPCs that will enable spectator mode and that will help with item check.
+
+6. Restriction NPC.
+It's the NPC that does the whole... dirty work. He checks if player who want to join events doesn't bring any items that are not allowed. He got several options based on Jette's Assistant choices.

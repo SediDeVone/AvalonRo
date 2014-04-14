@@ -13,7 +13,7 @@
 		set $@vlvl, BaseLevel;
 		set $@class, Class;
 		attachrid(.@killer);
-		if (.@victim != last_kill && .@victim != getcharid(3) && $@klvl == $@vlvl && jobname($@class) != "Soul Linker") {
+		if (.@victim != last_kill && .@victim != getcharid(3) && $@klvl == $@vlvl && $@class != 4049) {
 			getmapxy (.@map$, .@x, .@y, 0);
 			if( .@map$ == "pvp_y_1-2" ){
 				set .@random, rand(1,100);
@@ -27,6 +27,7 @@
 		}
 		set last_kill, .@victim;
 		end;
+
 	OnPCLogoutEvent:
 		getmapxy (.@map$, .@x, .@y, 0);
 		if( .@map$ == "quiz_01" ){
@@ -43,7 +44,7 @@ prt_fild08,167,362,6	script	Spectator Mode	72,{
 	sc_end SC_ALL;
 	atcommand "@hide";
 	atcommand "@costume Xmas";
-	atcommand "@mute 1";
+	atcommand "@mute 4";
 	detachrid;
 	warpchar "quiz_01",63,183,.@player2;
 	end;
@@ -153,6 +154,30 @@ lhz_que01,86,165,6	script	Jette's assistant	52,{
 		setmapflag "quiz_01", mf_nochat;
 		setmapflag "quiz_01", mf_nodrop;
 		setmapflag "quiz_01", mf_nocommand,40;
+		setmapflag "quiz_02", mf_partylock;
+		setmapflag "quiz_02", mf_guildlock;
+		setmapflag "quiz_02", mf_notrade;
+		setmapflag "quiz_02", mf_noreturn;
+		setmapflag "quiz_02", mf_nosave;
+		setmapflag "quiz_02", mf_nobranch;
+		setmapflag "quiz_02", mf_pvp_noguild;
+		setmapflag "quiz_02", mf_nomemo;
+		setmapflag "quiz_02", mf_noteleport;
+		setmapflag "quiz_02", mf_nochat;
+		setmapflag "quiz_02", mf_nodrop;
+		setmapflag "quiz_02", mf_nocommand,40;
+		setmapflag "06guild_01", mf_partylock;
+		setmapflag "06guild_01", mf_guildlock;
+		setmapflag "06guild_01", mf_notrade;
+		setmapflag "06guild_01", mf_noreturn;
+		setmapflag "06guild_01", mf_nosave;
+		setmapflag "06guild_01", mf_nobranch;
+		setmapflag "06guild_01", mf_pvp_noguild;
+		setmapflag "06guild_01", mf_nomemo;
+		setmapflag "06guild_01", mf_noteleport;
+		setmapflag "06guild_01", mf_nochat;
+		setmapflag "06guild_01", mf_nodrop;
+		setmapflag "06guild_01", mf_nocommand,40;
 		end;
 }
 
