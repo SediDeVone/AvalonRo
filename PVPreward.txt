@@ -400,3 +400,5 @@ prt_fild08,175,362,6	script	Tom	70,{
 payon	mapflag	loadevent
 prontera	mapflag	loadevent
 06guild_01	mapflag	loadevent
+quiz_01 mapflag loadevent
+quiz_02 mapflag loadevent

@@ -32,5 +32,5 @@ Additionally he got option to spawn NPCs that will enable spectator mode and tha
 6. Restriction NPC.
 It's the NPC that does the whole... dirty work. He checks if player who want to join events doesn't bring any items that are not allowed. He got several options based on Jette's Assistant choices.
 
-7. [IN PROGRESS] Restriction v 2.0
+7. Restriction v 2.0
 Different aspect of restrictions. Instead of making player store their items they are being unequipped.
