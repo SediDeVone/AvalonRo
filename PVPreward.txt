@@ -137,7 +137,23 @@ lhz_que01,86,165,6	script	Jette's assistant	52,{
 		mes "Sorry, but You aren't Jette. You can't activate the npc.";
 		close;
 	}
-	end;
+	
+	OnInit:
+		disablenpc "Tom";
+		disablenpc "Spectator Mode";
+		setmapflag "quiz_01", mf_partylock;
+		setmapflag "quiz_01", mf_guildlock;
+		setmapflag "quiz_01", mf_notrade;
+		setmapflag "quiz_01", mf_noreturn;
+		setmapflag "quiz_01", mf_nosave;
+		setmapflag "quiz_01", mf_nobranch;
+		setmapflag "quiz_01", mf_pvp_noguild;
+		setmapflag "quiz_01", mf_nomemo;
+		setmapflag "quiz_01", mf_noteleport;
+		setmapflag "quiz_01", mf_nochat;
+		setmapflag "quiz_01", mf_nodrop;
+		setmapflag "quiz_01", mf_nocommand,40;
+		end;
 }
 
 prt_fild08,175,362,6	script	Tom	70,{
