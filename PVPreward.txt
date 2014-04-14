@@ -33,6 +33,7 @@
 		if( .@map$ == "quiz_01" ){
 			warp getsavepoint(0),getsavepoint(1),getsavepoint(2);
 		}
+		end;
 }
 
 prt_fild08,167,362,6	script	Spectator Mode	72,{
@@ -335,3 +336,46 @@ prt_fild08,175,362,6	script	Tom	70,{
 	}
 	end;
 }
+
+
+
+
+-	script	EquipCheck	-1,{
+OnPCLoadMapEvent:
+	setarray .@restrictedmaps$[0], "prontera", "payon";
+	setarray .@itemsallowed[0], 1530,4147;
+	getmapxy(.@map$,.@x,.@y,0);
+	for(set .@m, 0; .@m < getarraysize(.@restrictedmaps$); set .@m, .@m + 1) {
+		while(.@map$ == .@restrictedmaps$[.@m]){
+			for(set .@e, 1; .@e < 11; set .@e, .@e + 1) {
+				for(set .@i, 0; .@i < getarraysize(.@itemsallowed); set .@i, .@i + 1) {
+					if(getequipid(.@e) == .@itemsallowed[.@i] || getequipid(.@e) == -1) {
+						set .@a, 1;
+						break;
+					}
+					else{
+						if(getequipcardid(.@e, 0) == 4147){
+							set .@a, 1;
+						}
+						else
+						set .@a, 0;
+					}
+					
+				}
+				if(.@a){
+					if(getitemname(getequipid(.@e)) != "null" ){
+						dispbottom "Item '"+getitemname(getequipid(.@e))+"' is not allowed in this map. It has been unequiped.";
+						unequip .@e;
+					}
+				}
+				set .@a, 0;
+			}
+			sleep2 10;
+			getmapxy(.@map$,.@x,.@y,0);
+		}
+	}
+	end;
+}
+
+payon	mapflag	loadevent
+prontera	mapflag	loadevent
