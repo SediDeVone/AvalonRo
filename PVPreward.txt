@@ -100,7 +100,7 @@ quiz_01,63,195,6	script	Exit Arena	49,{
 }
 
 lhz_que01,86,165,6	script	Event Assistant	52,{
-	if(strcharinfo(0) == "Sedi" || strcharinfo(0) == "Alvaren"){
+	if(getgmlevel() > 41){
 		mes "[Event Assistant]";
 		mes "Hello, " + strcharinfo(0) + " I can activate pvp script for you";
 		next;
@@ -373,7 +373,6 @@ prt_fild08,175,362,6	script	Tom	70,{
 
 -	script	EquipCheck	-1,{
  	OnPCLoadMapEvent:
-		dispbottom $pvp_npc;
  		setarray .@restrictedmaps$[0], "prontera", "payon","quiz_01","quiz_02","06guild_01";
  		switch($pvp_npc){
  			case 0:
