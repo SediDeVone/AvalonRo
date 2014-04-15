@@ -30,7 +30,7 @@
 
 	OnPCLogoutEvent:
 		getmapxy (.@map$, .@x, .@y, 0);
-		if( .@map$ == "quiz_01" ){
+		if( .@map$ == "quiz_01" || .@map$ == "quiz_02" || .@map$ == "06guild_01"){
 			warp getsavepoint(0),getsavepoint(1),getsavepoint(2);
 		}
 		end;
@@ -39,16 +39,28 @@
 prt_fild08,167,362,6	script	Spectator Mode	72,{
 	set .@player2, getcharid(0);
 	set #hidden, 1;
-	mes "[Frank]";
-	mes "You call me dispeller, but maybe my name is Frank?";
-	undisguise;
-	sc_end SC_ALL;
-	atcommand "@hide";
-	atcommand "@costume Xmas";
-	atcommand "@mute 4";
-	detachrid;
-	warpchar "quiz_01",63,183,.@player2;
-	end;
+	mes "[Spectator Mode]";
+	mes "Hello there traveler";
+	mes "I can send you over to watch the glorious battle.";
+	mes "Do you want to go?";
+	next;
+	switch(select(Yes:No)){
+		case 1:
+			mes "[Spectator Mode]";
+			mes "Excellent! Enjoy your view.";
+			undisguise;
+			sc_end SC_ALL;
+			atcommand "@hide";
+			atcommand "@costume Xmas";
+			atcommand "@mute 4";
+			detachrid;
+			warpchar "quiz_01",63,183,.@player2;
+			end;	
+		case 2:
+			mes "[Spectator Mode]";
+			mes "As you wish, farewell";
+			close;
+	}
 }
 
 quiz_01,63,195,6	script	Exit Arena	49,{
@@ -66,16 +78,17 @@ quiz_01,63,195,6	script	Exit Arena	49,{
 	end;
 }
 
-lhz_que01,86,165,6	script	Jette's assistant	52,{
+lhz_que01,86,165,6	script	Event Helper	52,{
 	if(strcharinfo(0) == "Sedi" || strcharinfo(0) == "Alvaren"){
-		mes "[Jette's assistant]";
+		mes "[Event Helper]";
 		mes "Hello, " + strcharinfo(0) + " I can activate pvp script for you";
 		next;
-		mes "[Jette's assistant]";
+		mes "[Event Helper]";
 		mes "What do you want to do?";
+		next;
 		switch(select("Set_restrictions:Set_map:Enable NPCs:Close Event:Nothing")){
 			case 1:
-				mes "[Jette's assistant]";
+				mes "[Event Helper]";
 				mes "Which NPC version do you want?";
 				switch(select("General PvP:General PvP(no ValkC):General PVP(No HwC,FBHC,ValkC):Magic Classes:None")){
 					case 1:
@@ -98,7 +111,7 @@ lhz_que01,86,165,6	script	Jette's assistant	52,{
 						close;
 				}		
 			case 2:
-				mes "[Jette's assistant]";
+				mes "[Event Helper]";
 				mes "Which map do you want to enable?";
 				switch(select("1v1/2v2/5v5:Guild vs Guild:LMS:None")){
 					case 1:
@@ -117,13 +130,13 @@ lhz_que01,86,165,6	script	Jette's assistant	52,{
 						close;
 				}
 			case 3:	
-				mes "[Jette's assistant]";
+				mes "[Event Helper]";
 				mes "I've enabled NPCs";
 				enablenpc "Tom";
 				enablenpc "Spectator Mode";
 				close;
 			case 4:
-				mes "[Jette's assistant]";
+				mes "[Event Helper]";
 				mes "Thank you for abusing me, you bastard!";
 				announce "PvP Event is over. Thank you for joining.", 0;
 				disablenpc "Tom";
@@ -134,7 +147,7 @@ lhz_que01,86,165,6	script	Jette's assistant	52,{
 		}
 	}
 	else{
-		mes "[Jette's assistant]";
+		mes "[Event Helper]";
 		mes "Hello, " + strcharinfo(0) + ".";
 		mes "Sorry, but You aren't Jette. You can't activate the npc.";
 		close;
