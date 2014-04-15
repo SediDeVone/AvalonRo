@@ -342,7 +342,7 @@ prt_fild08,175,362,6	script	Tom	70,{
 
 -	script	EquipCheck	-1,{
 	OnPCLoadMapEvent:
-		setarray .@restrictedmaps$[0], "prontera", "payon","quiz_01","quiz_02","06guild_01";
+		setarray .@restrictedmaps$[0],"quiz_01","quiz_02","06guild_01";
 		switch($pvp_npc){
 			case 0:
 				setarray .@itemsallowed[0],0;
@@ -370,12 +370,10 @@ prt_fild08,175,362,6	script	Tom	70,{
 			while(.@map$ == .@restrictedmaps$[.@m]){
 				for(set .@e, 1; .@e < 11; set .@e, .@e + 1) {
 					for(set .@i, 0; .@i < getarraysize(.@itemsallowed); set .@i, .@i + 1) {
-						if(getequipid(.@e) == .@itemsallowed[.@i] || getequipid(.@e) == -1) {							
-							if(getitemname(getequipid(.@e)) != "null" ){
-								dispbottom "Item '"+getitemname(getequipid(.@e))+"' is not allowed in this map. It has been unequiped.";
-								unequip .@e;
-								break;
-							}
+						if(getequipid(.@e) == .@itemsallowed[.@i] && getequipid(.@e) != -1) {	
+							dispbottom "Item '"+getitemname(getequipid(.@e))+"' is not allowed in this map. It has been unequiped.";
+							unequip .@e;
+							break;
 						}
 						else{							
 							for(set .@n, 0; .@n < getarraysize(.@cardsnotallowed); set .@n, .@n + 1){
@@ -397,8 +395,6 @@ prt_fild08,175,362,6	script	Tom	70,{
 		end;
 }
 
-payon	mapflag	loadevent
-prontera	mapflag	loadevent
 06guild_01	mapflag	loadevent
 quiz_01 mapflag loadevent
 quiz_02 mapflag loadevent
