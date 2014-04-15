@@ -31,23 +31,43 @@
 	OnPCLogoutEvent:
 		getmapxy (.@map$, .@x, .@y, 0);
 		if( .@map$ == "quiz_01" || .@map$ == "quiz_02" || .@map$ == "06guild_01"){
-			warp getsavepoint(0),getsavepoint(1),getsavepoint(2);
+			if(#hidden > 0){
+				set .@players$, strcharinfo(0);
+				set .@player, getcharid(3);
+				detachrid;
+				atcommand "@unmute "+ .@players$;
+				attachrid(.@player);
+				atcommand "@hide";
+				atcommand "@costume";
+			}
+		}
+		end;
+
+	OnPCLoginEvent:
+		getmapxy (.@map$, .@x, .@y, 0);
+		if( .@map$ == "quiz_01" || .@map$ == "quiz_02" || .@map$ == "06guild_01"){
+			if(#hidden > 0){
+				atcommand "@hide";
+				atcommand "@costume Xmas";
+				atcommand "@mute 4";
+				detachrid;
+			}
 		}
 		end;
 }
 
 prt_fild08,167,362,6	script	Spectator Mode	72,{
-	set .@player2, getcharid(0);
-	set #hidden, 1;
 	mes "[Spectator Mode]";
-	mes "Hello there traveler";
-	mes "I can send you over to watch the glorious battle.";
-	mes "Do you want to go?";
+	mes "Hello, " + strcharinfo(0) + ".";
+	mes "The most glorious battle is about to begin! Oh the views... the adrenaline...";
+	mes "...Oh, do you want to go? It might be dangerous!";
 	next;
-	switch(select(Yes:No)){
+	switch(select("Yes:No")){
 		case 1:
 			mes "[Spectator Mode]";
-			mes "Excellent! Enjoy your view.";
+			mes "Excellent! Have fun!";
+			set .@player2, getcharid(0);
+			set #hidden, 1;
 			undisguise;
 			sc_end SC_ALL;
 			atcommand "@hide";
@@ -58,7 +78,8 @@ prt_fild08,167,362,6	script	Spectator Mode	72,{
 			end;	
 		case 2:
 			mes "[Spectator Mode]";
-			mes "As you wish, farewell";
+			mes "You got no idea what you're going to miss...";
+			mes "Oh well...farewell my friend, farewell";
 			close;
 	}
 }
@@ -78,17 +99,17 @@ quiz_01,63,195,6	script	Exit Arena	49,{
 	end;
 }
 
-lhz_que01,86,165,6	script	Event Helper	52,{
+lhz_que01,86,165,6	script	Event Assistant	52,{
 	if(strcharinfo(0) == "Sedi" || strcharinfo(0) == "Alvaren"){
-		mes "[Event Helper]";
+		mes "[Event Assistant]";
 		mes "Hello, " + strcharinfo(0) + " I can activate pvp script for you";
 		next;
-		mes "[Event Helper]";
+		mes "[Event Assistant]";
 		mes "What do you want to do?";
 		next;
 		switch(select("Set_restrictions:Set_map:Enable NPCs:Close Event:Nothing")){
 			case 1:
-				mes "[Event Helper]";
+				mes "[Event Assistant]";
 				mes "Which NPC version do you want?";
 				switch(select("General PvP:General PvP(no ValkC):General PVP(No HwC,FBHC,ValkC):Magic Classes:None")){
 					case 1:
@@ -111,7 +132,7 @@ lhz_que01,86,165,6	script	Event Helper	52,{
 						close;
 				}		
 			case 2:
-				mes "[Event Helper]";
+				mes "[Event Assistant]";
 				mes "Which map do you want to enable?";
 				switch(select("1v1/2v2/5v5:Guild vs Guild:LMS:None")){
 					case 1:
@@ -130,13 +151,13 @@ lhz_que01,86,165,6	script	Event Helper	52,{
 						close;
 				}
 			case 3:	
-				mes "[Event Helper]";
+				mes "[Event Assistant]";
 				mes "I've enabled NPCs";
 				enablenpc "Tom";
 				enablenpc "Spectator Mode";
 				close;
 			case 4:
-				mes "[Event Helper]";
+				mes "[Event Assistant]";
 				mes "Thank you for abusing me, you bastard!";
 				announce "PvP Event is over. Thank you for joining.", 0;
 				disablenpc "Tom";
@@ -147,7 +168,7 @@ lhz_que01,86,165,6	script	Event Helper	52,{
 		}
 	}
 	else{
-		mes "[Event Helper]";
+		mes "[Event Assistant]";
 		mes "Hello, " + strcharinfo(0) + ".";
 		mes "Sorry, but You aren't Jette. You can't activate the npc.";
 		close;
@@ -160,7 +181,6 @@ lhz_que01,86,165,6	script	Event Helper	52,{
 		setmapflag "quiz_01", mf_guildlock;
 		setmapflag "quiz_01", mf_notrade;
 		setmapflag "quiz_01", mf_noreturn;
-		setmapflag "quiz_01", mf_nosave;
 		setmapflag "quiz_01", mf_nobranch;
 		setmapflag "quiz_01", mf_pvp_noguild;
 		setmapflag "quiz_01", mf_nomemo;
@@ -172,7 +192,6 @@ lhz_que01,86,165,6	script	Event Helper	52,{
 		setmapflag "quiz_02", mf_guildlock;
 		setmapflag "quiz_02", mf_notrade;
 		setmapflag "quiz_02", mf_noreturn;
-		setmapflag "quiz_02", mf_nosave;
 		setmapflag "quiz_02", mf_nobranch;
 		setmapflag "quiz_02", mf_pvp_noguild;
 		setmapflag "quiz_02", mf_nomemo;
@@ -184,7 +203,6 @@ lhz_que01,86,165,6	script	Event Helper	52,{
 		setmapflag "06guild_01", mf_guildlock;
 		setmapflag "06guild_01", mf_notrade;
 		setmapflag "06guild_01", mf_noreturn;
-		setmapflag "06guild_01", mf_nosave;
 		setmapflag "06guild_01", mf_nobranch;
 		setmapflag "06guild_01", mf_pvp_noguild;
 		setmapflag "06guild_01", mf_nomemo;
@@ -386,7 +404,6 @@ prt_fild08,175,362,6	script	Tom	70,{
 						if(getequipid(.@e) == .@itemsallowed[.@i] && getequipid(.@e) != -1) {	
 							dispbottom "Item '"+getitemname(getequipid(.@e))+"' is not allowed in this map. It has been unequiped.";
 							unequip .@e;
-							break;
 						}
 						else{							
 							for(set .@n, 0; .@n < getarraysize(.@cardsnotallowed); set .@n, .@n + 1){
@@ -394,7 +411,6 @@ prt_fild08,175,362,6	script	Tom	70,{
 									if(getequipcardid(.@e, .@b) == .@cardsnotallowed[.@n]){
 										dispbottom "Item '"+getitemname(getequipcardid(.@e, .@b))+"' is not allowed in this map. It has been unequiped.";
 										unequip .@e;
-										break;
 									}
 								}
 							}
