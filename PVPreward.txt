@@ -400,25 +400,25 @@ prt_fild08,175,362,6	script	Tom	70,{
  		for(set .@m, 0; .@m < getarraysize(.@restrictedmaps$); set .@m, .@m + 1) {
  			while(.@map$ == .@restrictedmaps$[.@m]){
  				for(set .@e, 1; .@e < 11; set .@e, .@e + 1) {
- 					for(set .@i, 0; .@i < getarraysize(.@itemsallowed); set .@i, .@i + 1) {
- 						if(getequipid(.@e) == .@itemsallowed[.@i] || getequipid(.@e) == -1) {							
- 							if(getitemname(getequipid(.@e)) != "null" ){
- 								dispbottom "Item '"+getitemname(getequipid(.@e))+"' is not allowed in this map. It has been unequiped.";
- 								unequip .@e;
- 							}
- 							break; 							
- 						}
- 						else{							
- 							for(set .@n, 0; .@n < getarraysize(.@cardsnotallowed); set .@n, .@n + 1){
- 								for(set .@b, 0; .@b < 4; set .@b, .@b + 1){
- 									if(getequipcardid(.@e, .@b) == .@cardsnotallowed[.@n]){
- 										dispbottom "Item '"+getitemname(getequipcardid(.@e, .@b))+"' is not allowed in this map. It has been unequiped.";
- 										unequip .@e;
- 										break;
- 									}
- 								}
- 							}
- 						}					
+ 					if(getequipid(.@e) != -1) {
+	 					for(set .@i, 0; .@i < getarraysize(.@itemsallowed); set .@i, .@i + 1) {
+	 						if(getequipid(.@e) == .@itemsallowed[.@i]) {
+	 							dispbottom "Item '"+getitemname(getequipid(.@e))+"' is not allowed in this map. It has been unequiped.";
+	 							unequip .@e;
+	 							break; 							
+	 						}
+	 						else{							
+	 							for(set .@n, 0; .@n < getarraysize(.@cardsnotallowed); set .@n, .@n + 1){
+	 								for(set .@b, 0; .@b < 4; set .@b, .@b + 1){
+	 									if(getequipcardid(.@e, .@b) == .@cardsnotallowed[.@n]){
+	 										dispbottom "Item '"+getitemname(getequipcardid(.@e, .@b))+"' is not allowed in this map. It has been unequiped.";
+	 										unequip .@e;
+	 										break;
+	 									}
+	 								}
+	 							}
+	 						}					
+	 					}
  					}
  				}
  				sleep2 10;
