@@ -376,23 +376,23 @@ prt_fild08,175,362,6	script	Tom	70,{
  		setarray .@restrictedmaps$[0], "prontera", "payon","quiz_01","quiz_02","06guild_01";
  		switch($pvp_npc){
  			case 0:
- 				setarray .@itemsallowed[0],0;
+ 				setarray .@itemsnotallowed[0],0;
  				setarray .@cardsnotallowed[0],0;
  				break;
  			case 1:
- 				setarray .@itemsallowed[0],2541,2382,1530,1132,1565,1369,1141,2629,2545;
+ 				setarray .@itemsnotallowed[0],2541,2382,1530,1132,1565,1369,1141,2629,2545;
  				setarray .@cardsnotallowed[0],4128,4276,4361;
  				break;
  			case 2:
- 				setarray .@itemsallowed[0],2541,2382,1530,1132,1565,1369,1141,2629,2545;
+ 				setarray .@itemsnotallowed[0],2541,2382,1530,1132,1565,1369,1141,2629,2545;
  				setarray .@cardsnotallowed[0],4407,4128,4276,4361;
  				break;
  			case 3:
- 				setarray .@itemsallowed[0],2541,2382,1530,1132,1565,1369,1141,2629,2545;
+ 				setarray .@itemsnotallowed[0],2541,2382,1530,1132,1565,1369,1141,2629,2545;
  				setarray .@cardsnotallowed[0],4441,4365,4407,4128,4276,4361;
  				break;
  			case 4:
- 				setarray .@itemsallowed[0],5058,5219,5230,5231,5232,5233,5234,5279,5623,13502,13676,13781,13800,14006,14070,28209,28218,28105,28106,5124;
+ 				setarray .@itemsnotallowed[0],5058,5219,5230,5231,5232,5233,5234,5279,5623,13502,13676,13781,13800,14006,14070,28209,28218,28105,28106,5124;
  				setarray .@cardsnotallowed[0],4146,4414,4087,4441,4365,4128,4276,4361;
  				break;
  		}
@@ -401,8 +401,8 @@ prt_fild08,175,362,6	script	Tom	70,{
  			while(.@map$ == .@restrictedmaps$[.@m]){
  				for(set .@e, 1; .@e < 11; set .@e, .@e + 1) {
  					if(getequipid(.@e) != -1) {
-	 					for(set .@i, 0; .@i < getarraysize(.@itemsallowed); set .@i, .@i + 1) {
-	 						if(getequipid(.@e) == .@itemsallowed[.@i]) {
+	 					for(set .@i, 0; .@i < getarraysize(.@itemsnotallowed); set .@i, .@i + 1) {
+	 						if(getequipid(.@e) == .@itemsnotallowed[.@i]) {
 	 							dispbottom "Item '"+getitemname(getequipid(.@e))+"' is not allowed in this map. It has been unequiped.";
 	 							unequip .@e;
 	 							break; 							
