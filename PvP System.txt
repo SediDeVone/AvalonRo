@@ -17,7 +17,7 @@ Spectator Mode allows people who are not part of the event to enjoy the show. Th
 4. Exit NPC.
 NPC that let people go back to their save point. He enables attacking, casting spells and talking.
 
-5. Jette's Assitant.
+5. Event Assitant.
 The NPC is located in GM Room. It allow Event GM to set certain conditions for his pvp event. He can choose to do:
 	- PvP with general restrictions,
 	- PvP with general restrictions + valk C,
@@ -33,4 +33,10 @@ Additionally he got option to spawn NPCs that will enable spectator mode and tha
 It's the NPC that does the whole... dirty work. He checks if player who want to join events doesn't bring any items that are not allowed. He got several options based on Jette's Assistant choices.
 
 7. Restriction v 2.0
-Different aspect of restrictions. Instead of making player store their items they are being unequipped.
+Different view on restrictions. Instead of making player store their items they are being unequipped.
+
+8. [IN PROGRESS] PvP Ladder
+	1. Requirements:
+	a) You cannot get point during WoE.
+	b) You cannot get point when you killed yourself.
+	c) You cannot get point when lvl difference is higher then 20.

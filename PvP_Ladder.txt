@@ -1,48 +1,60 @@
 prontera,138,172,4	script	Pvp_Ladder	90,{
 	mes "Pvp Ladder";
-	if(getgmlevel() > 61){ set .@i,select("View PVP Records:Leave:Reset PVP ladder");}
-	else { set .@i,select("View PVP Records:Leave"); }
+	
+	if(getgmlevel() > 61){
+		set .@i,select("View PVP Records:Leave:Reset PVP ladder");
+	}
+	else{ 
+		set .@i,select("View PVP Records:Leave");
+	}
 	switch(.@i){
-		case 3:
-			mes "Are you sure you want to delete ALL pvp records?";
-			if(select("No:Yes")==1) close;
-			next;
-			mes "Wait one Moment...";
-			mes ".....";
-			cleararray $Ladder$[0],0,127;
-			cleararray $Ladder[0],0,127;
-			query_sql("DELETE FROM `char_reg_num_db` WHERE `str` = 'PKCOUNT'");
-			set .@self, getcharid(3);
-			set .@size, query_sql("select account_id from `char` where online = 1", .@accounts);
-			for(set .@i,0; .@i<.@size; set .@i,.@i+1) {
-				if(attachrid(.@accounts[.@i])){
-					set PKCOUNT,0;
-				}	
-			}
-			attachrid(.@self);
-			mes "Cleared all login count data.";
-			close;
 		case 1:
 			for(set .@i,0; .@i < getarraysize($Ladder$); set .@i,.@i+1){
 				mes (.@i+1)+": "+ $Ladder$[.@i] +" with "+ $Ladder[.@i] +" kills";
 				if(.@i % 10 == 0){
-					if(select("Read More:Leave") == 1){ next; } else { close; }
+					if(select("Read More:Leave") == 1){ 
+						next; 
+					}
+					else{
+						close; 
+					}
 				}
 			}
-		case 2:	close;
+		case 2:	
+			close;
+		case 3:
+			mes "Are you sure you want to delete ALL pvp records?";
+			if(select("No:Yes")==1){
+				close;
+			}
+			next;
+			mes "Resetting ladder..";
+			mes "..work in progress..";
+			cleararray $Ladder$[0],0,127;
+			cleararray $Ladder[0],0,127;
+			query_sql("DELETE FROM `char_reg_num_db` WHERE `key` = 'pvp_kills'");
+			set .@player, getcharid(3);
+			set .@size, query_sql("select account_id from `char` where online = 1", .@accounts);
+			for(set .@i,0; .@i<.@size; set .@i,.@i+1) {
+				if(attachrid(.@accounts[.@i])){
+					set pvp_kills,0;
+				}	
+			}
+			attachrid(.@player);
+			mes "..cleared the ladder.";
+			close;
 	}
-close;
 
 	OnPCKillEvent:
-			set PKCOUNT,PKCOUNT+1;
+			set pvp_kills,pvp_kills+1;
 			for(set .@i,0; .@i < .MaxPlayers; set .@i,.@i+1){
-				if(PKCOUNT > $Ladder[.@i]){
+				if(pvp_kills > $Ladder[.@i]){
 					if($Ladder$[.@i] != strcharinfo(0)){
 						setarray $Ladder$[.@i+1],$Ladder$[.@i];
 						setarray $Ladder[.@i+1],$Ladder[.@i];
 					}
 					setarray $Ladder$[.@i],strcharinfo(0);
-					setarray $Ladder[.@i],PKCOUNT;
+					setarray $Ladder[.@i],pvp_kills;
 					announce ""+strcharinfo(0)+" Now Holds the The number "+.@i+" spot on the Pvp Ladder", 0;
 				}
 				sleep 1;
@@ -51,6 +63,6 @@ close;
 	end;
 	
 	OnInit:
-		set .MaxPlayers,10;	// Number of Players held in Records
+		set .MaxPlayers,10;
 		end;
 }
