@@ -2,31 +2,6 @@
 // AvalonRO
 
 -	script	PVPreward	-1,{
-	OnPCKillEvent:
-		set .@killer, getcharid(3);
-		set .@victim, killerdid;
-
-		dispbottom killedrid;
-		dispbottom last_kill;
-		set $@klvl, BaseLevel;
-		attachrid(.@victim);
-		set $@vlvl, BaseLevel;
-		set $@class, Class;
-		attachrid(.@killer);
-		if (.@victim != last_kill && .@victim != getcharid(3) && $@klvl == $@vlvl && $@class != 4049) {
-			getmapxy (.@map$, .@x, .@y, 0);
-			if( .@map$ == "pvp_y_1-2" ){
-				set .@random, rand(1,100);
-				if(.@random < 30){
-					getitem 640, 1;
-				}
-			}
-			//if event map, random = 100;
-			//if pvp arena, random = 30;
-			//otherwise, random = 10;
-		}
-		set last_kill, .@victim;
-		end;
 
 	OnPCLogoutEvent:
 		getmapxy (.@map$, .@x, .@y, 0);
@@ -410,19 +385,19 @@ prt_fild08,175,362,6	script	Tom	70,{
 	 						}
 	 						else{							
 	 							for(set .@n, 0; .@n < getarraysize(.@cardsnotallowed); set .@n, .@n + 1){
-	 								for(set .@b, 0; .@b < 4; set .@b, .@b + 1){
-	 									if(getequipcardid(.@e, .@b) == .@cardsnotallowed[.@n]){
+	 								//I WANTED TO DO IT WITH FOR LOOP BUT SAKRAY WAS LIKE 'FUCK YOU, YOU ARE NOT USING MORE LOOPS'
+	 									if(getequipcardid(.@e, 0) == .@cardsnotallowed[.@n] || getequipcardid(.@e, 1) == .@cardsnotallowed[.@n] || getequipcardid(.@e, 2) == .@cardsnotallowed[.@n] || getequipcardid(.@e, 3) == .@cardsnotallowed[.@n]){
 	 										dispbottom "Item '"+getitemname(getequipcardid(.@e, .@b))+"' is not allowed in this map. It has been unequiped.";
 	 										unequip .@e;
 	 										break;
 	 									}
-	 								}
 	 							}
-	 						}					
+	 						}				
 	 					}
+	 					if (.@i == 10) break;
  					}
  				}
- 				sleep2 10;
+ 				sleep2 100;
  				getmapxy(.@map$,.@x,.@y,0);
  			}
  		}
