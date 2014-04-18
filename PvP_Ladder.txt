@@ -1,8 +1,8 @@
-prontera,138,172,4	script	Pvp_Ladder	90,{
-	mes "Pvp Ladder";
+prontera,138,172,4	script	PvP Ladder	90,{
+	mes "PvP Ladder";
 	
 	if(getgmlevel() > 61){
-		set .@i,select("View PVP Records:Leave:Reset PVP ladder");
+		set .@i,select("View ladder:Leave:Reset ladder");
 	}
 	else{ 
 		set .@i,select("View PVP Records:Leave");
@@ -10,7 +10,7 @@ prontera,138,172,4	script	Pvp_Ladder	90,{
 	switch(.@i){
 		case 1:
 			for(set .@i,0; .@i < getarraysize($Ladder$); set .@i,.@i+1){
-				mes (.@i+1)+": "+ $Ladder$[.@i] +" with "+ $Ladder[.@i] +" kills";
+				mes (.@i+1)+": "+ $Ladder$[.@i] +" with "+ $Ladder_points[.@i] +" kills";
 				if(.@i % 10 == 0){
 					if(select("Read More:Leave") == 1){ 
 						next; 
@@ -31,7 +31,7 @@ prontera,138,172,4	script	Pvp_Ladder	90,{
 			mes "Resetting ladder..";
 			mes "..work in progress..";
 			cleararray $Ladder$[0],0,127;
-			cleararray $Ladder[0],0,127;
+			cleararray $Ladder_points[0],0,127;
 			query_sql("DELETE FROM `char_reg_num_db` WHERE `key` = 'pvp_kills'");
 			set .@player, getcharid(3);
 			set .@size, query_sql("select account_id from `char` where online = 1", .@accounts);
@@ -46,21 +46,29 @@ prontera,138,172,4	script	Pvp_Ladder	90,{
 	}
 
 	OnPCKillEvent:
+		set .@killer, getcharid(3);
+		set .@victim, killerdid;
+		set $@klvl, BaseLevel;
+		attachrid(.@victim);
+		set $@vlvl, BaseLevel;
+		set $@class, Class;
+		attachrid(.@killer);
+		if(.@victim != last_kill && klvl - vlvl <= 20){
 			set pvp_kills,pvp_kills+1;
 			for(set .@i,0; .@i < .MaxPlayers; set .@i,.@i+1){
-				if(pvp_kills > $Ladder[.@i]){
+				if(pvp_kills > $Ladder_points[.@i]){
 					if($Ladder$[.@i] != strcharinfo(0)){
 						setarray $Ladder$[.@i+1],$Ladder$[.@i];
-						setarray $Ladder[.@i+1],$Ladder[.@i];
+						setarray $Ladder_points[.@i+1],$Ladder_points[.@i];
 					}
 					setarray $Ladder$[.@i],strcharinfo(0);
-					setarray $Ladder[.@i],pvp_kills;
-					announce ""+strcharinfo(0)+" Now Holds the The number "+.@i+" spot on the Pvp Ladder", 0;
+					setarray $Ladder_points[.@i],pvp_kills;
 				}
 				sleep 1;
 			}
-		
-	end;
+		}
+		set last_kill, .@victim;
+		end;
 	
 	OnInit:
 		set .MaxPlayers,10;

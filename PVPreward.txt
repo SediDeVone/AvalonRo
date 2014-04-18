@@ -39,6 +39,7 @@
 				attachrid(.@player);
 				atcommand "@hide";
 				atcommand "@costume";
+				warp getsavepoint(0),getsavepoint(1),getsavepoint(2);
 			}
 		}
 		end;
