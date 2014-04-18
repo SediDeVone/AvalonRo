@@ -53,7 +53,7 @@ prontera,138,172,4	script	PvP Ladder	90,{
 		set $@vlvl, BaseLevel;
 		set $@class, Class;
 		attachrid(.@killer);
-		if(.@victim != last_kill && klvl - vlvl <= 20){
+		if(.@victim != last_kill && klvl - vlvl <= 20 && .@class != 4096){
 			set pvp_kills,pvp_kills+1;
 			for(set .@i,0; .@i < .MaxPlayers; set .@i,.@i+1){
 				if(pvp_kills > $Ladder_points[.@i]){
