@@ -1,8 +1,11 @@
 prontera,138,172,4	script	PvP Ladder	857,{
 	mes "[PvP Ladder]";
+	mes "Hello " + strcharinfo(0) + ".";
+	mes "You've got " + pvp_kills + " PvP points.";
+	mes "You've died " + pvp_deaths + " times.";
 	mes "What do you want to do?";
 	
-	if(getgmlevel() > 61){
+	if(getgmlevel() == 99){
 		set .@i,select("View ladder:Leave:Reset ladder");
 	}
 	else{ 
@@ -49,19 +52,19 @@ prontera,138,172,4	script	PvP Ladder	857,{
 	OnPCKillEvent:
 		if(last_kill == 0) set last_kill, -1;
 		set .@killer, getcharid(3);
+		set .@kname$, strcharinfo(0);
 		set .@victim, killedrid;
 		set $@klvl, BaseLevel;
 		attachrid(.@victim);
+		set pvp_deaths, pvp_deaths+1;
+		dispbottom "You've been killed by " + .@kname$ + ". You've died " + pvp_deaths + " times.";
 		set $@vlvl, BaseLevel;
 		set $@class, Class;
 		attachrid(.@killer);
-		//if(last_kill != .@victim && .@killer != .@victim && klvl - vlvl <= 20 && .@class != 4096){
+		if(.@killer != .@victim && klvl - vlvl <= .MaxPlayers && .@class != 4096){
 			dispbottom "You've gained 1 PvP point!!";
 			set pvp_kills,pvp_kills+1;
-			dispbottom "You got " + pvp_kills + " points.";
 			for(set .@i,0; .@i < 10; set .@i,.@i+1){
-				dispbottom .@i;
-				dispbottom pvp_kills + " > " + $Ladder_points[.@i];
 				if(pvp_kills > $Ladder_points[.@i]){
 					if($Ladder$[.@i] != strcharinfo(0)){
 						setarray $Ladder$[.@i+1],$Ladder$[.@i];
@@ -71,9 +74,8 @@ prontera,138,172,4	script	PvP Ladder	857,{
 					setarray $Ladder_points[.@i],pvp_kills;
 					break;
 				}
-				//sleep 1;
 			}
-		//}
+		}
 		set last_kill, .@victim;
 		end;
 	
