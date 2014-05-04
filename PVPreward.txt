@@ -1,9 +1,9 @@
 // Script for PvP System. Author: Sebastian Łasisz.
 // AvalonRO
 
--	script	PVPreward	-1,{
+-	script	PvP Coordinator	-1,{
 	OnPCLogoutEvent:
-		if(#hidden > 0){
+		if(hidden > 0){
 			set .@players$, strcharinfo(0);
 			set .@player, getcharid(3);
 			detachrid;
@@ -11,17 +11,16 @@
 			attachrid(.@player);
 			atcommand "@hide";
 			atcommand "@costume";
-			warp getsavepoint(0),getsavepoint(1),getsavepoint(2);
 		}
 		end;
 
 	OnPCLoginEvent:
 		getmapxy (.@map$, .@x, .@y, 0);
 		if( .@map$ == "quiz_01" || .@map$ == "quiz_02" || .@map$ == "06guild_01"){
-			if(#hidden > 0){
-				atcommand "@hide";
+			if(hidden > 0){
 				atcommand "@costume Xmas";
-				atcommand "@mute 300";
+				atcommand "@hide";
+				atcommand "@mute 3000";
 				detachrid;
 			}
 		}
@@ -39,14 +38,24 @@ prt_fild08,167,362,6	script	Spectator Mode	72,{
 			mes "[Spectator Mode]";
 			mes "Excellent! Have fun!";
 			set .@player2, getcharid(0);
-			set #hidden, 1;
+			set hidden, 1;
 			undisguise;
 			sc_end SC_ALL;
 			atcommand "@costume Xmas";
 			atcommand "@hide";
-			atcommand "@mute 300";
+			atcommand "@mute 3000";
 			detachrid;
-			warpchar "quiz_01",63,183,.@player2;
+			switch($pvp_map){
+				case 1:
+					warpchar "quiz_01",63,183,.@player2;
+					close;
+				case 2:
+					warpchar "06guild_01",49,49,.@player2;
+					close;
+				case 3:
+					warpchar "quiz_02",304,249,.@player2;
+					close;
+			}
 			end;	
 		case 2:
 			mes "[Spectator Mode]";
@@ -57,7 +66,7 @@ prt_fild08,167,362,6	script	Spectator Mode	72,{
 }
 
 quiz_01,63,195,6	script	Exit Arena	49,{
-	if(#hidden > 0){
+	if(hidden > 0){
 		set .@players$, strcharinfo(0);
 		set .@player, getcharid(3);
 		detachrid;
@@ -65,39 +74,38 @@ quiz_01,63,195,6	script	Exit Arena	49,{
 		attachrid(.@player);
 		atcommand "@hide";
 		atcommand "@costume";
-		set #hidden, 0;
+		set hidden, 0;
 	}
 	warp getsavepoint(0),getsavepoint(1),getsavepoint(2);
 	end;
 }
 
+06guild_01,50,95,6	duplicate(Exit Arena)	Exit Arena#2	49
+quiz_02,303,230,6	duplicate(Exit Arena)	Exit Arena#3	49
+
 lhz_que01,86,165,6	script	Event Assistant	52,{
-	if(getgmlevel() > 41){
+	if(getgmlevel() > 51){
 		mes "[Event Assistant]";
 		mes "Hello, " + strcharinfo(0) + " I can activate pvp script for you";
 		next;
 		mes "[Event Assistant]";
 		mes "What do you want to do?";
 		next;
-		switch(select("Set_restrictions:Set_map:Enable NPCs:Close Event:Nothing")){
+		switch(select("Set restrictions:Set map:Enable NPCs:Close Event:Nothing")){
 			case 1:
 				mes "[Event Assistant]";
 				mes "Which NPC version do you want?";
 				switch(select("General PvP:General PvP(no ValkC):General PVP(No HwC,FBHC,ValkC):Magic Classes:None")){
 					case 1:
-						announce "Player versus Player Event with general rules is about to begin.", 0;
 						set $pvp_npc, 1;
 						close;
 					case 2:
-						announce "Player versus Player Event with general rules (additionally no Valkc C) is about to begin.", 0;
 						set $pvp_npc, 2;
 						close;
 					case 3:
-						announce "Player versus Player Event with general rules (additionally: no hwC, FBHC, ValkC) is about to begin.", 0;
 						set $pvp_npc, 3;
 						close;
 					case 4:
-						announce "Player versus Player Event with magic class rules is about to begin.", 0;
 						set $pvp_npc, 4;
 						close;
 					case 5:
@@ -106,17 +114,14 @@ lhz_que01,86,165,6	script	Event Assistant	52,{
 			case 2:
 				mes "[Event Assistant]";
 				mes "Which map do you want to enable?";
-				switch(select("1v1/2v2/5v5:Guild vs Guild:LMS:None")){
+				switch(select("quiz_01:quiz_02:06guild_01:None")){
 					case 1:
-						announce "It will be 1v1/2v2 or 5v5", 0;
 						set $pvp_map, 1;
 						close;
 					case 2:
-						announce "It will be GvG!", 0;
 						set $pvp_map, 2;
 						close;
 					case 3:
-						announce "It will be LMS!", 0;
 						set $pvp_map, 3;
 						close;
 					case 4:
@@ -131,7 +136,6 @@ lhz_que01,86,165,6	script	Event Assistant	52,{
 			case 4:
 				mes "[Event Assistant]";
 				mes "Thank you for abusing me, you bastard!";
-				announce "PvP Event is over. Thank you for joining.", 0;
 				disablenpc "Tom";
 				disablenpc "Spectator Mode";
 				close;
@@ -142,7 +146,7 @@ lhz_que01,86,165,6	script	Event Assistant	52,{
 	else{
 		mes "[Event Assistant]";
 		mes "Hello, " + strcharinfo(0) + ".";
-		mes "Sorry, but You aren't Jette. You can't activate the npc.";
+		mes "Sorry, but don't have powera to activate the npc.";
 		close;
 	}
 	
@@ -187,55 +191,33 @@ lhz_que01,86,165,6	script	Event Assistant	52,{
 
 prt_fild08,175,362,6	script	Tom	70,{
 	mes "[Tom]";
-	mes "Hello. I'm Tom and I'm Jette's helper";
-	mes "I will decide if you are eligble to join this event.";
-	mes "You better have your gear prepared properly!";
+	mes "Hello. I'm Tom and I'm event helper";
+	mes "I will decide if you are eligible to join this event.";
 	next;
-
-	//GENERAL RESTRICIONS INC
-
-	//consumable items except holy water;
 	for( set .@i, 501; .@i <= 599; set .@i, .@i +1 ){
 		if(countitem(.@i) > 0 && .@i != 523){
 			mes "[Tom]";
+			mes "Oi! You can't bring " + getitemname(.@i) + " with you.";
 			mes "YOU ARE NOT PREPARED!!";
-			mes "Get rid of your consumables and talk to me again.";
 			close;
 		}
 	}
-	setarray .@consumables[0], 607,608,4850,4851,13541,14515,6192,13539,1413,28238,28241,28243,28244,28247,12258;
 	for( set .@i, 0; .@i < getarraysize(.@consumables); set .@i, .@i +1 ){
 		if(countitem(.@consumables[.@i]) > 0){
 			mes "[Tom]";
-			mes "YOU ARE NOT PREPARED!!";
 			mes "Oi! You can't bring " + getitemname(.@consumables[.@i]) + " with you.";
-			close;
-		}
-	}
-	//equipment
-	setarray .@equipment[0], 2541,2382,1530,1132,1565,1369,1141,2629,2545;
-	for( set .@i, 0; .@i < getarraysize(.@equipment); set .@i, .@i +1 ){
-		if(countitem(.@equipment[.@i]) > 0){
-			mes "[Tom]";
 			mes "YOU ARE NOT PREPARED!!";
-			mes "Oi! You can't bring " + getitemname(.@equipment[.@i]) + " with you.";
 			close;
 		}
 	}
-	//MvP Cards
-	if(countitem(4128) > 0 || checkequipedcard(4128) || countitem(4276) > 0 || checkequipedcard(4276) || countitem(4361) > 0 || checkequipedcard(4361)){
-		mes "[Tom]";
-		mes "YOU ARE NOT PREPARED!!";
-		mes "Well... you've got either LoD, GTB or WS card...";
-		mes "Visit me when you store them all.";
-		close;
-	}
-	switch($pvp_npc){
+	mes "[Tom]";
+	mes "Oh, you've passed all restrictions";
+	next;
+	mes "[Tom]";
+	mes "Do you want to go?";
+	switch(select("Yes:No")){
 		case 1:
 			mes "[Tom]";
-			mes "Oh, you've passed all restrictions";
-			next;
-			mes "[Tom]";
 			mes "I will teleport you to event map now.";
 			mes "Get ready! Geronimoooooooooooooo!!";
 			switch($pvp_map){
@@ -249,99 +231,14 @@ prt_fild08,175,362,6	script	Tom	70,{
 					warp "quiz_02",304,249;
 					close;
 			}
+			end;	
 		case 2:
-			if( countitem(4407) > 0 || checkequipedcard(4407)){
-				mes "[Tom]";
-				mes "Oi! You can't bring Randgris Card with you.";
-				close;
-			}
 			mes "[Tom]";
-			mes "Oh, you've passed all restrictions";
-			next;
-			mes "[Tom]";
-			mes "I will teleport you to event map now.";
-			mes "Get ready! Geronimoooooooooooooo!!";
-			switch($pvp_map){
-				case 1:
-					warp "quiz_01",63,183;
-					close;
-				case 2:
-					warp "06guild_01",49,49;
-					close;
-				case 3:
-					warp "quiz_02",304,249;
-					close;
-			}
-			close;
-		case 3:
-			if(countitem(4441) > 0 || checkequipedcard(4441) || countitem(4365) > 0 || checkequipedcard(4365) || countitem(4407) > 0 || checkequipedcard(4407)){
-				mes "[Tom]";
-				mes "Oi! You can't bring Fallen Bishop Hibram Card or Randgris Card or High Wizard Card with you.";
-				close;
-			}
-			mes "[Tom]";
-			mes "Oh, you've passed all restrictions";
-			next;
-			mes "[Tom]";
-			mes "I will teleport you to event map now.";
-			mes "Get ready! Geronimoooooooooooooo!!";
-			switch($pvp_map){
-				case 1:
-					warp "quiz_01",63,183;
-					close;
-				case 2:
-					warp "06guild_01",49,49;
-					close;
-				case 3:
-					warp "quiz_02",304,249;
-					close;
-			}
-			close;
-		case 4:
-			setarray .@magic[0],5058,5219,5230,5231,5232,5233,5234,5279,5623,13502,13676,13781,13800,14006,14070,28209,28218,28105,28106,5124;
-			setarray .@magic_cards[0],4146,4414,4087,4441,4365;
-			for( set .@i, 0; .@i < getarraysize(.@magic); set .@i, .@i +1 ){
-				if(countitem(.@magic[.@i]) > 0){
-					mes "[Tom]";
-					mes "YOU ARE NOT PREPARED!!";
-					mes "Oi! You can't bring " + getitemname(.@magic[.@i]) + " with you.";
-					close;
-				}
-			}
-			for( set .@i, 0; .@i < getarraysize(.@magic_cards); set .@i, .@i +1 ){
-				if(countitem(.@magic_cards[.@i]) > 0 || checkequipedcard(.@magic_cards[.@i])){
-					mes "[Tom]";
-					mes "YOU ARE NOT PREPARED!!";
-					mes "Oi! You can't bring " + getitemname(.@magic[.@i]) + " with you.";
-					close;
-				}
-			}
-			mes "[Tom]";
-			mes "Oh, you've passed all restrictions";
-			next;
-			mes "[Tom]";
-			mes "I will teleport you to event map now.";
-			mes "Get ready! Geronimoooooooooooooo!!";
-			switch($pvp_map){
-				case 1:
-					warp "quiz_01",63,183;
-					close;
-				case 2:
-					warp "06guild_01",49,49;
-					close;
-				case 3:
-					warp "quiz_02",304,249;
-					close;
-			}
-			close;
-		case 5:
+			mes "You got no idea what you're going to miss...";
+			mes "Oh well...farewell my friend, farewell";
 			close;
 	}
-	end;
 }
-
-
-
 
 -	script	EquipCheck	-1,{
  	OnPCLoadMapEvent:

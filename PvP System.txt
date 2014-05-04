@@ -35,7 +35,7 @@ It's the NPC that does the whole... dirty work. He checks if player who want to 
 7. Restriction v 2.0
 Different view on restrictions. Instead of making player store their items they are being unequipped.
 
-8. [IN PROGRESS] PvP Ladder
+8. PvP Ladder
 	1. Requirements:
 	a) You cannot get point during WoE.
 	b) You cannot get point when you killed yourself.
