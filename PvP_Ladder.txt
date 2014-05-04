@@ -3,7 +3,6 @@ prontera,138,172,4	script	PvP Ladder	857,{
 	mes "Hello " + strcharinfo(0) + ".";
 	mes "You've got " + pvp_kills + " PvP points.";
 	mes "You've died " + pvp_deaths + " times.";
-	mes "What do you want to do?";
 	
 	if(getgmlevel() == 99){
 		set .@i,select("View ladder:Leave:Reset ladder");
@@ -50,7 +49,6 @@ prontera,138,172,4	script	PvP Ladder	857,{
 	}
 
 	OnPCKillEvent:
-		if(last_kill == 0) set last_kill, -1;
 		set .@killer, getcharid(3);
 		set .@kname$, strcharinfo(0);
 		set .@victim, killedrid;
@@ -76,10 +74,9 @@ prontera,138,172,4	script	PvP Ladder	857,{
 				}
 			}
 		}
-		set last_kill, .@victim;
 		end;
 	
 	OnInit:
-		set .MaxPlayers,20;
+		set .MaxPlayers,40;
 		end;
 }

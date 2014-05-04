@@ -2,20 +2,16 @@
 // AvalonRO
 
 -	script	PVPreward	-1,{
-
 	OnPCLogoutEvent:
-		getmapxy (.@map$, .@x, .@y, 0);
-		if( .@map$ == "quiz_01" || .@map$ == "quiz_02" || .@map$ == "06guild_01"){
-			if(#hidden > 0){
-				set .@players$, strcharinfo(0);
-				set .@player, getcharid(3);
-				detachrid;
-				atcommand "@unmute "+ .@players$;
-				attachrid(.@player);
-				atcommand "@hide";
-				atcommand "@costume";
-				warp getsavepoint(0),getsavepoint(1),getsavepoint(2);
-			}
+		if(#hidden > 0){
+			set .@players$, strcharinfo(0);
+			set .@player, getcharid(3);
+			detachrid;
+			atcommand "@unmute "+ .@players$;
+			attachrid(.@player);
+			atcommand "@hide";
+			atcommand "@costume";
+			warp getsavepoint(0),getsavepoint(1),getsavepoint(2);
 		}
 		end;
 
@@ -46,8 +42,8 @@ prt_fild08,167,362,6	script	Spectator Mode	72,{
 			set #hidden, 1;
 			undisguise;
 			sc_end SC_ALL;
-			atcommand "@hide";
 			atcommand "@costume Xmas";
+			atcommand "@hide";
 			atcommand "@mute 300";
 			detachrid;
 			warpchar "quiz_01",63,183,.@player2;
@@ -349,7 +345,7 @@ prt_fild08,175,362,6	script	Tom	70,{
 
 -	script	EquipCheck	-1,{
  	OnPCLoadMapEvent:
- 		setarray .@restrictedmaps$[0], "prontera", "payon","quiz_01","quiz_02","06guild_01";
+ 		setarray .@restrictedmaps$[0], "quiz_01","quiz_02","06guild_01","quiz_test","bob04","guild_vs5";
  		switch($pvp_npc){
  			case 0:
  				setarray .@itemsnotallowed[0],0;
