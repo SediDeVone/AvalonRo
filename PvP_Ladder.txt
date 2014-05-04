@@ -1,5 +1,6 @@
-prontera,138,172,4	script	PvP Ladder	90,{
-	mes "PvP Ladder";
+prontera,138,172,4	script	PvP Ladder	857,{
+	mes "[PvP Ladder]";
+	mes "What do you want to do?";
 	
 	if(getgmlevel() > 61){
 		set .@i,select("View ladder:Leave:Reset ladder");
@@ -53,7 +54,7 @@ prontera,138,172,4	script	PvP Ladder	90,{
 		set $@vlvl, BaseLevel;
 		set $@class, Class;
 		attachrid(.@killer);
-		if(klvl - vlvl <= 20 && .@class != 4096){
+		if(.@killer != .@victim && klvl - vlvl <= 20 && .@class != 4096){
 			dispbottom "You've gained a point!!";
 			set pvp_kills,pvp_kills+1;
 			for(set .@i,0; .@i < .MaxPlayers; set .@i,.@i+1){
