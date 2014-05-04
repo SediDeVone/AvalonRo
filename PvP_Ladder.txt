@@ -47,14 +47,15 @@ prontera,138,172,4	script	PvP Ladder	857,{
 	}
 
 	OnPCKillEvent:
+		if(last_kill == 0) set last_kill, -1;
 		set .@killer, getcharid(3);
-		set .@victim, killerdid;
+		set .@victim, killedrid;
 		set $@klvl, BaseLevel;
 		attachrid(.@victim);
 		set $@vlvl, BaseLevel;
 		set $@class, Class;
 		attachrid(.@killer);
-		if(.@killer != .@victim && klvl - vlvl <= 20 && .@class != 4096){
+		if(last_kill != .@victim && .@killer != .@victim && klvl - vlvl <= 20 && .@class != 4096){
 			dispbottom "You've gained a point!!";
 			set pvp_kills,pvp_kills+1;
 			for(set .@i,0; .@i < .MaxPlayers; set .@i,.@i+1){
@@ -73,6 +74,7 @@ prontera,138,172,4	script	PvP Ladder	857,{
 		end;
 	
 	OnInit:
+		set last_kill, -1;
 		set .MaxPlayers,10;
 		end;
 }
