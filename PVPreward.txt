@@ -20,7 +20,7 @@
 			if(hidden > 0){
 				atcommand "@costume Xmas";
 				atcommand "@hide";
-				atcommand "@mute 3000";
+				atcommand "@mute 3000 " + strcharinfo(0);
 				detachrid;
 			}
 		}
@@ -43,7 +43,7 @@ prt_fild08,167,362,6	script	Spectator Mode	72,{
 			sc_end SC_ALL;
 			atcommand "@costume Xmas";
 			atcommand "@hide";
-			atcommand "@mute 3000";
+			atcommand "@mute 3000 " + strcharinfo(0);
 			detachrid;
 			switch($pvp_map){
 				case 1:
@@ -222,7 +222,7 @@ prt_fild08,175,362,6	script	Tom	70,{
 			mes "Get ready! Geronimoooooooooooooo!!";
 			switch($pvp_map){
 				case 1:
-					warp "quiz_01",63,183;
+					warp "quiz_01",63,165;
 					close;
 				case 2:
 					warp "06guild_01",49,49;
@@ -270,24 +270,20 @@ prt_fild08,175,362,6	script	Tom	70,{
  			while(.@map$ == .@restrictedmaps$[.@m]){
  				for(set .@e, 1; .@e < 11; set .@e, .@e + 1) {
  					if(getequipid(.@e) != -1) {
+ 						for(set .@n, 0; .@n < getarraysize(.@cardsnotallowed); set .@n, .@n + 1){
+	 						if(getequipcardid(.@e, 0) == .@cardsnotallowed[.@n] || getequipcardid(.@e, 1) == .@cardsnotallowed[.@n] || getequipcardid(.@e, 2) == .@cardsnotallowed[.@n] || getequipcardid(.@e, 3) == .@cardsnotallowed[.@n]){
+	 							dispbottom "Item '"+getitemname(getequipcardid(.@e, .@b))+"' is not allowed in this map. It has been unequiped.";
+	 							unequip .@e;
+	 							break;
+	 						}
+	 					}
 	 					for(set .@i, 0; .@i < getarraysize(.@itemsnotallowed); set .@i, .@i + 1) {
 	 						if(getequipid(.@e) == .@itemsnotallowed[.@i]) {
 	 							dispbottom "Item '"+getitemname(getequipid(.@e))+"' is not allowed in this map. It has been unequiped.";
 	 							unequip .@e;
 	 							break; 							
-	 						}
-	 						else{							
-	 							for(set .@n, 0; .@n < getarraysize(.@cardsnotallowed); set .@n, .@n + 1){
-	 								//I WANTED TO DO IT WITH FOR LOOP BUT SAKRAY WAS LIKE 'FUCK YOU, YOU ARE NOT USING MORE LOOPS'
-	 									if(getequipcardid(.@e, 0) == .@cardsnotallowed[.@n] || getequipcardid(.@e, 1) == .@cardsnotallowed[.@n] || getequipcardid(.@e, 2) == .@cardsnotallowed[.@n] || getequipcardid(.@e, 3) == .@cardsnotallowed[.@n]){
-	 										dispbottom "Item '"+getitemname(getequipcardid(.@e, .@b))+"' is not allowed in this map. It has been unequiped.";
-	 										unequip .@e;
-	 										break;
-	 									}
-	 							}
 	 						}				
 	 					}
-	 					if (.@i == 10) break;
  					}
  				}
  				sleep2 100;

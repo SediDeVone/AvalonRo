@@ -3,7 +3,7 @@ prontera,138,172,4	script	PvP Ladder	857,{
 	mes "Hello " + strcharinfo(0) + ".";
 	mes "You've got " + pvp_kills + " PvP points.";
 	mes "You've died " + pvp_deaths + " times.";
-	
+	next;
 	if(getgmlevel() == 99){
 		set .@i,select("View ladder:Leave:Reset ladder");
 	}
