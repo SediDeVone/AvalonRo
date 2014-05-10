@@ -19,3 +19,5 @@ Fixes:
 - Added walls to 06guild_01 map;
 - 06guild_01 works properly now;
 - NPC to trigger walls on map is invinsible now;
+- NPC to remove walls on map;
+- added sprites to the wall;
