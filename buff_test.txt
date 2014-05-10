@@ -1,0 +1,30 @@
+06guild_01,50,50,5	script	Helper	1187,{
+	end;
+	Part1:
+		if(getgmlevel() < 51){
+			end;
+		}
+		setwall "06guild_01",25,53,8,4,0,"wall01";
+		setwall "06guild_01",74,53,8,4,0,"wall02";
+		setwall "06guild_01",46,74,8,6,0,"wall03";
+		setwall "06guild_01",46,25,8,6,0,"wall04";
+		dispbottom "Walls has been enabled.";
+		end;
+
+	Part2:
+		if(getgmlevel() < 51){
+			end;
+		}
+		delwall "wall01";
+		delwall "wall02";
+		delwall "wall03";
+		delwall "wall04";
+		dispbottom "Walls has been disabled.";
+		end;
+
+	OnInit:
+		defpattern 1, "set walls", "Part1";
+		defpattern 1, "remove walls", "Part2";
+		activatepset 1;
+		end;
+}
