@@ -12,7 +12,7 @@ prontera,138,172,4	script	PvP Ladder	857,{
 	}
 	switch(.@i){
 		case 1:
-			for(set .@i,0; .@i < getarraysize($Ladder$); set .@i,.@i+1){
+			for(set .@i,0; .@i < .MaxPlayers; set .@i,.@i+1){
 				mes (.@i+1)+": "+ $Ladder$[.@i] +" with "+ $Ladder_points[.@i] +" kills";
 				if(.@i % 10 == 0){
 					if(select("Read More:Leave") == 1){ 

@@ -6,7 +6,6 @@ TODO:
 - reward system for pvp
 
 - *setwall on event maps
-- anopheles npc for regex usage of npc
 
 12/05/14 Maintance
 Fixes:
@@ -19,3 +18,4 @@ Fixes:
 - Players now don't get pvp points when the level difference is 20 instead of 40;
 - Added walls to 06guild_01 map;
 - 06guild_01 works properly now;
+- NPC to trigger walls on map is invinsible now;
