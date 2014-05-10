@@ -59,10 +59,10 @@ prontera,138,172,4	script	PvP Ladder	857,{
 		set $@vlvl, BaseLevel;
 		set $@class, Class;
 		attachrid(.@killer);
-		if(.@killer != .@victim && klvl - vlvl <= .MaxPlayers && .@class != 4096){
+		if(.@killer != .@victim && klvl - vlvl <= 20 && .@class != 4096){
 			dispbottom "You've gained 1 PvP point!!";
 			set pvp_kills,pvp_kills+1;
-			for(set .@i,0; .@i < 10; set .@i,.@i+1){
+			for(set .@i,0; .@i < .MaxPlayers; set .@i,.@i+1){
 				if(pvp_kills > $Ladder_points[.@i]){
 					if($Ladder$[.@i] != strcharinfo(0)){
 						setarray $Ladder$[.@i+1],$Ladder$[.@i];

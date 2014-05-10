@@ -28,6 +28,20 @@
 }
 
 prt_fild08,167,362,6	script	Spectator Mode	72,{
+	if(getpetinfo(2) != "null"){
+		mes "[Spectator Mode]";
+		mes "Hello, " + strcharinfo(0) + ".";
+		mes "Sorry, but " + getpetinfo(2) + " can't come with you.";
+		mes "Drop him somewhere safe and talk to me again.";
+		close;
+	}
+	if(getcharid(1) != 0){
+		mes "[Spectator Mode]";
+		mes "Hello, " + strcharinfo(0) + ".";
+		mes "Sorry, but you cannot join while being in party.";
+		mes "Leave your party and talk to me again.";
+		close;		
+	}
 	mes "[Spectator Mode]";
 	mes "Hello, " + strcharinfo(0) + ".";
 	mes "The most glorious battle is about to begin! Oh the views... the adrenaline...";
@@ -91,7 +105,7 @@ lhz_que01,86,165,6	script	Event Assistant	52,{
 		mes "[Event Assistant]";
 		mes "What do you want to do?";
 		next;
-		switch(select("Set restrictions:Set map:Enable NPCs:Close Event:Nothing")){
+		switch(select("Set restrictions:Set map:Enable Tom:Enable Spectator Mode:Close Event:Nothing")){
 			case 1:
 				mes "[Event Assistant]";
 				mes "Which NPC version do you want?";
@@ -129,17 +143,21 @@ lhz_que01,86,165,6	script	Event Assistant	52,{
 				}
 			case 3:	
 				mes "[Event Assistant]";
-				mes "I've enabled NPCs";
+				mes "I've enabled Tom";
 				enablenpc "Tom";
+				close;
+			case 4:	
+				mes "[Event Assistant]";
+				mes "I've enabled Spectator Mode";
 				enablenpc "Spectator Mode";
 				close;
-			case 4:
+			case 5:
 				mes "[Event Assistant]";
 				mes "Thank you for abusing me, you bastard!";
 				disablenpc "Tom";
 				disablenpc "Spectator Mode";
 				close;
-			case 5:
+			case 6:
 				close;
 		}
 	}
@@ -249,19 +267,19 @@ prt_fild08,175,362,6	script	Tom	70,{
  				setarray .@cardsnotallowed[0],0;
  				break;
  			case 1:
- 				setarray .@itemsnotallowed[0],2541,2382,1530,1132,1565,1369,1141,2629,2545;
+ 				setarray .@itemsnotallowed[0],2541,2382,1530,1132,1565,1369,1141,2629,2545,2383,1579;
  				setarray .@cardsnotallowed[0],4128,4276,4361;
  				break;
  			case 2:
- 				setarray .@itemsnotallowed[0],2541,2382,1530,1132,1565,1369,1141,2629,2545;
+ 				setarray .@itemsnotallowed[0],2541,2382,1530,1132,1565,1369,1141,2629,2545,2383,1579;
  				setarray .@cardsnotallowed[0],4407,4128,4276,4361;
  				break;
  			case 3:
- 				setarray .@itemsnotallowed[0],2541,2382,1530,1132,1565,1369,1141,2629,2545;
+ 				setarray .@itemsnotallowed[0],2541,2382,1530,1132,1565,1369,1141,2629,2545,2383,1579;
  				setarray .@cardsnotallowed[0],4441,4365,4407,4128,4276,4361;
  				break;
  			case 4:
- 				setarray .@itemsnotallowed[0],5058,5219,5230,5231,5232,5233,5234,5279,5623,13502,13676,13781,13800,14006,14070,28209,28218,28105,28106,5124;
+ 				setarray .@itemsnotallowed[0],28209,28218,28105,28106,5058,5230.5231.5232.5233.5234.5219.5124;
  				setarray .@cardsnotallowed[0],4146,4414,4087,4441,4365,4128,4276,4361;
  				break;
  		}
