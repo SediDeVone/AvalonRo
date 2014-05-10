@@ -10,7 +10,6 @@
 //===== Additional Comments: =================================
 //= 1.0 Adapted from official release. [Euphy]
 //= 1.0a Added 'npcskill' command. [Euphy]
-//= 1.1 Added anti KS system. [Gurrath]
 //============================================================
 
 hu_fild01,140,163,5	script	Tower Keeper	4_M_EIN_SOLDIER,3,3,{
@@ -93,7 +92,7 @@ hu_fild01,140,163,5	script	Tower Keeper	4_M_EIN_SOLDIER,3,3,{
 						mes "good work. Ah, and don't";
 						mes "forget: safety first when";
 						mes "you fight those monsters!";
-						Zeny -= 3000;
+						set Zeny, Zeny - 3000;
 						close2;
 						warp "tha_scene01",131,220;
 						end;
@@ -120,7 +119,7 @@ hu_fild01,140,163,5	script	Tower Keeper	4_M_EIN_SOLDIER,3,3,{
 				mes "you enjoy your visit";
 				mes "to Thanatos Tower~";
 				close2;
-				Zeny -= 5000;
+				set Zeny, Zeny - 5000;
 				warp "tha_scene01",131,220;
 				end;
 			}
@@ -456,12 +455,12 @@ tha_t01,140,78,4	script	Guide#reward	4_F_ZONDAGIRL,{
 	mes "you please tell me what kind";
 	mes "of mission proof you brought?";
 	next;
-	setarray .@items[1],7435,7440,7441,7442;
+	setarray .@Items[1],7435,7440,7441,7442;
 	set .@i, select("Golden Ornament:Red Feather:Blue Feather:Cursed Seal");
 	mes "[Liei]";
-	if (!countitem(.@items[.@i])) {
+	if (!countitem(.@Items[.@i])) {
 		mes "I'm sorry, but you are not";
-		mes "carrying any "+getitemname(.@items[.@i])+"s.";
+		mes "carrying any "+getitemname(.@Items[.@i])+"s.";
 		mes "Please check your inventory";
 		mes "one more time, and then come";
 		mes "to me to redeem your items";
@@ -469,15 +468,15 @@ tha_t01,140,78,4	script	Guide#reward	4_F_ZONDAGIRL,{
 		close;
 	}
 	mes "The reward for each";
-	mes getitemname(.@items[.@i])+" is...";
+	mes getitemname(.@Items[.@i])+" is...";
 	mes " ";
 	mes "1,000 zeny";
 	//mes "2,000 EXP";
 	next;
-	set .@zeny_tt,(countitem(.@items[.@i]) * 1000);
-	//set .@exp_tt,(countitem(.@items[.@i]) * 2000);
+	set .@zeny_tt,(countitem(.@Items[.@i]) * 1000);
+	//set .@exp_tt,(countitem(.@Items[.@i]) * 2000);
 	mes "[Liei]";
-	mes countitem(.@items[.@i])+" "+getitemname(.@items[.@i])+"s, then";
+	mes countitem(.@Items[.@i])+" "+getitemname(.@Items[.@i])+"s, then";
 	mes "you will receive a total of...";
 	mes " ";
 	mes ""+.@zeny_tt+" zeny";
@@ -485,7 +484,7 @@ tha_t01,140,78,4	script	Guide#reward	4_F_ZONDAGIRL,{
 	next;
 	mes "[Liei]";
 	mes "Would you like to exchange";
-	mes "all of your "+getitemname(.@items[.@i])+"s";
+	mes "all of your "+getitemname(.@Items[.@i])+"s";
 	mes "for your reward right now?";
 	next;
 	switch(select("Yes:No")) {
@@ -496,8 +495,8 @@ tha_t01,140,78,4	script	Guide#reward	4_F_ZONDAGIRL,{
 			//mes .@exp_tt+" EXP. Thank you,";
 			mes "and please keep up";
 			mes "the good work~";
-			delitem .@items[.@i], countitem(.@items[.@i]);
-			Zeny += .@zeny_tt;
+			delitem .@Items[.@i], countitem(.@Items[.@i]);
+			set Zeny, Zeny + .@zeny_tt;
 			//getexp .@exp_tt,0;
 			close;
 		case 2:
@@ -1807,7 +1806,7 @@ tha_t12,161,57,0	script	Gold Religious Statue#tt	HIDDEN_NPC,{
 				delitem 7427,1; //Magic_Gem_Yellow
 				set $@thana_summon, 1;
 				donpcevent "#tteffect01::OnEnable";
-				mapannounce "tha_t12","The golden magic power has released part of the seal.",bc_map,"0x00ff00"; //FW_NORMAL 12 0 0
+				mapannounce "tha_t12","The golden magic power has released part of the seal. The seal was released by ["+getpartyname(getcharid(1))+"] party.",bc_map,"0x00ff00"; //FW_NORMAL 12 0 0
 				close;
 			}
 			mes "Someone has already inserted a Charm Stone into this statue.";
@@ -1819,6 +1818,12 @@ tha_t12,161,57,0	script	Gold Religious Statue#tt	HIDDEN_NPC,{
 	}
 	mes "The statue has such a strong light that I can't see or touch it.";
 	close;
+}
+tha_t12,158,52,0	script	thanatoschecktest	HIDDEN_NPC,{
+
+		mes ""+$avrothanacheck+"";
+		close;
+
 }
 
 tha_t12,154,17,0	script	Green Wiseman Statue#tt	HIDDEN_NPC,{
@@ -2079,7 +2084,7 @@ OnTimer3000:
 	end;
 }
 
-thana_boss,217,167,3	script	Memory Seal#tt1	G_THA_MAERO,3,3,{
+thana_boss,217,167,3	script	Memory Seal#tt1	1711,3,3,{
 	end;
 OnEnable:
 	hideoffnpc strnpcinfo(0);
@@ -2184,6 +2189,7 @@ OnTouch:
 					}
 					break;
 		}
+
 		set $@f, 1;
 		set $@s, 1;
 		set $@t, 1;
@@ -2212,6 +2218,7 @@ OnTouch:
 			set $@t, $@t+1;
 			set $@th, $@th+1;
 		}
+
 		mapannounce "thana_boss",.@str$,bc_map,"0x7b68ee"; //FW_NORMAL 12 0 0
 		end;
 	}
@@ -2224,50 +2231,34 @@ OnMyMobDead:
 	set $@thana_summon2, $@thana_summon2+1;
 	if ($@thana_summon2 == 4){
 		mapwarp "thana_boss","tha_t12",141,228;
-		if($@f == $@t && $@f == $@s && $@s == $@th) {	
+		if($@f >= 2){
 			if($@first_seal < 150000) warpparty "thana_boss",140,227, $@first_seal;
 			else warpchar "thana_boss",140,227, $@first_seal;
-			if($@second_seal < 150000) warpparty "thana_boss",140,227, $@second_seal;
-			else warpchar "thana_boss",140,227, $@second_seal;
+		}
+		if($@t >= 2){
 			if($@third_seal < 150000) warpparty "thana_boss",140,227, $@third_seal;
 			else warpchar "thana_boss",140,227, $@third_seal;
+		}
+		if($@s >= 2){
+			if($@second_seal < 150000) warpparty "thana_boss",140,227, $@second_seal;
+			else warpchar "thana_boss",140,227, $@second_seal;
+		}
+		if($@th >= 2){
 			if($@fourth_seal < 150000) warpparty "thana_boss",140,227, $@fourth_seal;
 			else warpchar "thana_boss",140,227, $@fourth_seal;
 		}
-		else if($@first_seal == $@second_seal && $@first_seal == $@third_seal && $@first_seal == $@fourth_seal){
-			if($@first_seal < 150000) warpparty "thana_boss",140,227, $@first_seal;
-			else warpchar "thana_boss",140,227, $@first_seal;
-		}
-		else{
-			if($@f >= 3){
+		if($@f == $@t && $@f == $@s && $@f == $@th) {
+			if($@first_seal == $@second_seal){
 				if($@first_seal < 150000) warpparty "thana_boss",140,227, $@first_seal;
 				else warpchar "thana_boss",140,227, $@first_seal;
-			}
-			else if($@t >= 3){
-				if($@third_seal < 150000) warpparty "thana_boss",140,227, $@third_seal;
-				else warpchar "thana_boss",140,227, $@third_seal;
-			}
-			else if($@s >= 3){
-				if($@second_seal < 150000) warpparty "thana_boss",140,227, $@second_seal;
-				else warpchar "thana_boss",140,227, $@second_seal;
-			}
-			else if($@th >= 3){
-				if($@fourth_seal < 150000) warpparty "thana_boss",140,227, $@fourth_seal;
-				else warpchar "thana_boss",140,227, $@fourth_seal;
-			}
-			if($@f == 2){
-				if($@first_seal < 150000) warpparty "thana_boss",140,227, $@first_seal;
-				else warpchar "thana_boss",140,227, $@first_seal;
-			}
-			else if($@s == 2){
-				if($@second_seal < 150000) warpparty "thana_boss",140,227, $@second_seal;
-				else warpchar "thana_boss",140,227, $@second_seal;
-			}
-			else if($@t == 2){
-				if($@third_seal < 150000) warpparty "thana_boss",140,227, $@third_seal;
-				else warpchar "thana_boss",140,227, $@third_seal;
 			}
 			else{
+				if($@first_seal < 150000) warpparty "thana_boss",140,227, $@first_seal;
+				else warpchar "thana_boss",140,227, $@first_seal;
+				if($@second_seal < 150000) warpparty "thana_boss",140,227, $@second_seal;
+				else warpchar "thana_boss",140,227, $@second_seal;
+				if($@third_seal < 150000) warpparty "thana_boss",140,227, $@third_seal;
+				else warpchar "thana_boss",140,227, $@third_seal;
 				if($@fourth_seal < 150000) warpparty "thana_boss",140,227, $@fourth_seal;
 				else warpchar "thana_boss",140,227, $@fourth_seal;
 			}
@@ -2276,9 +2267,9 @@ OnMyMobDead:
 	}
 	end;
 }
-thana_boss,202,75,3	duplicate(Memory Seal#tt1)	Memory Seal#tt2	G_THA_DOLOR,3,3
-thana_boss,80,76,7	duplicate(Memory Seal#tt1)	Memory Seal#tt3	G_THA_ODIUM,3,3
-thana_boss,62,171,5	duplicate(Memory Seal#tt1)	Memory Seal#tt4	G_THA_DESPERO,3,3
+thana_boss,202,75,3	duplicate(Memory Seal#tt1)	Memory Seal#tt2	1712,3,3
+thana_boss,80,76,7	duplicate(Memory Seal#tt1)	Memory Seal#tt3	1709,3,3
+thana_boss,62,171,5	duplicate(Memory Seal#tt1)	Memory Seal#tt4	1710,3,3
 
 thana_boss,141,228,0	script	#thanatos_seal	HIDDEN_WARP_NPC,3,3,{
 	end;
@@ -2315,16 +2306,16 @@ OnTimer16000:
 	donpcevent "Memory Seal#tt5::OnDisable";
 	donpcevent "#sommon_thanatos::OnEnable";
 	set $@thana_summon2, 5;
-	
+
 	end;
-OnTimer300000:
-	mapannounce "thana_boss","Thanatos : Oh no! The entrace has been breached!",bc_map,"0xff0000"; //FW_NORMAL 12 0 0
+	OnTimer300000:
+	mapannounce "thana_boss","Thanatos : Oh no! The entrance has been breached!",bc_map,"0xff0000"; //FW_NORMAL 12 0 0
 	enablenpc "#gateto_thanatos";	
 	stopnpctimer;
 	end;
 }
 
-thana_boss,141,235,3	script	Memory Seal#tt5	THANATOS,{
+thana_boss,141,235,3	script	Memory Seal#tt5	1708,{
 	end;
 OnInit:
 	disablenpc "Memory Seal#tt5";

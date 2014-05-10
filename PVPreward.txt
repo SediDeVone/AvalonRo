@@ -207,7 +207,7 @@ lhz_que01,86,165,6	script	Event Assistant	52,{
 		end;
 }
 
-prt_fild08,175,362,6	script	Tom	70,{
+z_agit,24,187,6	script	Tom	70,{
 	mes "[Tom]";
 	mes "Hello. I'm Tom and I'm event helper";
 	mes "I will decide if you are eligible to join this event.";

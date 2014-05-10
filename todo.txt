@@ -20,4 +20,5 @@ Fixes:
 - 06guild_01 works properly now;
 - NPC to trigger walls on map is invinsible now;
 - NPC to remove walls on map;
-- added sprites to the wall;
+- Added sprites to the wall;
+- Moved Tom to z_agit 24 187
