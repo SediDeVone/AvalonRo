@@ -5,8 +5,6 @@ TODO:
 - new punishement system (restyrictions from using certain NPCs)
 - reward system for pvp
 
-- *setwall on event maps
-
 12/05/14 Maintance
 Fixes:
 - Magic Restrictions are working properly now;
@@ -19,6 +17,9 @@ Fixes:
 - Added walls to 06guild_01 map;
 - 06guild_01 works properly now;
 - NPC to trigger walls on map is invinsible now;
-- NPC to remove walls on map;
+- Added NPC to remove walls on map;
 - Added sprites to the wall;
-- Moved Tom to z_agit 24 187
+- Moved Tom to z_agit 24 187;
+- Updated thanatos quest;
+- Fixed double summon of thanatos minions when more players talk to one seal at the same time at thana_boss;
+- Added help option to wall system;

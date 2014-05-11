@@ -258,6 +258,64 @@ z_agit,24,187,6	script	Tom	70,{
 	}
 }
 
+06guild_01,50,50,5	script	Helper	1187,{
+	end;
+	Part1:
+		if(getgmlevel() < 51){
+			end;
+		}
+		areamonster "06guild_01",25,53,25,46,"Wall",1277,40;
+		areamonster "06guild_01",74,53,74,46,"Wall",1277,40;
+		areamonster "06guild_01",46,74,53,74,"Wall",1277,40;
+		areamonster "06guild_01",46,25,53,25,"Wall",1277,40;
+		setwall "06guild_01",25,53,8,4,0,"wall01";
+		setwall "06guild_01",74,53,8,4,0,"wall02";
+		setwall "06guild_01",46,74,8,6,0,"wall03";
+		setwall "06guild_01",46,25,8,6,0,"wall04";
+		dispbottom "Walls has been enabled.";
+		end;
+
+	Part2:
+		if(getgmlevel() < 51){
+			end;
+		}
+		delwall "wall01";
+		delwall "wall02";
+		delwall "wall03";
+		delwall "wall04";
+		killmonsterall "06guild_01";
+		dispbottom "Walls has been disabled.";
+		end;
+
+	Part3:
+		if(getgmlevel() < 51){
+			end;
+		}
+		dispbottom "Hello, this is help panel.";
+		sleep2 2000;
+		dispbottom "I will guide you through the NPC.";
+		sleep2 2000;
+		dispbottom "There's 3 avaiable commands for now: /help/, ";
+		sleep2 2000;
+		dispbottom "which you just activated. Also there's /set walls/, ";
+		sleep2 2000;
+		dispbottom "which activate walls. And there's /remove walls/, ";
+		sleep2 2000;
+		dispbottom "which will remove all active walls.";
+		sleep2 4000;
+		dispbottom "Remember to firstly remove all walls and next to activate them.";
+		sleep2 2000;
+		dispbottom "That's all for now. Enjoy.";
+		end;
+
+	OnInit:
+		defpattern 1, "set walls", "Part1";
+		defpattern 1, "remove walls", "Part2";
+		defpattern 1, "help", "Part3";
+		activatepset 1;
+		end;
+}
+
 -	script	EquipCheck	-1,{
  	OnPCLoadMapEvent:
  		setarray .@restrictedmaps$[0], "quiz_01","quiz_02","06guild_01","quiz_test","bob04","guild_vs5";

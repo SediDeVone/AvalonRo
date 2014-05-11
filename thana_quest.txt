@@ -2145,6 +2145,10 @@ OnTouch:
 		monster "thana_boss",.@i[2],.@i[3],.@j$,.@i[1],1,strnpcinfo(0)+"::OnMyMobDead";
 		switch($@thana_summon2) {
 			case 0: 
+					if($@first_seal > 0){
+						set $@thana_summon2, $@thana_summon2-1;
+						break;
+					}
 					set .@str$,"... who... released... the... Memory... of... "+.@j$+"...?";
 					if (!getcharid(1)){
 						set $@first_seal, getcharid(0);
@@ -2156,6 +2160,10 @@ OnTouch:
 					}					
 					break;
 			case 1: 
+					if($@second_seal > 0){
+						set $@thana_summon2, $@thana_summon2-1;
+						break;
+					}
 					set .@str$,"... why... did you... release... the... Memory... of... "+.@j$+"...?";
 					if (!getcharid(1)){
 						set $@second_seal, getcharid(0);
@@ -2167,6 +2175,10 @@ OnTouch:
 					}
 					break;
 			case 2: 
+					if($@third_seal > 0){
+						set $@thana_summon2, $@thana_summon2-1;
+						break;
+					}
 					set .@str$,"... ugh... stop it... the Memory of "+.@j$+"...";
 					if (!getcharid(1)){
 						set $@third_seal, getcharid(0);
@@ -2178,6 +2190,10 @@ OnTouch:
 					}
 					break;
 			default: 
+					if($@fourth_seal > 0){
+						set $@thana_summon2, $@thana_summon2-1;
+						break;
+					}
 					set .@str$,"... finally... you released the last piece of Memory...";
 					if (!getcharid(1)){
 						set $@fourth_seal, getcharid(0);
@@ -2263,6 +2279,14 @@ OnMyMobDead:
 				else warpchar "thana_boss",140,227, $@fourth_seal;
 			}
 		}
+		set $@f, 1;
+		set $@s, 1;
+		set $@t, 1;
+		set $@th, 1;
+		set $@first_seal, 0;
+		set $@second_seal, 0;
+		set $@third_seal, 0;
+		set $@fourth_seal, 0;
 		disablenpc "#gateto_thanatos";	
 	}
 	end;
