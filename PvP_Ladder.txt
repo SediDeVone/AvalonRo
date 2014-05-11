@@ -66,26 +66,25 @@ prontera,138,172,4	script	PvP Ladder	857,{
 		set $@vlvl, BaseLevel;
 		set $@class, Class;
 		attachrid(.@killer);
-		announce pvp_time_death, 0;
 		if(.@victim != last_kill  && .@killer != .@victim && klvl - vlvl <= 20 && .@class != 4096){
 			set .@random, rand(1,100);
 			if(pvp_kills <= 50){
 				set rand_point, 100;
 			}
 			if(pvp_kills > 50 && pvp_kills <= 100){
-				set rand_point, 50;
+				set rand_point, 75;
 			}
 			if(pvp_kills > 100 && pvp_kills <= 150){
-				set rand_point, 25;
+				set rand_point, 50;
 			}
 			if(pvp_kills > 150 && pvp_kills <= 200){
-				set rand_point, 10;			
+				set rand_point, 25;			
 			}
 			if(pvp_kills > 200 && pvp_kills <= 300){
-				set rand_point, 5;			
+				set rand_point, 15;			
 			}
 			if(pvp_kills > 300){
-				set rand_point, 1;			
+				set rand_point, 10;			
 			}
 			if(.@random < rand_point){
 				dispbottom "You've gained 1 PvP point!!";
@@ -106,7 +105,6 @@ prontera,138,172,4	script	PvP Ladder	857,{
 		set last_kill, .@victim;
 		attachrid(.@victim);		
 		set pvp_time_death, gettimetick(2) + 600;
-		announce pvp_time_death, 0;
 		end;
 	
 	OnInit:
