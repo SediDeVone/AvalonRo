@@ -23,3 +23,6 @@ Fixes:
 - Updated thanatos quest;
 - Fixed double summon of thanatos minions when more players talk to one seal at the same time at thana_boss;
 - Added help option to wall system;
+- PvP Ladder includes now restriction: last_kill != current_kill;
+- Chance of getting pvp points is based now on current kills.
+- Added 10 minute cooldown on getting pvp points from enemy.

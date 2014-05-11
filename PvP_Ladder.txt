@@ -54,26 +54,59 @@ prontera,138,172,4	script	PvP Ladder	857,{
 		set .@victim, killedrid;
 		set $@klvl, BaseLevel;
 		attachrid(.@victim);
+		set .@vname$, strcharinfo(0);
 		set pvp_deaths, pvp_deaths+1;
 		dispbottom "You've been killed by " + .@kname$ + ". You've died " + pvp_deaths + " times.";
+		if(pvp_time_death >= gettimetick(2) ){
+			set .@rnd, pvp_time_death;
+			attachrid(.@killer);
+			dispbottom "You still have to wait " + (.@rnd - gettimetick(2))/60 + " minutes to kill " + .@vname$ + " .";
+			end;
+		}
 		set $@vlvl, BaseLevel;
 		set $@class, Class;
 		attachrid(.@killer);
-		if(.@killer != .@victim && klvl - vlvl <= 20 && .@class != 4096){
-			dispbottom "You've gained 1 PvP point!!";
-			set pvp_kills,pvp_kills+1;
-			for(set .@i,0; .@i < .MaxPlayers; set .@i,.@i+1){
-				if(pvp_kills > $Ladder_points[.@i]){
-					if($Ladder$[.@i] != strcharinfo(0)){
-						setarray $Ladder$[.@i+1],$Ladder$[.@i];
-						setarray $Ladder_points[.@i+1],$Ladder_points[.@i];
+		announce pvp_time_death, 0;
+		if(.@victim != last_kill  && .@killer != .@victim && klvl - vlvl <= 20 && .@class != 4096){
+			set .@random, rand(1,100);
+			if(pvp_kills <= 50){
+				set rand_point, 100;
+			}
+			if(pvp_kills > 50 && pvp_kills <= 100){
+				set rand_point, 50;
+			}
+			if(pvp_kills > 100 && pvp_kills <= 150){
+				set rand_point, 25;
+			}
+			if(pvp_kills > 150 && pvp_kills <= 200){
+				set rand_point, 10;			
+			}
+			if(pvp_kills > 200 && pvp_kills <= 300){
+				set rand_point, 5;			
+			}
+			if(pvp_kills > 300){
+				set rand_point, 1;			
+			}
+			if(.@random < rand_point){
+				dispbottom "You've gained 1 PvP point!!";
+				set pvp_kills,pvp_kills+1;
+				for(set .@i,0; .@i < .MaxPlayers; set .@i,.@i+1){
+					if(pvp_kills > $Ladder_points[.@i]){
+						if($Ladder$[.@i] != strcharinfo(0)){
+							setarray $Ladder$[.@i+1],$Ladder$[.@i];
+							setarray $Ladder_points[.@i+1],$Ladder_points[.@i];
+						}
+						setarray $Ladder$[.@i],strcharinfo(0);
+						setarray $Ladder_points[.@i],pvp_kills;
+						break;
 					}
-					setarray $Ladder$[.@i],strcharinfo(0);
-					setarray $Ladder_points[.@i],pvp_kills;
-					break;
 				}
 			}
 		}
+		set last_kill, .@victim;
+		attachrid(.@victim);		
+		set pvp_time_death, gettimetick(2) + 600;
+		announce pvp_time_death, 0;
 		end;
 	
 	OnInit:
