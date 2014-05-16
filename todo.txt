@@ -37,3 +37,4 @@ Fixes:
 - Added regex expression to pvp ladder;
 - Added close button to view list in pvp ladder;
 - Added general restrictions to magic restrictions in event assistant;
+- Updated 'resetting ladder' option in PvP Ladder;

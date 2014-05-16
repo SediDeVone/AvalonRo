@@ -45,7 +45,7 @@ prontera,138,172,4	script	PvP Ladder	857,{
 			mes "..work in progress..";
 			cleararray $Ladder$[0],0,127;
 			cleararray $Ladder_points[0],0,127;
-			query_sql("DELETE FROM `char_reg_num_db` WHERE `key` = 'pvp_kills'");
+			query_sql("DELETE FROM `global_reg_value` WHERE `str` = 'pvp_kills'");
 			set .@player, getcharid(3);
 			set .@size, query_sql("select account_id from `char` where online = 1", .@accounts);
 			for(set .@i,0; .@i<.@size; set .@i,.@i+1) {
