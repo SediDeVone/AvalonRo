@@ -4,6 +4,9 @@ TODO:
 - create another table and move variables there (pvp)
 - new punishement system (restyrictions from using certain NPCs)
 - reward system for pvp
+- add new map for pvp system
+- change the sprite of event assistant
+- start own homunculus AI
 
 12/05/14 Maintance
 Fixes:
@@ -24,5 +27,8 @@ Fixes:
 - Fixed double summon of thanatos minions when more players talk to one seal at the same time at thana_boss;
 - Added help option to wall system;
 - PvP Ladder includes now restriction: last_kill != current_kill;
-- Chance of getting pvp points is based now on current kills: 100%, 75%, 50%, 25%, 15%, 10%.
+- Chance of getting pvp points is based now on current kills: 100%, 80%, 60%, 40%, 30%, 20%.
 - Added 10 minute cooldown on getting pvp points from enemy.
+
+19/05/14 Maintance
+Fixes:

@@ -57,6 +57,7 @@ prontera,138,172,4	script	PvP Ladder	857,{
 		set .@vname$, strcharinfo(0);
 		set pvp_deaths, pvp_deaths+1;
 		dispbottom "You've been killed by " + .@kname$ + ". You've died " + pvp_deaths + " times.";
+		set pvp_killed_by$, .@kname$;
 		if(pvp_time_death >= gettimetick(2) ){
 			set .@rnd, pvp_time_death;
 			attachrid(.@killer);
@@ -66,25 +67,26 @@ prontera,138,172,4	script	PvP Ladder	857,{
 		set $@vlvl, BaseLevel;
 		set $@class, Class;
 		attachrid(.@killer);
+		set pvp_last_kill$, .@vname$;
 		if(.@victim != last_kill  && .@killer != .@victim && klvl - vlvl <= 20 && .@class != 4096){
 			set .@random, rand(1,100);
 			if(pvp_kills <= 50){
 				set rand_point, 100;
 			}
 			if(pvp_kills > 50 && pvp_kills <= 100){
-				set rand_point, 75;
+				set rand_point, 80;
 			}
 			if(pvp_kills > 100 && pvp_kills <= 150){
-				set rand_point, 50;
+				set rand_point, 60;
 			}
 			if(pvp_kills > 150 && pvp_kills <= 200){
-				set rand_point, 25;			
+				set rand_point, 40;			
 			}
 			if(pvp_kills > 200 && pvp_kills <= 300){
-				set rand_point, 15;			
+				set rand_point, 30;			
 			}
 			if(pvp_kills > 300){
-				set rand_point, 10;			
+				set rand_point, 20;			
 			}
 			if(.@random < rand_point){
 				dispbottom "You've gained 1 PvP point!!";
@@ -104,7 +106,7 @@ prontera,138,172,4	script	PvP Ladder	857,{
 		}
 		set last_kill, .@victim;
 		attachrid(.@victim);		
-		set pvp_time_death, gettimetick(2) + 600;
+		set pvp_time_death, gettimetick(2) + 300;
 		end;
 	
 	OnInit:

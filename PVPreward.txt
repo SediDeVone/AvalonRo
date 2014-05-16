@@ -97,7 +97,7 @@ quiz_01,63,195,6	script	Exit Arena	49,{
 06guild_01,50,95,6	duplicate(Exit Arena)	Exit Arena#2	49
 quiz_02,303,230,6	duplicate(Exit Arena)	Exit Arena#3	49
 
-lhz_que01,86,165,6	script	Event Assistant	52,{
+lhz_que01,86,165,6	script	Event Assistant	811,{
 	if(getgmlevel() > 51){
 		mes "[Event Assistant]";
 		mes "Hello, " + strcharinfo(0) + " I can activate pvp script for you";
@@ -264,10 +264,10 @@ z_agit,24,187,6	script	Tom	70,{
 		if(getgmlevel() < 51){
 			end;
 		}
-		areamonster "06guild_01",25,53,25,46,"Wall",1277,40;
-		areamonster "06guild_01",74,53,74,46,"Wall",1277,40;
-		areamonster "06guild_01",46,74,53,74,"Wall",1277,40;
-		areamonster "06guild_01",46,25,53,25,"Wall",1277,40;
+		areamonster "06guild_01",25,53,25,46,"Wall",1905,40;
+		areamonster "06guild_01",74,53,74,46,"Wall",1905,40;
+		areamonster "06guild_01",46,74,53,74,"Wall",1905,40;
+		areamonster "06guild_01",46,25,53,25,"Wall",1905,40;
 		setwall "06guild_01",25,53,8,4,0,"wall01";
 		setwall "06guild_01",74,53,8,4,0,"wall02";
 		setwall "06guild_01",46,74,8,6,0,"wall03";
