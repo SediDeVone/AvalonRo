@@ -97,7 +97,7 @@ quiz_01,63,195,6	script	Exit Arena	49,{
 06guild_01,50,95,6	duplicate(Exit Arena)	Exit Arena#2	49
 quiz_02,303,230,6	duplicate(Exit Arena)	Exit Arena#3	49
 
-lhz_que01,86,165,1	script	Event Assistant	811,{
+lhz_que01,86,165,5	script	Event Assistant	811,{
 	if(getgmlevel() > 51){
 		mes "[Event Assistant]";
 		mes "Hello, " + strcharinfo(0) + " I can activate pvp script for you";
@@ -337,8 +337,8 @@ z_agit,24,187,6	script	Tom	70,{
  				setarray .@cardsnotallowed[0],4441,4365,4407,4128,4276,4361;
  				break;
  			case 4:
- 				setarray .@itemsnotallowed[0],28209,28218,28105,28106,5058,5230,5231,5232,5233,5234,5219,5124;
- 				setarray .@cardsnotallowed[0],4146,4414,4087,4441,4365,4128,4276,4361;
+ 				setarray .@itemsnotallowed[0],28209,28218,28105,28106,5058,5230,5231,5232,5233,5234,5219,5124,2541,2382,1530,1132,1565,1369,1141,2629,2545,2383,1579;
+ 				setarray .@cardsnotallowed[0],4146,4414,4087,4441,4365,4128,4276,4361,4128,4276,4361;
  				break;
  		}
  		getmapxy(.@map$,.@x,.@y,0);

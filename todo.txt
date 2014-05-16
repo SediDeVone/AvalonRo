@@ -35,3 +35,5 @@ Fixes:
 - Added variables to pvp ladder;
 - Added 'view stats' to pvp ladder;
 - Added regex expression to pvp ladder;
+- Added close button to view list in pvp ladder;
+- Added general restrictions to magic restrictions in event assistant;
