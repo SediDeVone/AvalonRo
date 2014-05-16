@@ -2,8 +2,8 @@ TODO:
 - create another table and move variables there (pvp)
 - new punishement system (restyrictions from using certain NPCs)
 - reward system for pvp
-- add new map for pvp system
 - start own homunculus AI
+- enable logmes by Pedro pls;
 
 12/05/14 Maintance
 Fixes:
@@ -38,4 +38,4 @@ Fixes:
 - Added close button to view list in pvp ladder;
 - Added general restrictions to magic restrictions in event assistant;
 - Updated 'resetting ladder' option in PvP Ladder;
-- Added edit_map7 to pvp script;
+- Added edit_map7 to Event Assistant, Spectator Mode and Tom;
