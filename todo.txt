@@ -1,11 +1,8 @@
 TODO:
-- last kill
-- last victim
 - create another table and move variables there (pvp)
 - new punishement system (restyrictions from using certain NPCs)
 - reward system for pvp
 - add new map for pvp system
-- change the sprite of event assistant
 - start own homunculus AI
 
 12/05/14 Maintance
@@ -32,3 +29,9 @@ Fixes:
 
 19/05/14 Maintance
 Fixes:
+- Changed sprite of walls on 06_guild01;
+- Changed sprite of Event Assistant;
+- Added last kill and last killed by to pvp system;
+- Added variables to pvp ladder;
+- Addeed 'view stats' to pvp ladder;
+- Added regex expression to pvp ladder;

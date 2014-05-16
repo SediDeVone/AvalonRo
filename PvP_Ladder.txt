@@ -1,16 +1,12 @@
 prontera,138,172,4	script	PvP Ladder	857,{
 	mes "[PvP Ladder]";
 	mes "Hello " + strcharinfo(0) + ".";
-	mes "You've got " + pvp_kills + " PvP points.";
-	mes "You've died " + pvp_deaths + " times.";
-	mes "Your last victim is: " + pvp_last_kill$;
-	mes "Your last killer is: " + pvp_killed_by$;
 	next;
 	if(getgmlevel() == 99){
-		set .@i,select("View ladder:Leave:Reset ladder");
+		set .@i,select("View ladder:View stats:Leave:Reset ladder");
 	}
 	else{ 
-		set .@i,select("View PVP Records:Leave");
+		set .@i,select("View PVP Records:View stats:Leave");
 	}
 	switch(.@i){
 		case 1:
@@ -25,9 +21,20 @@ prontera,138,172,4	script	PvP Ladder	857,{
 					}
 				}
 			}
-		case 2:	
+		case 2:
+			mes "[PvP Ladder]";
+			mes "Your PvP stats are displayed in the chat.";
+			mes "Remember that you can always write 'pvp stats' in chat to get your stats displayed.";
+			Part1:
+				dispbottom "PvP stats for " + strcharinfo(0);
+				dispbottom "You've got " + pvp_kills + " PvP points.";
+				dispbottom "You've died " + pvp_deaths + " times.";
+				dispbottom "Your last victim is: " + pvp_last_kill$;
+				dispbottom "Your last killer is: " + pvp_killed_by$;
 			close;
-		case 3:
+		case 3:	
+			close;
+		case 4:
 			mes "Are you sure you want to delete ALL pvp records?";
 			if(select("No:Yes")==1){
 				close;
@@ -48,6 +55,10 @@ prontera,138,172,4	script	PvP Ladder	857,{
 			attachrid(.@player);
 			mes "..cleared the ladder.";
 			close;
+		OnInit:
+		defpattern 1, "pvp stats", "Part1";
+		activatepset 1;
+		end;
 	}
 
 	OnPCKillEvent:
