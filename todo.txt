@@ -1,6 +1,5 @@
 TODO:
 - create another table and move variables there (pvp)
-- new punishement system (restyrictions from using certain NPCs)
 - reward system for pvp
 - start own homunculus AI
 - enable logmes by Pedro pls;
@@ -39,3 +38,6 @@ Fixes:
 - Added general restrictions to magic restrictions in event assistant;
 - Updated 'resetting ladder' option in PvP Ladder;
 - Added edit_map7 to Event Assistant, Spectator Mode and Tom;
+- Started writing new punishment system;
+- Punishment System is working properly only for online players;
+- Fixed yet another bug with Thanatos Tower;
