@@ -21,6 +21,7 @@ prontera,138,172,4	script	PvP Ladder	857,{
 					}
 				}
 			}
+			close;
 		case 2:
 			mes "[PvP Ladder]";
 			mes "Your PvP stats are displayed in the chat.";
@@ -55,10 +56,6 @@ prontera,138,172,4	script	PvP Ladder	857,{
 			attachrid(.@player);
 			mes "..cleared the ladder.";
 			close;
-		OnInit:
-		defpattern 1, "pvp stats", "Part1";
-		activatepset 1;
-		end;
 	}
 
 	OnPCKillEvent:
@@ -124,5 +121,7 @@ prontera,138,172,4	script	PvP Ladder	857,{
 	
 	OnInit:
 		set .MaxPlayers,40;
+		defpattern 1, "pvp stats", "Part1";
+		activatepset 1;
 		end;
 }

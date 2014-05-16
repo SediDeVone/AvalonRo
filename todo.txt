@@ -33,5 +33,5 @@ Fixes:
 - Changed sprite of Event Assistant;
 - Added last kill and last killed by to pvp system;
 - Added variables to pvp ladder;
-- Addeed 'view stats' to pvp ladder;
+- Added 'view stats' to pvp ladder;
 - Added regex expression to pvp ladder;
