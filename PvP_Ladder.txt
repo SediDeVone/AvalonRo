@@ -3,6 +3,8 @@ prontera,138,172,4	script	PvP Ladder	857,{
 	mes "Hello " + strcharinfo(0) + ".";
 	mes "You've got " + pvp_kills + " PvP points.";
 	mes "You've died " + pvp_deaths + " times.";
+	mes "Your last victim is: " + pvp_last_kill$;
+	mes "Your last killer is: " + pvp_killed_by$;
 	next;
 	if(getgmlevel() == 99){
 		set .@i,select("View ladder:Leave:Reset ladder");
