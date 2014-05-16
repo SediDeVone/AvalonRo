@@ -38,3 +38,4 @@ Fixes:
 - Added close button to view list in pvp ladder;
 - Added general restrictions to magic restrictions in event assistant;
 - Updated 'resetting ladder' option in PvP Ladder;
+- Added edit_map7 to pvp script;

@@ -69,6 +69,9 @@ prt_fild08,167,362,6	script	Spectator Mode	72,{
 				case 3:
 					warpchar "quiz_02",304,249,.@player2;
 					close;
+				case 4:
+					warpchar "edit_map7",50,50,.@player2;
+					close;
 			}
 			end;	
 		case 2:
@@ -128,7 +131,7 @@ lhz_que01,86,165,5	script	Event Assistant	811,{
 			case 2:
 				mes "[Event Assistant]";
 				mes "Which map do you want to enable?";
-				switch(select("quiz_01:quiz_02:06guild_01:None")){
+				switch(select("quiz_01:quiz_02:06guild_01:Jette's Map:None")){
 					case 1:
 						set $pvp_map, 1;
 						close;
@@ -248,6 +251,9 @@ z_agit,24,187,6	script	Tom	70,{
 				case 3:
 					warp "quiz_02",304,249;
 					close;
+				case 4:
+					warp "edit_map7",50,50;
+					close;
 			}
 			end;	
 		case 2:
@@ -318,7 +324,7 @@ z_agit,24,187,6	script	Tom	70,{
 
 -	script	EquipCheck	-1,{
  	OnPCLoadMapEvent:
- 		setarray .@restrictedmaps$[0], "quiz_01","quiz_02","06guild_01","quiz_test","bob04","guild_vs5";
+ 		setarray .@restrictedmaps$[0], "quiz_01","quiz_02","06guild_01","quiz_test","bob04","guild_vs5","edit_map7";
  		switch($pvp_npc){
  			case 0:
  				setarray .@itemsnotallowed[0],0;
