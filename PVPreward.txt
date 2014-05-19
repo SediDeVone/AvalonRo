@@ -35,6 +35,13 @@ prt_fild08,167,362,6	script	Spectator Mode	72,{
 		mes "Drop him somewhere safe and talk to me again.";
 		close;
 	}
+	if(checkhomcall() == 0){
+		mes "[Spectator Mode]";
+		mes "Hello, " + strcharinfo(0) + ".";
+		mes "Sorry, but " + gethominfo(2) + " can't come with you.";
+		mes "Drop him somewhere safe and talk to me again.";
+		close;
+	}
 	if(getcharid(1) != 0){
 		mes "[Spectator Mode]";
 		mes "Hello, " + strcharinfo(0) + ".";

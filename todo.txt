@@ -48,3 +48,4 @@ Fixes:
 - Added Exit Arena to edit_map7;
 - Removed helpful msgs from thana quest;
 - Fixed ';' in PvPreward script;
+- People with homunculus out can't enter Spectator Mode;
