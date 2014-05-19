@@ -2,7 +2,8 @@ TODO:
 - create another table and move variables there (pvp)
 - reward system for pvp
 - start own homunculus AI
-- enable logmes by Pedro pls;
+- logging for punishment system
+- offline punishment system
 
 12/05/14 Maintance
 Fixes:
@@ -42,3 +43,8 @@ Fixes:
 - Punishment System is working properly only for online players;
 - Fixed yet another bug with Thanatos Tower;
 - Added dialog box to Exit Arena NPC;
+- Added OnLougout to edit_map7;
+- Changed the 06guild_01 and quiz_02 destinated arenas (they werent working properly);
+- Added Exit Arena to edit_map7;
+- Removed helpful msgs from thana quest;
+- Fixed ';' in PvPreward script;

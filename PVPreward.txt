@@ -102,6 +102,7 @@ quiz_01,63,195,6	script	Exit Arena	49,{
 
 06guild_01,50,95,6	duplicate(Exit Arena)	Exit Arena#2	49
 quiz_02,303,230,6	duplicate(Exit Arena)	Exit Arena#3	49
+edit_map7,49,100,6	duplicate(Exit Arena)	Exit Arena#4	49
 
 lhz_que01,86,165,5	script	Event Assistant	811,{
 	if(getgmlevel() > 51){
@@ -147,7 +148,7 @@ lhz_que01,86,165,5	script	Event Assistant	811,{
 					case 4:
 						set $pvp_map, 4;
 						close;
-					case 5;
+					case 5:
 						close;
 				}
 			case 3:	
