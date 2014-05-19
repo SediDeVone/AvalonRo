@@ -16,7 +16,7 @@
 
 	OnPCLoginEvent:
 		getmapxy (.@map$, .@x, .@y, 0);
-		if( .@map$ == "quiz_01" || .@map$ == "quiz_02" || .@map$ == "06guild_01"){
+		if( .@map$ == "quiz_01" || .@map$ == "quiz_02" || .@map$ == "06guild_01" || .@map$ == "edit_map7"){
 			if(hidden > 0){
 				atcommand "@costume Xmas";
 				atcommand "@hide";
@@ -83,6 +83,9 @@ prt_fild08,167,362,6	script	Spectator Mode	72,{
 }
 
 quiz_01,63,195,6	script	Exit Arena	49,{
+	if(select("No:Yes")==1){
+		close;
+	}
 	if(hidden > 0){
 		set .@players$, strcharinfo(0);
 		set .@player, getcharid(3);
@@ -131,7 +134,7 @@ lhz_que01,86,165,5	script	Event Assistant	811,{
 			case 2:
 				mes "[Event Assistant]";
 				mes "Which map do you want to enable?";
-				switch(select("quiz_01:quiz_02:06guild_01:Jette's Map:None")){
+				switch(select("quiz_01:06guild_01:quiz_02:Jette's Map:None")){
 					case 1:
 						set $pvp_map, 1;
 						close;
@@ -142,6 +145,9 @@ lhz_que01,86,165,5	script	Event Assistant	811,{
 						set $pvp_map, 3;
 						close;
 					case 4:
+						set $pvp_map, 4;
+						close;
+					case 5;
 						close;
 				}
 			case 3:	

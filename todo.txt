@@ -41,3 +41,4 @@ Fixes:
 - Started writing new punishment system;
 - Punishment System is working properly only for online players;
 - Fixed yet another bug with Thanatos Tower;
+- Added dialog box to Exit Arena NPC;
