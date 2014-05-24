@@ -2,7 +2,13 @@
 // AvalonRO
 
 prontera.gat,154,184,5	script	Premium Buffer	861,{
-
+	if(punished_time > gettimetick(2)){
+		query_sql "SELECT char_name,reason FROM `Punishment_Log` WHERE `punished_name` ='" + strcharinfo(0) + "'",.@name$,.@reason$;
+		mes "[Premium Buffer]";
+		mes "You are not allowed to use that service for " + (((punished_time - gettimetick(2))/3600)+1) + " hours.";
+		mes "You've been punished by " + .@name$ + " for " + .@reason$ + ".";
+		close;
+	}
 	mes "[Premium Buffer]";
 	mes "I have amazing buffing powers!!";
 	mes "You look like a person who needs them";
@@ -82,8 +88,8 @@ prontera.gat,154,184,5	script	Premium Buffer	861,{
 			mes "[Premium Buffer]";
 			mes "M..my powers, are g..gone..";
 			mes "Let me rest for another " + (#time_regain - gettimetick(2))/60 + " minutes before giving you protection.";
-			close;
-		}
+			close
+;		}
 		if(countitem(7139) < 4) goto NeedGlist;
 		delitem 7139, 4;			
 		if(Zeny<45000) goto NeedZeny;

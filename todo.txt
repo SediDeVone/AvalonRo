@@ -2,8 +2,8 @@ TODO:
 - create another table and move variables there (pvp)
 - reward system for pvp
 - start own homunculus AI
-- logging for punishment system
-- offline punishment system
+- legendary quest 2.0
+- use 2 new mvps for something
 
 12/05/14 Maintance
 Fixes:
@@ -49,3 +49,10 @@ Fixes:
 - Removed helpful msgs from thana quest;
 - Fixed ';' in PvPreward script;
 - People with homunculus out can't enter Spectator Mode;
+
+26/05/14 Maintance
+Fixes:
+- Added logging to punishment system;
+- Added offline punishment system;
+- Finished punishment system;
+- Added punishment system to certain NPCs;
