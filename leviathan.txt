@@ -235,16 +235,102 @@ hu_in01,219,385,5	script	Rashi	491,{
 }
 
 hu_in01,162,310,5	script	Ugaritic	494,{
-	
-}
-
-hu_in01,41,383,5	script	Frgot Person5	899,{
-	//just send to last_npc
-}
-
-hu_fild06,337,231,5	script	Frog Person6	471,5,5,{
-	if(leviathan_quest == 7){
-		set leviathan_quest, 0;
+	if(leviathan_quest < 7){
+		mes "[Ugaritic]";
+		mes "Firebrands stream from his mouth; sparks of fire shoot out.";
+		close;
 	}
-	close;
+	if(leviathan_quest == 7){
+		mes "[Ugaritic]";
+		mes "So you claim that Rashi sent you.";
+		mes "Well then, it's your final test. Pass it and you will join our cult.";
+		next;
+		mes "[Ugaritic]";
+		mes "Bring me ...";
+		mes "... 3x Crown";
+		mes "20x Hand of God";
+		mes "1x Chakram";
+		next;
+		mes "We don't have much time!.";
+		mes "You better hurry!";
+		set leviathan_quest, 8;
+		close;
+	}
+	if(leviathan_quest == 8){
+		mes "[Ugaritic]";
+		if(countitem(1285) >= 1 && countitem(2235) >= 3 && countitem(1009) >= 20){
+			delitem 1285, 1;
+			delitem 2235, 3;
+			delitem 1009, 20;
+			mes "Oh, that's excellent";
+			mes "Really, well done";
+			next;
+			mes "[Ugaritic]";
+			mes "Find Akdamut. Be fast. Ritual is almost done.";
+			set leviathan_quest, 9;
+			dispbottom "His undersides are jagged potsherds, leaving a trail in the mud like a threshing-sledge.";
+			close;
+		}
+		else{
+			mes "You didn't bring all the drinks!";
+			mes "Leave me alone...";
+			close;
+		}
+	}
+	if(leviathan_quest > 8){
+		mes "[Ugaritic]";
+		mes "The folds of his flesh are tightly joined; they are firm and immovable.";
+		close;
+	}
+}
+
+hu_in01,41,383,5	script	Akdamut	899,{
+	if(leviathan_quest < 9){
+		mes "[Akdamut]";
+		mes "Iron he treats like straw and bronze like rotten wood.";
+		close;
+	}
+	if(leviathan_quest == 9){
+		mes "[Akdamut]";
+		mes "Welcome " + strcharinfo(0) +".";
+		mes "You did really well. We are impressed with your work.";
+		next;
+		mes "[Akdamut]";
+		mes "We promised you to join our cult. And we should fulfil our promise.";
+		mes "Shavout is waiting for you at the bridge south of the Hugel.";
+		mes "Go meet him and fulfil your destiny!";
+		dispbottom "Can you fill his hide with harpoons or his head with fishing spears?";
+		set leviathan_quest, 10;
+		close;
+	}
+	if(leviathan_quest > 0){
+		mes "[Akdamut]";
+		mes "Nothing on earth is his equal—a creature without fear.";
+		close;
+	}
+}
+
+hu_fild06,337,231,5	script	Shavuot	471,{
+	if(leviathan_quest < 10){
+		mes "[Shavuot]";
+		mes "Who has a claim against me that I must pay? Everything under heaven belongs to me.";
+		close;
+	}
+	if(leviathan_quest == 10){
+		mes "[Shavuot]";
+		mes "Well, You've done all we've asked you.";
+		mes "Ritual is ready";
+		mes "There's last thing to do, we need a victim";
+		next;
+		mes "[Shavuot]";
+		mes "Someone, to die for our lord";
+		mes "Someone who can feed him";
+		mes "And since we promised you this honorable role...";
+		next;
+		mes "[Shavuot]";
+		mes "Watch the destruction and be glad that you are part of it!";
+		mes "Noone can stop death!";
+		dispbottom "I will not fail to speak of his limbs, his strength and his graceful form.";
+		announcemap 
+	}
 }
