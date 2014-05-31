@@ -1,0 +1,57 @@
+lhz_que01,80,165,5	script	Carl	405,{
+	mes "[Punishment System]";
+	mes "Hello " + strcharinfo(0) + ", ";
+	mes "I can punish certain people for you, which will cause them to not enter certain maps, like mvp arena.";
+	mes "Do you want to do anything?";
+	next;
+	if(select("No:Yes")==1){
+		close;
+	}
+	input .@name_to_punish$;
+	query_sql "SELECT `account_id` FROM `char` WHERE `name` = '"+ .@name_to_punish$ +"'", .@name;
+	if(.@name == 0){
+		mes "[Punishment System]";
+		mes "Character with that name doesn't exists.";
+		close;
+	}
+	mes "[Punishment System]";
+	mes "Enter the punishement time (in hours)";
+	next;
+	input .@time_of_punishment;
+	mes "[Punishment System]";
+	mes "Enter the reason of punishment";
+	next;
+	input .@reason_of_punishment$;
+	set .@punishing_name, getcharid(3);
+	if (attachrid(.@name)){
+		set $pun_counter, $pun_counter + 1;
+		set punished_time, gettimetick(2) + (.@time_of_punishment*3600);
+		dispbottom "You've been punished for " + .@reason_of_punishment$ + ", ";
+		dispbottom "You will not be able to access certain objects for " + .@time_of_punishment + " hours.";
+		attachrid(.@punishing_name);
+		dispbottom "You have punished " + .@name_to_punish$ +", ";
+		dispbottom "for " + .@time_of_punishment + " hours, because of : " + .@reason_of_punishment$ + ".";
+		query_sql "INSERT INTO Punishment_Log VALUES ("+ $pun_counter + ",'"+ strcharinfo(0) + "','" + .@name_to_punish$ + "','" + .@reason_of_punishment$ + "'," + .@time_of_punishment + ",'T')";
+		close;
+	}
+	else{
+		mes "[Punishment System]";
+		set $pun_counter, $pun_counter + 1;
+		dispbottom "You will punish " + .@name_to_punish$ +", ";
+		dispbottom "for " + .@time_of_punishment + " hours, because of : " + .@reason_of_punishment$ + ", when he logs on.";
+		query_sql "INSERT INTO Punishment_Log VALUES ("+ $pun_counter + ",'"+ strcharinfo(0) + "','" + .@name_to_punish$ + "','" + .@reason_of_punishment$ + "'," + .@time_of_punishment + ",'F')";
+		close;
+	}
+}
+
+-	script	offline_punish	-1,{
+	OnPCLoginEvent:
+		query_sql "SELECT counter,punished_name,reason,punished_time,punished FROM `Punishment_Log` WHERE `punished_name` ='" + strcharinfo(0) + "' AND `punished` = 'F'",.@index,.@name$,.@reason$,.@time,.@punished$;
+		if(.@name$ != "" && .@name$ == strcharinfo(0) && .@punished$ == "F"){
+			set punished_time, gettimetick(2) + (.@time*3600);
+			dispbottom "You've been punished for " + .@reason$ + ", ";
+			dispbottom "You will not be able to access certain objects for " + (punished_time - gettimetick(2))/3600 + " hours";
+			query_sql "UPDATE Punishment_Log SET punished='T' WHERE counter=" + .@index;
+		}
+		end;
+}
