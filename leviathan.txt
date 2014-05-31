@@ -114,23 +114,135 @@ hugel,139,73,1	script	Tanakh	401,{
 	close;
 }
 
-hu_in01,371,48,4	script	Ninurta	474,{
+hu_in01,371,48,5	script	Ninurta	474,{
+	if(leviathan_quest < 3){
+		mes "[Ninurta]";
+		mes "Nothing on earth is his equal—a creature without fear.";
+		close;
+	}
+	if(leviathan_quest == 3){
+		mes "[Ninurta]";
+		mes "Our lord and saviour ...";
+		mes "I can feel his presence, he's near.";
+		mes "But to make it happen, we have to finish the ritual.";
+		mes "Do you want to help us once again?";
+		next;
+		if(select("How 'bout no:Sure, why not")==1){
+			close;
+		}
+		mes "[Ninurta]";
+		mes "Excellent news!";
+		mes "Please bring to me following items.";
+		mes "1x Solar Sword";
+		mes "2x Holy Robe";
+		mes "5x Jewel Crown";
+		mes "10x Broken Pharaoh Emblem";
+		next;
+		mes "[Ninurta]";
+		mes "We don't have much time!.";
+		mes "You better hurry!";
+		mes "Good luck!";
+		set leviathan_quest, 4;
+		close;
+	}
+	if(leviathan_quest == 4){
+		mes "[Ninurta]";
+		mes "Oh you are already back!";
+		mes "You are so fast";
+		next;
+		if(countitem(1136) >= 1 && countitem(2327) >= 2 && countitem(5002) >= 5 && countitem(7113) >= 10){
+			delitem 1136, 1;
+			delitem 2327, 2;
+			delitem 5002, 5;
+			delitem 7113, 10;
+			mes "[Ninurta]";
+			mes "Well done!";
+			mes "We are almost ready! Rashi will give you more information, he should be somewhere around!";
+			mes "Good luck hero!";
+			set leviathan_quest, 5;
+			dispbottom "Who dares open the doors of his mouth, ringed about with his fearsome teeth?";
+			close;
+		}
+		else{
+			mes "[Ninurta]";
+			mes "Sorry but you don't have all the required items.";
+			mes "Come back when you are done";
+			close;
+		}
+	}
+	if(leviathan_quest > 4){
+		mes "[Ninurta]";
+		mes "Behind him he leaves a glistening wake; one would think the deep had white hair.";
+		close;
+	}
+}
+
+hu_in01,219,385,5	script	Rashi	491,{
+	if(leviathan_quest < 5){
+		mes "[Rashi]";
+		mes "The folds of his flesh are tightly joined; they are firm and immovable.";
+		mes "Smoke pours from his nostrils as from a boiling pot over a fire of reeds.";
+		close;
+	}
+	if(leviathan_quest == 5){
+		mes "[Rashi]";
+		mes "Oh god... it's you. There's no way I'm talking to you.";
+		next;
+		if(select("...:I can help you.")==1){
+			close;
+		}		
+		mes "[Rashi]";
+		mes "Help me? How kind of you.";
+		mes "Well, then. Bring me ... ";
+		mes "100x Coctail Warg Blood";
+		mes "200x Siroma Iced Tea";
+		mes "500x Acid Bottle";
+		next;
+		mes "[Rashi]";
+		mes "Don't fail me and I will tell you all that you need to know.";
+		set leviathan_quest, 6;
+		close;
+	}
+	if(leviathan_quest == 6){
+		mes "[Rashi]";
+		if(countitem(7136) >= 500 && countitem(12430) >= 100 && countitem(12432) >= 200){
+			delitem 7136, 500;
+			delitem 12430, 100;
+			delitem 12432, 200;
+			mes "Oh, that's excellent";
+			mes "I will never sober!";
+			next;
+			mes "[Rashi]";
+			mes "Leviathan is almost summoned, ritual will be finished this night.";
+			mes "You can find Ugaritic somewhere in Hugel, he is one of the main cultist.";
+			mes "He will help you.";
+			mes "Now leave me alone";
+			set leviathan_quest, 7;
+			dispbottom "The sword that reaches him has no effect, nor does the spear or the dart or the javelin.";
+			close;
+		}
+		else{
+			mes "You didn't bring all the drinks!";
+			mes "Leave me alone...";
+			close;
+		}
+	}
+	if(leviathan_quest > 6){
+		mes "[Rashi]";
+		mes "He looks down on all that are haughty; he is king over all that are proud.";
+		close;
+	}
+}
+
+hu_in01,162,310,5	script	Ugaritic	494,{
 	
 }
 
-hu_in01,371,48,5	script	Frog Person3	123,{
-	
+hu_in01,41,383,5	script	Frgot Person5	899,{
+	//just send to last_npc
 }
 
-hu_in01,162,310,5	script	Frog Person4	123,{
-	
-}
-
-hu_in01,41,383,5	script	Frgot Person5	123,{
-	
-}
-
-hu_fild06,337,231,5	script	Frog Person6	123,{
+hu_fild06,337,231,5	script	Frog Person6	471,5,5,{
 	if(leviathan_quest == 7){
 		set leviathan_quest, 0;
 	}
