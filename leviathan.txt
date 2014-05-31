@@ -363,6 +363,7 @@ hu_fild06,337,231,5	script	Shavuot	471,5,5,{
 		mapannounce  "hu_fild06","horrible animate survivors of distant eons.",bc_map,"0xff0000";
 		end;
 	OnTimer30000:
+		monster "hu_fild06",326,233,"Leviathan",2900,1;
 		stopnpctimer;
 		end;
 }
