@@ -310,27 +310,59 @@ hu_in01,41,383,5	script	Akdamut	899,{
 	}
 }
 
-hu_fild06,337,231,5	script	Shavuot	471,{
-	if(leviathan_quest < 10){
-		mes "[Shavuot]";
-		mes "Who has a claim against me that I must pay? Everything under heaven belongs to me.";
-		close;
-	}
-	if(leviathan_quest == 10){
-		mes "[Shavuot]";
-		mes "Well, You've done all we've asked you.";
-		mes "Ritual is ready";
-		mes "There's last thing to do, we need a victim";
-		next;
-		mes "[Shavuot]";
-		mes "Someone, to die for our lord";
-		mes "Someone who can feed him";
-		mes "And since we promised you this honorable role...";
-		next;
-		mes "[Shavuot]";
-		mes "Watch the destruction and be glad that you are part of it!";
-		mes "Noone can stop death!";
-		dispbottom "I will not fail to speak of his limbs, his strength and his graceful form.";
-		announcemap 
-	}
+hu_fild06,337,231,5	script	Shavuot	471,5,5,{
+	OnTouch:
+		if(leviathan_quest < 10){
+			mes "[Shavuot]";
+			mes "Who has a claim against me that I must pay? Everything under heaven belongs to me.";
+			close;
+		}
+		if(leviathan_quest == 10){
+			mes "[Shavuot]";
+			mes "Well, You've done all we've asked you.";
+			mes "Ritual is ready";
+			mes "There's last thing to do, we need a victim";
+			next;
+			mes "[Shavuot]";
+			mes "Someone, to die for our lord";
+			mes "Someone who can feed him";
+			mes "And since we promised you this honorable role...";
+			next;
+			mes "[Shavuot]";
+			mes "Watch the destruction and be glad that you are part of it!";
+			mes "Noone can stop death!";
+			dispbottom "I will not fail to speak of his limbs, his strength and his graceful form.";
+			set $lev_summon, 5;
+			initnpctimer;
+			close;
+		}
+	end;
+
+	OnTimer1000:
+		mapannounce  "hu_fild06","Leviathan: You will learn to show respect. You are in the presence of my glorious self.",bc_map,"0x00ff00";
+		end;
+	OnTimer5000:
+		mapannounce  "hu_fild06","... the Old or Ancient Ones, the Elder Gods, of cosmic good,",bc_map,"0xff0000";
+		end;
+	OnTimer9000:
+		mapannounce  "hu_fild06","and those of cosmic evil, bearing many names,",bc_map,"0xff0000";
+		end;
+	OnTimer13000:
+		mapannounce  "hu_fild06","and themselves of different groups,",bc_map,"0xff0000";
+		end;
+	OnTimer17000:
+		mapannounce  "hu_fild06","as if associated with the elements and yet transcending them: for there are ",bc_map,"0xff0000";
+		end;
+	OnTimer21000:
+		mapannounce  "hu_fild06","the Water Beings, hidden in the depths;",bc_map,"0xff0000";
+		end;
+	OnTimer25000:
+		mapannounce  "hu_fild06","those of Air that are the primal lurkers beyond time; those of Earth, ",bc_map,"0xff0000";
+		end;
+	OnTimer29000:
+		mapannounce  "hu_fild06","horrible animate survivors of distant eons.",bc_map,"0xff0000";
+		end;
+	OnTimer30000:
+		stopnpctimer;
+		end;
 }
