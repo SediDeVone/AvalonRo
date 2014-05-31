@@ -1,0 +1,108 @@
+geffen,96,203,4	script	Recruiting Board	857,2,2,{
+	OnTouch:
+		mes "~ Greetings travelers ~";
+		if(leviathan_quest == 0){
+			mes "New. Brave. People. Needed.";
+			mes "Mission. Impossible.";
+			mes "Ocean. Danger. Help.";
+			set leviathan_quest, 1;
+		}
+		close;
+}
+
+hugel,139,73,4	script	Random Frog Person	114,{
+	if(leviathan_quest == 0){
+		mes "[]";
+		mes "What you want?!";
+		close;
+	}
+	if(leviathan_quest == 1){
+		mes "[]";
+		mes "Greetings " + strcharinfo(0) + "!";
+		mes "Good, you are here! We were expeting you.";
+		mes "Would you like to help us fulfil our mission?";
+		next;
+		if(select("No:Yes")==1){
+			close;
+		}
+		mes "[]";
+		mes "Good news everybody!";
+		mes "Want to know anything about it? Or we should go to your task?";
+		next;
+		set .@i,select("Talk about cult:Start the task:Leave");
+		switch(.@i){
+			case 1:
+				mes "[]";
+				mes "Lots to tell....";
+			case 2:
+				mes "[]";
+				mes "I just love your passion for work!";
+				mes "Project itself is very complicated.";
+				mes "Altough we have our hopes in YOU.";
+				next;
+				mes "[]";
+				mes "For now all we need is:";
+				mes "List of reagents.......";
+				next;
+				mes "[]";
+				mes "We don't have much time!.";
+				mes "You better hurry!";
+				mes "Good luck!";
+				set leviathan_quest, 2;
+				close;
+			case 3:
+				mes "[]";
+				mes "Well, bye then!";
+				close;
+		}
+	}
+	if(leviathan_quest == 2){
+		mes "[]";
+		mes "Oh you are already back!";
+		mes "You are so fast";
+		next;
+		if(checking_all_items){
+			//delete_all_items
+			mes "[]";
+			mes "Well done!";
+			mes "Go find frog_npc_2 for future instructions.";
+			set leviathan_quest, 3;
+			close;
+		}
+		else{
+			mes "[]";
+			mes "Sorry but you don't have all the required items.";
+			mes "Come back when you are done";
+			close;
+		}
+	}
+	if(leviathan_quest > 2){
+		mes "[]";
+		mes "Are you prepared for the incoming?!";
+		close;
+	}
+	close;
+}
+
+hu_in01,371,48,4	script	Frog man2	123,{
+	
+}
+
+hu_in01,371,48,5	script	Frog Person3	123,{
+	
+}
+
+hu_in01,162,310,5	script	Frog Person4	123,{
+	
+}
+
+hu_in01,41,383,5	script	Frgot Person5	123,{
+	
+}
+
+hu_fild06,337,231,5	script	Frog Person6	123,{
+	if(leviathan_quest == 7){
+		set leviathan_quest, 0;
+	}
+	close;
+}
