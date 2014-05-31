@@ -1,90 +1,120 @@
-geffen,96,203,4	script	Recruiting Board	857,2,2,{
+geffen,96,203,4	script	Recruiting Board	837,2,2,{
 	OnTouch:
 		mes "~ Greetings travelers ~";
 		if(leviathan_quest == 0){
 			mes "New. Brave. People. Needed.";
 			mes "Mission. Impossible.";
 			mes "Ocean. Danger. Help.";
+			dispbottom "Can you pull in the leviathan with a fishhook or tie down his tongue with a rope?";
 			set leviathan_quest, 1;
 		}
 		close;
 }
 
-hugel,139,73,4	script	Random Frog Person	114,{
+hugel,139,73,1	script	Tanakh	401,{
 	if(leviathan_quest == 0){
-		mes "[]";
+		mes "[Tanakh]";
 		mes "What you want?!";
 		close;
 	}
 	if(leviathan_quest == 1){
-		mes "[]";
+		mes "[Tanakh]";
 		mes "Greetings " + strcharinfo(0) + "!";
-		mes "Good, you are here! We were expeting you.";
-		mes "Would you like to help us fulfil our mission?";
+		mes "Good, you are here!";
+		mes "We were expecting you.";
+		mes "We need your help.";
 		next;
-		if(select("No:Yes")==1){
+		if(select("Ignore him:Ask for details")==1){
 			close;
 		}
-		mes "[]";
+		mes "[Tanakh]";
 		mes "Good news everybody!";
-		mes "Want to know anything about it? Or we should go to your task?";
+		mes "Want to know anything about our mission?";
 		next;
-		set .@i,select("Talk about cult:Start the task:Leave");
+		set .@i,select("Get more information:No, let's work:Leave");
 		switch(.@i){
 			case 1:
-				mes "[]";
-				mes "Lots to tell....";
+				mes "[Tanakh]";
+				mes "Our lord! Our saviour!";
+				mes "Sea serpents feature prominently in the mythology of the Ancient Near East, attested as early as the 3rd millennium BCE in Sumerian iconography depicting the myth of the god Ninurta overcoming the seven-headed serpent.";
+				next;
+				mes "[Tanakh]";
+				mes "Examples of the storm god vs. sea serpent trope in the Ancient Near East can be seen with Baʿal vs. Yam (Canaanite), Marduk vs. Tiamat (Babylonian), and Atum vs. Nehebkau (Egyptian) among others, with attestations as early as the 2nd millennium as seen on Syrian seals.";
+				next;
+				mes "[Tanakh]";
+				mes "In the Ugaritic texts Lotan, or possibly another of Yam's helpers, is given the epithets `wriggling serpent` and `mighty one with the seven heads`.";
+				next;
+				mes "[Tanakh]";
+				mes "Isaiah 27:1 uses the first of these phrases to describe Leviathan (although in this case the name `Leviathan` may refer to an unnamed historical/political enemy of Israel rather than the original serpent-monster).";
+				next;
+				mes "[Tanakh]";
+				mes "In Psalm 104, Leviathan is not described as harmful in any way, but simply as a creature of the ocean, part of God's creation.";
+				next;
+				mes "[Tanakh]";
+				mes "It is possible that the authors of the Job 41:2–26, on the other hand, based the Leviathan on descriptions of Egyptian animal mythology where the crocodile is the enemy of the solar deity Horus (and is subdued either by Horus, or by the Pharaoh).";
+				next;
+				mes "[Tanakh]";
+				mes "This is in contrast to typical descriptions of the sea monster trope in terms of mythological combat.";
+				close;
 			case 2:
-				mes "[]";
+				mes "[Tanakh]";
 				mes "I just love your passion for work!";
 				mes "Project itself is very complicated.";
 				mes "Altough we have our hopes in YOU.";
 				next;
-				mes "[]";
+				mes "[Tanakh]";
 				mes "For now all we need is:";
-				mes "List of reagents.......";
+				mes "10x Fur Seal Card";
+				mes "10x Sea-Otter Card";
+				mes "500x Sea-Otter Fur";
+				mes "250x Cursed Seal";
 				next;
-				mes "[]";
+				mes "[Tanakh]";
 				mes "We don't have much time!.";
 				mes "You better hurry!";
 				mes "Good luck!";
+				dispbottom "Who can strip off his outer coat? Who would approach him with a bridle?";
 				set leviathan_quest, 2;
 				close;
 			case 3:
-				mes "[]";
+				mes "[Tanakh]";
 				mes "Well, bye then!";
 				close;
 		}
 	}
 	if(leviathan_quest == 2){
-		mes "[]";
+		mes "[Tanakh]";
 		mes "Oh you are already back!";
 		mes "You are so fast";
 		next;
-		if(checking_all_items){
-			//delete_all_items
-			mes "[]";
+		if(countitem(4312) >= 10 && countitem(4326) >= 10 && countitem(7065) >= 500 && countitem(7442) >= 250){
+			delitem 4312, 10;
+			delitem 4326, 10;
+			delitem 7065, 500;
+			delitem 7442, 250;
+			mes "[Tanakh]";
 			mes "Well done!";
-			mes "Go find frog_npc_2 for future instructions.";
+			mes "Go find Ninurta for future instructions.";
+			dispbottom "Who has a claim against me that I must pay? Everything under heaven belongs to me.";
 			set leviathan_quest, 3;
 			close;
 		}
 		else{
-			mes "[]";
+			mes "[Tanakh]";
 			mes "Sorry but you don't have all the required items.";
 			mes "Come back when you are done";
 			close;
 		}
 	}
 	if(leviathan_quest > 2){
-		mes "[]";
+		mes "[Tanakh]";
 		mes "Are you prepared for the incoming?!";
 		close;
 	}
 	close;
 }
 
-hu_in01,371,48,4	script	Frog man2	123,{
+hu_in01,371,48,4	script	Ninurta	474,{
 	
 }
 
