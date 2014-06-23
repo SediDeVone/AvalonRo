@@ -1,3 +1,15 @@
+// Script for PvP System. Author: Sebastian Lasisz.
+// AvalonRO
+
+//To use this system on various NPC add at the beggining of script
+//if(#punished_time > gettimetick(2)){
+//		query_sql "SELECT char_name,reason FROM `Punishment_Log` WHERE `punished_name` ='" + strcharinfo(0) + "'",.@name$,.@reason$;
+//		mes "[Premium Buffer]";
+//		mes "You are not allowed to use that service for " + (((#punished_time - gettimetick(2))/3600)+1) + " hours.";
+//		mes "You've been punished by " + .@name$ + " for " + .@reason$ + ".";
+//		close;
+//}
+
 lhz_que01,80,165,5	script	Carl	405,{
 	mes "[Punishment System]";
 	mes "Hello " + strcharinfo(0) + ", ";
@@ -25,7 +37,7 @@ lhz_que01,80,165,5	script	Carl	405,{
 	set .@punishing_name, getcharid(3);
 	if (attachrid(.@name)){
 		set $pun_counter, $pun_counter + 1;
-		set punished_time, gettimetick(2) + (.@time_of_punishment*3600);
+		set #punished_time, gettimetick(2) + (.@time_of_punishment*3600);
 		dispbottom "You've been punished for " + .@reason_of_punishment$ + ", ";
 		dispbottom "You will not be able to access certain objects for " + .@time_of_punishment + " hours.";
 		attachrid(.@punishing_name);
@@ -48,9 +60,9 @@ lhz_que01,80,165,5	script	Carl	405,{
 	OnPCLoginEvent:
 		query_sql "SELECT counter,punished_name,reason,punished_time,punished FROM `Punishment_Log` WHERE `punished_name` ='" + strcharinfo(0) + "' AND `punished` = 'F'",.@index,.@name$,.@reason$,.@time,.@punished$;
 		if(.@name$ != "" && .@name$ == strcharinfo(0) && .@punished$ == "F"){
-			set punished_time, gettimetick(2) + (.@time*3600);
+			set #punished_time, gettimetick(2) + (.@time*3600);
 			dispbottom "You've been punished for " + .@reason$ + ", ";
-			dispbottom "You will not be able to access certain objects for " + (punished_time - gettimetick(2))/3600 + " hours";
+			dispbottom "You will not be able to access certain objects for " + (#punished_time - gettimetick(2))/3600 + " hours";
 			query_sql "UPDATE Punishment_Log SET punished='T' WHERE counter=" + .@index;
 		}
 		end;

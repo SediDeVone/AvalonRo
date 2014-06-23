@@ -11,3 +11,5 @@ Scripts:
 	- PvP Point System
 	- PvP Reward System
 	- PvP Ladder
+- [Finished] Leviathan Quest
+- [Finished] Punishment System

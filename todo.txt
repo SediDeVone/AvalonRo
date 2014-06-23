@@ -57,3 +57,17 @@ Fixes:
 - Finished punishment system;
 - Added punishment system to certain NPCs;
 - Created storyline for Leviathan;
+- Leviathan Quest
+
+16/06/14 Maintance
+- Finished punishment system;
+- Updated Leviathan's Spells;
+- Updated Leviathan's Loot table;
+- Updated Leviathan's stats;
+- Board in Geffen now guides to Hugel;
+- Added more items to summon Leviathan;
+
+30/06/14 Maintance
+- Optimised a bit Item Check for PvP events;
+- Added several more items for Leviathan quest;
+- Added another map to pvp script;

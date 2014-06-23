@@ -2,10 +2,10 @@
 // AvalonRO
 
 prontera.gat,154,184,5	script	Premium Buffer	861,{
-	if(punished_time > gettimetick(2)){
+	if(#punished_time > gettimetick(2)){
 		query_sql "SELECT char_name,reason FROM `Punishment_Log` WHERE `punished_name` ='" + strcharinfo(0) + "'",.@name$,.@reason$;
 		mes "[Premium Buffer]";
-		mes "You are not allowed to use that service for " + (((punished_time - gettimetick(2))/3600)+1) + " hours.";
+		mes "You are not allowed to use that service for " + (((#punished_time - gettimetick(2))/3600)+1) + " hours.";
 		mes "You've been punished by " + .@name$ + " for " + .@reason$ + ".";
 		close;
 	}

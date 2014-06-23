@@ -16,7 +16,7 @@
 
 	OnPCLoginEvent:
 		getmapxy (.@map$, .@x, .@y, 0);
-		if( .@map$ == "quiz_01" || .@map$ == "quiz_02" || .@map$ == "06guild_01" || .@map$ == "edit_map7"){
+		if( .@map$ == "quiz_01" || .@map$ == "quiz_02" || .@map$ == "06guild_01" || .@map$ == "edit_map7" || .@map$ == "event_map1"){
 			if(hidden > 0){
 				atcommand "@costume Xmas";
 				atcommand "@hide";
@@ -79,6 +79,9 @@ prt_fild08,167,362,6	script	Spectator Mode	72,{
 				case 4:
 					warpchar "edit_map7",50,50,.@player2;
 					close;
+				case 5:
+					warpchar "event_map1",51,49,.@player2;
+					close;
 			}
 			end;	
 		case 2:
@@ -109,7 +112,8 @@ quiz_01,63,195,6	script	Exit Arena	49,{
 
 06guild_01,50,95,6	duplicate(Exit Arena)	Exit Arena#2	49
 quiz_02,303,230,6	duplicate(Exit Arena)	Exit Arena#3	49
-edit_map7,49,100,6	duplicate(Exit Arena)	Exit Arena#4	49
+edit_map7,49,100,6	duplicate(Exit Arena)	Exit Arena#4	49	
+event_map1,48,67,6	duplicate(Exit Arena)	Exit Arena#5	49
 
 lhz_que01,86,165,5	script	Event Assistant	811,{
 	if(getgmlevel() > 51){
@@ -142,7 +146,7 @@ lhz_que01,86,165,5	script	Event Assistant	811,{
 			case 2:
 				mes "[Event Assistant]";
 				mes "Which map do you want to enable?";
-				switch(select("quiz_01:06guild_01:quiz_02:Jette's Map:None")){
+				switch(select("quiz_01:06guild_01:quiz_02:Jette's Map:event_map1:None")){
 					case 1:
 						set $pvp_map, 1;
 						close;
@@ -156,6 +160,9 @@ lhz_que01,86,165,5	script	Event Assistant	811,{
 						set $pvp_map, 4;
 						close;
 					case 5:
+						set $pvp_map, 5;
+						close;
+					case 6:
 						close;
 				}
 			case 3:	
@@ -181,7 +188,7 @@ lhz_que01,86,165,5	script	Event Assistant	811,{
 	else{
 		mes "[Event Assistant]";
 		mes "Hello, " + strcharinfo(0) + ".";
-		mes "Sorry, but don't have powera to activate the npc.";
+		mes "Sorry, but don't have power to activate the npc.";
 		close;
 	}
 	
@@ -268,6 +275,8 @@ z_agit,24,187,6	script	Tom	70,{
 				case 4:
 					warp "edit_map7",50,50;
 					close;
+				case 5:
+					warp "event_map1",48,67;
 			}
 			end;	
 		case 2:
@@ -338,7 +347,11 @@ z_agit,24,187,6	script	Tom	70,{
 
 -	script	EquipCheck	-1,{
  	OnPCLoadMapEvent:
- 		setarray .@restrictedmaps$[0], "quiz_01","quiz_02","06guild_01","quiz_test","bob04","guild_vs5","edit_map7";
+ 		if(hidden > 0){
+ 			end;
+ 		}
+ 		getmapxy(.@map$,.@x,.@y,0);
+ 		setarray .@restrictedmaps$[0], "quiz_01","quiz_02","06guild_01","quiz_test","bob04","guild_vs5","edit_map7","event_map1";
  		switch($pvp_npc){
  			case 0:
  				setarray .@itemsnotallowed[0],0;
@@ -361,7 +374,6 @@ z_agit,24,187,6	script	Tom	70,{
  				setarray .@cardsnotallowed[0],4146,4414,4087,4441,4365,4128,4276,4361,4128,4276,4361;
  				break;
  		}
- 		getmapxy(.@map$,.@x,.@y,0);
  		for(set .@m, 0; .@m < getarraysize(.@restrictedmaps$); set .@m, .@m + 1) {
  			while(.@map$ == .@restrictedmaps$[.@m]){
  				for(set .@e, 1; .@e < 11; set .@e, .@e + 1) {
@@ -392,3 +404,5 @@ z_agit,24,187,6	script	Tom	70,{
 06guild_01	mapflag	loadevent
 quiz_01	mapflag	loadevent
 quiz_02	mapflag	loadevent
+edit_map7 mapflag loadevent
+event_map1 mapflag loadevent

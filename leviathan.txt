@@ -1,3 +1,6 @@
+// Script for PvP System. Author: Sebastian Lasisz.
+// AvalonRO
+
 geffen,96,203,4	script	Recruiting Board	837,2,2,{
 	OnTouch:
 		mes "~ Greetings travelers ~";
@@ -5,6 +8,7 @@ geffen,96,203,4	script	Recruiting Board	837,2,2,{
 			mes "New. Brave. People. Needed.";
 			mes "Mission. Impossible.";
 			mes "Ocean. Danger. Help.";
+			mes "/Cultists from city bordering with ocean/";
 			dispbottom "Can you pull in the leviathan with a fishhook or tie down his tongue with a rope?";
 			set leviathan_quest, 1;
 		}
@@ -39,7 +43,7 @@ hugel,139,73,1	script	Tanakh	401,{
 				mes "Sea serpents feature prominently in the mythology of the Ancient Near East, attested as early as the 3rd millennium BCE in Sumerian iconography depicting the myth of the god Ninurta overcoming the seven-headed serpent.";
 				next;
 				mes "[Tanakh]";
-				mes "Examples of the storm god vs. sea serpent trope in the Ancient Near East can be seen with Baʿal vs. Yam (Canaanite), Marduk vs. Tiamat (Babylonian), and Atum vs. Nehebkau (Egyptian) among others, with attestations as early as the 2nd millennium as seen on Syrian seals.";
+				mes "Examples of the storm god vs. sea serpent trope in the Ancient Near East can be seen with Ba'al vs. Yam (Canaanite), Marduk vs. Tiamat (Babylonian), and Atum vs. Nehebkau (Egyptian) among others, with attestations as early as the 2nd millennium as seen on Syrian seals.";
 				next;
 				mes "[Tanakh]";
 				mes "In the Ugaritic texts Lotan, or possibly another of Yam's helpers, is given the epithets `wriggling serpent` and `mighty one with the seven heads`.";
@@ -51,7 +55,7 @@ hugel,139,73,1	script	Tanakh	401,{
 				mes "In Psalm 104, Leviathan is not described as harmful in any way, but simply as a creature of the ocean, part of God's creation.";
 				next;
 				mes "[Tanakh]";
-				mes "It is possible that the authors of the Job 41:2–26, on the other hand, based the Leviathan on descriptions of Egyptian animal mythology where the crocodile is the enemy of the solar deity Horus (and is subdued either by Horus, or by the Pharaoh).";
+				mes "It is possible that the authors of the Job, on the other hand, based the Leviathan on descriptions of Egyptian animal mythology where the crocodile is the enemy of the solar deity Horus (and is subdued either by Horus, or by the Pharaoh).";
 				next;
 				mes "[Tanakh]";
 				mes "This is in contrast to typical descriptions of the sea monster trope in terms of mythological combat.";
@@ -117,7 +121,7 @@ hugel,139,73,1	script	Tanakh	401,{
 hu_in01,371,48,5	script	Ninurta	474,{
 	if(leviathan_quest < 3){
 		mes "[Ninurta]";
-		mes "Nothing on earth is his equal—a creature without fear.";
+		mes "Nothing on earth is his equal - creature without fear.";
 		close;
 	}
 	if(leviathan_quest == 3){
@@ -136,7 +140,8 @@ hu_in01,371,48,5	script	Ninurta	474,{
 		mes "1x Solar Sword";
 		mes "2x Holy Robe";
 		mes "5x Jewel Crown";
-		mes "10x Broken Pharaoh Emblem";
+		mes "15x Broken Pharaoh Emblem";
+		mes "15x Fragment of Rossata Stone";
 		next;
 		mes "[Ninurta]";
 		mes "We don't have much time!.";
@@ -150,11 +155,12 @@ hu_in01,371,48,5	script	Ninurta	474,{
 		mes "Oh you are already back!";
 		mes "You are so fast";
 		next;
-		if(countitem(1136) >= 1 && countitem(2327) >= 2 && countitem(5002) >= 5 && countitem(7113) >= 10){
+		if(countitem(1136) >= 1 && countitem(2327) >= 2 && countitem(5002) >= 5 && countitem(7113) >= 15 && countitem(7211) >=15){
 			delitem 1136, 1;
 			delitem 2327, 2;
 			delitem 5002, 5;
-			delitem 7113, 10;
+			delitem 7113, 15;
+			delitem 7211, 15;
 			mes "[Ninurta]";
 			mes "Well done!";
 			mes "We are almost ready! Rashi will give you more information, he should be somewhere around!";
@@ -197,6 +203,7 @@ hu_in01,219,385,5	script	Rashi	491,{
 		mes "100x Coctail Warg Blood";
 		mes "200x Siroma Iced Tea";
 		mes "500x Acid Bottle";
+		mes "200x Holy Water";
 		next;
 		mes "[Rashi]";
 		mes "Don't fail me and I will tell you all that you need to know.";
@@ -205,10 +212,11 @@ hu_in01,219,385,5	script	Rashi	491,{
 	}
 	if(leviathan_quest == 6){
 		mes "[Rashi]";
-		if(countitem(7136) >= 500 && countitem(12430) >= 100 && countitem(12432) >= 200){
+		if(countitem(7136) >= 500 && countitem(12430) >= 100 && countitem(12432) >= 200 && countitem(523) >= 200){
 			delitem 7136, 500;
 			delitem 12430, 100;
 			delitem 12432, 200;
+			delitem 523, 200;
 			mes "Oh, that's excellent";
 			mes "I will never sober!";
 			next;
@@ -247,9 +255,12 @@ hu_in01,162,310,5	script	Ugaritic	494,{
 		next;
 		mes "[Ugaritic]";
 		mes "Bring me ...";
-		mes "... 3x Crown";
-		mes "20x Hand of God";
-		mes "1x Chakram";
+		mes "100x Hand of God";
+		mes "5x Will of Red Darkness";
+		mes "5x Crown";
+		mes "3x Chakram";
+		mes "2x Ice Scale"
+		mes "1x Saphien's Armor of Ocean[1]";
 		next;
 		mes "We don't have much time!.";
 		mes "You better hurry!";
@@ -258,10 +269,13 @@ hu_in01,162,310,5	script	Ugaritic	494,{
 	}
 	if(leviathan_quest == 8){
 		mes "[Ugaritic]";
-		if(countitem(1285) >= 1 && countitem(2235) >= 3 && countitem(1009) >= 20){
-			delitem 1285, 1;
-			delitem 2235, 3;
-			delitem 1009, 20;
+		if(countitem(1285) >= 3 && countitem(2235) >= 5 && countitem(1009) >= 100 && countitem(2347) >= 1 && countitem(7566) >= 5 && countitem(7532) >= 2){
+			delitem 1285, 3;
+			delitem 7532, 2;
+			delitem 2235, 5;
+			delitem 7566, 5;
+			delitem 1009, 100;
+			delitem 2347, 1;
 			mes "Oh, that's excellent";
 			mes "Really, well done";
 			next;
@@ -332,7 +346,7 @@ hu_fild06,337,231,5	script	Shavuot	471,5,5,{
 			mes "Watch the destruction and be glad that you are part of it!";
 			mes "Noone can stop death!";
 			dispbottom "I will not fail to speak of his limbs, his strength and his graceful form.";
-			set $lev_summon, 5;
+			set leviathan_quest, 0;
 			initnpctimer;
 			close;
 		}

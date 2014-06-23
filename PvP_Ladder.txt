@@ -36,7 +36,7 @@ prontera,138,172,4	script	PvP Ladder	857,{
 		case 3:	
 			close;
 		case 4:
-			mes "Are you sure you want to delete ALL pvp records?";
+			mes "Are you sure you want to delete ALL pvp records?";S
 			if(select("No:Yes")==1){
 				close;
 			}
