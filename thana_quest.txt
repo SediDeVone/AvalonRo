@@ -2215,7 +2215,7 @@ OnTouch:
 	close;
 
 OnMyMobDead:
-	if($@first_seal == 0){
+	if($@first_seal == 0 && $@thana_summon2 < 3){
 			if (!getcharid(1)){
 						set $@first_seal, getcharid(0);
 						mapannounce "thana_boss","The seal has been broken by: "+ getcharid(0) ,bc_map,"0xff0000"; //FW_NORMAL 12 0 0
