@@ -1,20 +1,25 @@
-prontera,124,162,4	script	PvP Ladder	857,{
-	mes "[Item Converter]";
+prontera,124,162,4	script	Item Redeemer	62,{
+	mes "[Item Redeemer]";
 	mes "Hello " + strcharinfo(0) + ".";
+	getinventorylist;
 	next;
 	set .@i,select("Reedem items:Leave");
 	switch(.@i){
 		case 1:
-			mes "Are you sure you want to redeem ALL pvp items?";
+			mes "Are you sure you want to redeem ALL items?";
 			if(select("No:Yes")==1){
 				close;
 			}
 			next;			
-			mes "[Item Coverter]";
+			mes "[Item Redeemer]";
 			set .@player, getcharid(3);
 			set .@size, query_sql("select item_id, ammount from `item_transfer` WHERE released = 0 AND account_id =" + .@player, .@ids, .@ammount);
 			if(.@size == 0){
 				mes "You've got no items to redeem.";
+				close;
+			}
+			if(@inventorylist_count + .@size > 100){
+				mes "Sorry, your inventory is full. Store some items first and then talk to me.";
 				close;
 			}
 			mes "Redeeming items..";
