@@ -14,21 +14,37 @@ prontera,124,162,4	script	Item Redeemer	62,{
 			mes "[Item Redeemer]";
 			set .@player, getcharid(3);
 			set .@size, query_sql("select item_id, ammount from `item_transfer` WHERE released = 0 AND account_id =" + .@player, .@ids, .@ammount);
+			dispbottom "size: " + .@size;
 			if(.@size == 0){
 				mes "You've got no items to redeem.";
 				close;
 			}
-			if(@inventorylist_count + .@size > 100){
-				mes "Sorry, your inventory is full. Store some items first and then talk to me.";
+			if(.@size < 100){
+				if(@inventorylist_count + .@size > 100){
+					mes "Sorry, your inventory is full. Store some items first and then talk to me.";
+					close;
+				}
+				mes "Redeeming items..";
+				for(set .@i,0; .@i<.@size; set .@i,.@i+1) {
+					getitem .@ids[.@i], .@ammount[.@i];
+				}
+				query_sql "UPDATE item_transfer SET released=1 WHERE account_id=" + .@player;
+				mes "..reedemed all the items.";
 				close;
 			}
-			mes "Redeeming items..";
-			for(set .@i,0; .@i<.@size; set .@i,.@i+1) {
-				getitem .@ids[.@i], .@ammount[.@i];
+			else{
+				if(@inventorylist_count + 30 > 100){
+					mes "Sorry, your inventory is full. Store some items first and then talk to me.";
+					close;
+				}
+				mes "Redeeming items..";
+				for(set .@i,0; .@i<30; set .@i,.@i+1) {
+					getitem .@ids[.@i], .@ammount[.@i];
+					query_sql "UPDATE item_transfer SET released=1 WHERE account_id=" + .@player + " AND released=0 AND item_id=" + .@ids[.@i] + " LIMIT 1";
+				}
+				mes "..reedemed 30 items. Talk with me later for rest of them.";
+				close;
 			}
-			query_sql "UPDATE item_transfer SET released=1 WHERE account_id=" + .@player;
-			mes "..reedemed all the items.";
-			close;
 		case 2:	
 			close;
 	}

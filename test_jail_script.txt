@@ -1,0 +1,398 @@
+/*
+|---------------------------------------------------------------|
+|								|
+|			   GM Support				|
+|			     PmBan				|
+|								|
+|---------------------------------------------------------------|
+|			   Author(s)				|
+| -Nameless2you							|
+|								|
+|---------------------------------------------------------------|
+|			    Credits				|
+|---------------------------------------------------------------|
+| -IeYasuru for his Offline Jailing Script			|
+|---------------------------------------------------------------|
+|			    Version				|
+|---------------------------------------------------------------|
+|			      1.2				|
+|---------------------------------------------------------------|
+|			   Changelog				|
+|---------------------------------------------------------------|
+| - Added OnWhisperGlobal	  				|
+| - Added Offline Jailing System				|
+| - Added Offline Banning System				|
+| - Added Offline Muting System					|
+| - Fixed the Offline Muting System			 	|
+| - Fixed the values						|
+| - Added time muted/jailed into reason				|
+| - Fixed some incorrect variables				|
+| - Removed a ton of useless loops				|
+|---------------------------------------------------------------|
+*/
+-	script	PmBan	-1,{
+OnWhisperGlobal:
+	if(@whispervar0$ == "asdf"){
+		if(getgmlevel() > 80){
+				mes	"[GM Support]";
+				mes	"Welcome to the automated NPC dedicated to helping GM's.";
+				mes	"What would you like to do?";
+			switch(select("Ban:Mute:Jail:Nothing")){
+			case 1:
+				next;
+					mes	"[GM Support]";
+					mes	"I understand, so you'd like to talk to the Ban Meister.";
+					mes	"Hold on please.";
+				next;
+					mes	"[GM Support]";
+					mes	"I understand, so you'd like to talk to the Ban Meister.";
+					mes	"Hold on please.";
+					mes	"Connection created..";
+				next;
+					mes	"[GM Support]";
+					mes	"I understand, so you'd like to talk to the Ban Meister.";
+					mes	"Hold on please.";
+					mes	"Connection created..";
+					mes	"Establishing uplink...";
+				next;
+					mes	"[Ban Meister]";
+					mes	"Good-day.";
+					mes	"How may I help you?";
+					mes	"Who would you like to have banned?";
+					mes	"And of course, when?";
+				next;
+				switch(select("Next login:Next WoE"))
+					{
+						case 1:
+							next;
+								mes "[Ban Meister]";
+								mes "Input the name of the person to Ban.";
+							next;
+							input .@name$;
+								mes "[Ban Meister]";
+								mes "How long should this person be Ban?";
+							next;
+							switch(select("Minutes:Hours:Days:Months"))
+							{
+								case 1: set .@type$,"n"; break;
+								case 2: set .@type$,"h"; break;
+								case 3: set .@type$,"d"; break;
+								case 4: set .@type$,"m"; break;
+							}
+								mes "[Ban Meister]";
+								mes "How many of the selected type?";
+							next;
+							input .@time;
+								mes "[Ban Meister]";
+								mes "Now, what reason do you have for banning this person?";
+							next;
+							if(.@type$ == "n") set .@types$,"minute(s)";
+							if(.@type$ == "h") set .@types$,"hour(s)";
+							if(.@type$ == "d") set .@types$,"day(s)";
+							if(.@type$ == "m") set .@types$,"month(s)";
+							input .@reason$;
+								mes "[Ban Meister]";
+								mes "Do you really want to jail "+.@name$+" for "+.@time+""+.@types$+"?";
+							if(select("No:Yes")&1) close;
+							set .@i,getarraysize($Ban$)+1;
+							set $Ban$[.@i],.@name$;
+							set $BanTime$[.@i],.@time + .@type$;
+							set $BanReason$[.@i],.@reason$;
+							mes "Ban on login.";
+							close;
+				
+						case 2:
+							next;
+								mes "[Ban Meister]";
+								mes "Who do you want to Ban for the next WoE?";
+							next;
+							input .@name$;
+								mes "[Ban Meister]";
+								mes "How many minute(s) is the next WoE?";
+							next;
+							input .@time;
+							if(.@time <= 0) close;
+								mes "[Ban Meister]";
+								mes "^FF0000"+.@name$+"^000000 will be Banned during the next WoE.";
+							set .@i,getarraysize($WoEBan$)+1;
+							set $WoEBan$[.@i],.@name$;
+							set $WoEBanTime[.@i],.@time;
+							close;
+	}
+	
+			case 2:
+				next;
+					mes	"[GM Support]";
+					mes	"Let me help you with that.";
+				next;
+					mes	"[GM Support]";
+					mes	"Connecting..";
+				next;
+					mes	"[GM Support]";
+					mes	"Connecting..";
+					mes	"Connected...";
+				next;
+					mes	"[Mr. Mute]";
+					mes	"When would you like this action to take place?";
+				next;
+				switch(select("Next login:Next WoE"))
+					{
+						case 1:
+							next;
+								mes "[Mr. Mute]";
+								mes "Input the name of the person to Mute.";
+							next;
+							input .@name$;
+								mes "[Mr. Mute]";
+								mes "How long should this person be Muted?";
+							next;
+							if(select("Minutes:Abort")&2) close;
+								mes "[Mr. Mute]";
+								mes "How many minute(s)?";
+							next;
+							input .@time;
+								mes "[Mr. Mute]";
+								mes "Now, what reason do you have for muting this person?";
+							next;
+							input .@reason$;
+								mes "[Mr. Mute]";
+								mes "Do you really want to Mute "+.@name$+" for "+.@time+" minute(s)?";
+							if(select("No:Yes")&1) close;
+							set .@i,getarraysize($mute$)+1;
+							set $mute$[.@i],.@name$;
+							set $MuteTime[.@i],.@time;
+							set $MuteReason$[.@i],.@reason$;
+								mes "Mute on login.";
+							close;
+				
+						case 2:
+								mes "[Mr. Mute]";
+								mes "Who do you want to Mute for the next WoE?";
+							next;
+							input .@name$;
+								mes "[Mr. Mute]";
+								mes "How many minute(s) is the next WoE?";
+							next;
+							input .@time;
+							if(.@time <= 0) close;
+								mes "[Mr. Mute]";
+								mes "^FF0000"+.@name$+"^000000 will be Muted during the next WoE.";
+							set .@i,getarraysize($WoEMute$)+1;
+							set $WoEMute$[.@i],.@name$;
+							set $WoEMuteTime[.@i],.@time;
+							close;
+	}
+				
+		
+			case 3:
+				next;
+					mes	"[GM Support]";
+					mes	"Please wait.";
+				next;
+					mes	"[GM Support]";
+					mes	"Please wait.";
+					mes	"Connecting..";
+				next;
+					mes	"[GM Support]";
+					mes	"Please wait.";
+					mes	"Connecting..";
+					mes	"Establishing connection...";
+				next;
+					mes "[Jailer]";
+					mes "Good day.";
+					mes "From what I have heard you would like to Jail somebody.";
+					mes "For doing so I will need their name.";
+					mes	"Would you like to continue with the Jailing?";
+				next;
+				switch(select("No.:Yes Please.")){
+				next;
+				
+				case 1:
+					next;
+						mes	"[Jailer]";
+						mes	"Have a nice day and be sure to come back when you need my help.";
+					close;
+				
+				case 2:
+					next;
+						mes	"[Jailer]";
+						mes	"When would you like this jailing to be activated?";
+					switch(select("Next Login:Next WoE")){
+					case 1:
+							mes "Input the name of the person to jail.";
+						next;
+						input .@name$;
+							mes "[Jailer]";
+							mes "How long should this person be jailed?";
+						next;
+						switch(select("Minutes:Hours:Days:Months"))
+						{
+							case 1: set .@type$,"n"; break;
+							case 2: set .@type$,"h"; break;
+							case 3: set .@type$,"d"; break;
+							case 4: set .@type$,"m"; break;
+						}
+							mes "[Jailer]";
+							mes "How many of the selected type?";
+						next;
+						input .@time;
+							mes "[Jailer]";
+							mes "Now, what reason do you have for jailing this person?";
+						next;
+						if(.@type$ == "n") set .@types$,"minute(s)";
+						if(.@type$ == "h") set .@types$,"hour(s)";
+						if(.@type$ == "d") set .@types$,"day(s)";
+						if(.@type$ == "m") set .@types$,"month(s)";
+						input .@reason$;
+							mes "[Jailer]";
+							mes "Do you really want to jail "+.@name$+" for "+.@time+""+.@types$+"?";
+						if(select("No:Yes")&1) close;
+						set .@i,getarraysize($Jailed$)+1;
+						set $Jailed$[.@i],.@name$;
+						set $JailTime$[.@i],.@time+.@type$;
+						set $JailReason$[.@i],.@reason$;
+							mes "Jailed on login.";
+						close;
+					case 2:
+							mes "[Jailer]";
+							mes "Who do you want to jail for the next WoE?";
+						next;
+						input .@name$;
+							mes "[Jailer]";
+							mes "How many minute(s) is the next WoE?";
+						next;
+						input .@time;
+						if(.@time <= 0) close;
+							mes "[Jailer]";
+							mes "^FF0000"+.@name$+"^000000 will be jailed during the next WoE.";
+						set .@i,getarraysize($WoEJailed$)+1;
+						set $WoEJailed$[.@i],.@name$;
+						set $WoEJailedTime[.@i],.@time;
+						close;		
+				}
+											
+			}
+				close;
+		
+			case 4:
+				next;
+				mes	"[GM Support]";
+				mes	"Thank you for visiting, and for allowing me to help you.";
+				mes	"Bye.";
+				close;
+				end;
+		
+			}
+		
+		}
+		
+	end;
+	}
+	
+end;
+
+
+
+OnPcLoginEvent:
+OnPcDieEvent:
+// Offline Jailing System
+	if(agitcheck() || agitcheck2())
+	{
+		for(set .@i,0; .@i < getarraysize($WoEJailed$); set .@i,.@+1)
+		{
+			if(strcharinfo(0) == $WoEJailed$[.@i])
+			{
+				atcommand "@jailfor "+$WoEJailedTime[.@i]+"n "+$WoEJailed$[.@i];
+				dispbottom "You've been jailed for this WoE. It will last for "+$WoEJailedTime[.@i]+" minute(s). but only while you're online.";
+				dispbottom "Wait out your sentence and don't complain to the GMs, you were jailed for a reason.";
+				set $WoEJailed$[.@i],"";
+				set $WoEJailedTime[.@i],"";
+				end;
+			}
+		}
+	}
+	for(set .@i,0; .@i < getarraysize($Jailed$); set .@i,.@i+1)
+	{
+		if(strcharinfo(0) == $Jailed$[.@i])
+		{
+			atcommand "@jailfor "+$JailTime$[.@i]+" "+$Jailed$[.@i];
+			dispbottom "@Jailtime for accurate Jail Time info.";
+			dispbottom "Jail time: "+$JailTime$[.@i]+".";
+			dispbottom "You were jailed for the reason:";
+			dispbottom $JailReason$[.@i];
+			set $Jailed$[.@i],"";
+			set $JailTime$[.@i],"";
+			set $JailReason$[.@i],"";
+			end;
+		}
+	}
+
+
+// Offline Banning System
+	if(agitcheck() || agitcheck2())
+	{
+		for(set .@i,0; .@i < getarraysize($WoEBan$); set .@i,.@+1)
+		{
+			if(strcharinfo(0) == $WoEBan$[.@i])
+			{
+				dispbottom "You've been Banned for this WoE. It will last for "+$WoEBanTime[.@i]+" minute(s).";
+				dispbottom "Wait out your sentence and don't complain to the GMs, you were Banned for a reason.";
+				sleep2 500;
+				atcommand "@ban "+$WoEBanTime[.@i]+"n "+$WoEBan$[.@i];
+				set $WoEBan$[.@i],"";
+				set $WoEBanTime[.@i],"";
+				end;
+			}
+		}
+	}
+	for(set .@i,0; .@i < getarraysize($Ban$); set .@i,.@i+1)
+	{
+		if(strcharinfo(0) == $Ban$[.@i])
+		{
+			dispbottom "Ban time: "+$BanTime$[.@i]+".";
+			dispbottom "You were Banned for the reason:";
+			dispbottom $BanReason$[.@i];
+			sleep2 500;
+			atcommand "@ban "+$BanTime$[.@i]+" "+$Ban$[.@i];
+			set $Ban$[.@i],"";
+			set $BanTime$[.@i],"";
+			set $BanReason$[.@i],"";
+			end;
+		}
+	}
+
+// Offline Muting System
+	if(agitcheck() || agitcheck2())
+	{
+		for(set .@i,0; .@i < getarraysize($WoEMute$); set .@i,.@i + 1)
+		{
+			if(strcharinfo(0) == $WoEMute$[.@i])
+			{
+				atcommand "@mute "+$WoEMuteTime[.@i]+" "+$WoEMute$[.@i];
+				dispbottom "You've been Muted for this WoE. It will last for "+$WoEMuteTime[.@i]+" minute(s). But only while you're online.";
+				dispbottom "Wait out your sentence and don't complain to the GMs, you were Muted for a reason.";
+				set $WoEMute$[.@i],"";
+				set $WoEMuteTime[.@i],"";
+				end;
+			}
+		}
+	}
+	else
+	{
+		for(set .@i,0; .@i < getarraysize($mute$); set .@i,.@i + 1)
+		{
+			if(strcharinfo(0) == $mute$[.@i])
+			{
+				atcommand "@mute "+$MuteTime[.@i]+" "+$mute$[.@i];
+				dispbottom "Mute time: "+$MuteTime[.@i]+" minute(s).";
+				dispbottom "You were Muted for the reason:";
+				dispbottom $MuteReason$[.@i];
+				set $mute$[.@i],"";
+				set $MuteTime[.@i],"";
+				set $MuteReason$[.@i],"";
+				end;
+			}
+		}
+	}
+end;
+}
