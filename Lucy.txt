@@ -1,0 +1,47 @@
+lhz_que01,80,158,5	script	Lucy	405,{
+	OnWhisperGlobal:
+		if(@whispervar0$ == "guild recall"){
+			goto GuildRecall;
+		}
+		else if(@whispervar0$ == "recall map"){
+			goto RecallMap;
+		}
+		else if(@whispervar0$ == "lock guild"){
+			goto LockGuild;
+		}
+		else if(@whispervar0$ == "unlock guild"){
+			goto UnlockGuild;
+		}
+		else{
+			goto Hello;
+		}
+
+	GuildRecall:
+		if(getgmlevel() > 40){
+			warpguild @whispervar1$,@whispervar2$,@whispervar3$,getcharid(2,.@player_name$);
+		}
+		end;
+		
+	RecallMap:
+		if(getgmlevel() > 40){
+			mapwarp @whispervar1$,@whispervar2$,@whispervar3$,@whispervar4$;
+		}
+		end;
+
+	LockGuild:
+		if(getgmlevel() > 40){
+			setmapflag @whispervar1$,mf_guildlock;
+		}
+		end;
+
+	UnlockGuild:
+		if(getgmlevel() > 40){
+			removemapflag @whispervar1$,mf_guildlock;
+		}
+		end;
+
+	Hello:
+		mes "[Lucy]";
+		mes "Good day to you!";
+		close;
+}
