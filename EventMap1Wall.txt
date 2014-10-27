@@ -1,0 +1,52 @@
+event_map1,59,60,5	script	EventMap1Wall	1187,{
+	end;
+	Part1:
+		if(getgmlevel() < 51){
+			end;
+		}
+		areamonster "regicide",68,53,68,46,"Wall",1905,40;
+		areamonster "regicide",31,53,31,46,"Wall",1905,40;
+
+		setwall "regicide",68,53,8,4,0,"em_wall01";
+		setwall "regicide",31,53,8,4,0,"em_wall02";
+		dispbottom "Walls has been enabled.";
+		end;
+
+	Part2:
+		if(getgmlevel() < 51){
+			end;
+		}
+		delwall "em_wall01";
+		delwall "em_wall02";
+		killmonsterall "regicide";
+		dispbottom "Walls has been disabled.";
+		end;
+
+	Part3:
+		if(getgmlevel() < 51){
+			end;
+		}
+		dispbottom "Hello, this is help panel.";
+		sleep2 2000;
+		dispbottom "I will guide you through the NPC.";
+		sleep2 2000;
+		dispbottom "There's 3 avaiable commands for now: /help/, ";
+		sleep2 2000;
+		dispbottom "which you just activated. Also there's /set walls/, ";
+		sleep2 2000;
+		dispbottom "which activate walls. And there's /remove walls/, ";
+		sleep2 2000;
+		dispbottom "which will remove all active walls.";
+		sleep2 4000;
+		dispbottom "Remember to firstly remove all walls and next to activate them.";
+		sleep2 2000;
+		dispbottom "That's all for now. Enjoy.";
+		end;
+
+	OnInit:
+		defpattern 1, "set walls", "Part1";
+		defpattern 1, "remove walls", "Part2";
+		defpattern 1, "help", "Part3";
+		activatepset 1;
+		end;
+}

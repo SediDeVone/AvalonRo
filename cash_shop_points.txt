@@ -1,0 +1,291 @@
+// AvalonRO Script
+// Made by Xan Kriegor, for use with AvalonRO3 only.
+// An exchange NPC that trades monster drops for cash shop points
+
+casp_wmill,12,21,5	script	Cash Shop Points::csp1	603,{
+
+	mes "[Cash Shop Points]";
+	mes "Hello there. I can give you Cash Shop points in exchange of some items. Will you look at the list?";
+	menu "Yes, please",-,"I don't need any",L_Exit;
+
+	next;
+	mes "[Cash Shop Points]";
+	mes "Please select an option.";
+	menu "Trade Items for Cash Points",L_Trade,"Item List",L_List;
+
+	L_Trade:
+
+	next;
+	setarray .@cash_point_items$[0],"Valk Armor","Valk Manteau","^FF0000Twin Edge of Naght Seiger R^000000","^0000FFTwin Edge of Naght Seiger B^000000","Two-Handed Chrome Metal Sword",
+			"Nidhoggur's Shadow Garb","Ring of Flame Lord","Ring of Resonance","Ledger of Death";
+	if(gettime(4) == 6 && $saved == 0){		
+		set $csp_random, rand(0,getarraysize(.@cash_point_items$)-1);
+		set $csp_random2, rand(0,getarraysize(.@cash_point_items$)-1);
+		while($csp_random2 == $csp_random){
+			set $csp_random2, rand(0,getarraysize(.@cash_point_items$)-1);
+		}
+		set $saved, 1;
+	}
+	if(gettime(4) != 6 && $saved == 1){
+		set $saved, 0;
+		if($csp_random2 == $csp_random){
+			set $csp_random2, rand(0,getarraysize(.@cash_point_items$)-1);
+		}
+	}
+	mes "[Cash Shop Points]";
+	mes "Select which item you'd like to trade:";
+
+	switch(select(.@cash_point_items$[$csp_random]+":"+.@cash_point_items$[$csp_random2])){
+		case 1:
+			switch($csp_random){
+				case 0:
+					goto L_VA;
+					break;
+				case 1:
+					goto L_VM;
+					break;
+				case 2:
+					goto L_TER;
+					break;
+				case 3:
+					goto L_TEB;
+					break;
+				case 4:
+					goto L_2HC;
+					break;
+				case 5:
+					goto L_SG;
+					break;
+				case 6:
+					goto L_Rofl;
+					break;
+				case 7:
+					goto L_Ror;
+					break;
+				case 8:
+					goto L_Bod;
+					break;
+			}
+		case 2:
+			switch($csp_random2){
+				case 0:
+					goto L_VA;
+					break;
+				case 1:
+					goto L_VM;
+					break;
+				case 2:
+					goto L_TER;
+					break;
+				case 3:
+					goto L_TEB;
+					break;
+				case 4:
+					goto L_2HC;
+					break;
+				case 5:
+					goto L_SG;
+					break;
+				case 6:
+					goto L_Rofl;
+					break;
+				case 7:
+					goto L_Ror;
+					break;
+				case 8:
+					goto L_Bod;
+					break;
+			}
+	}
+
+	L_VA:
+
+	next;
+	if (countitem(2357) > 1) goto L_NOPE2;
+	if (countitem(2357) == 0) goto L_NOPE;
+	mes "[Cash Shop Points]";
+	mes "Are you sure you wish to exchange this item for Cash Points? The trade cannot be undone, and recovery of any items";
+	mes "accidentally lost in this manner is not possible. Continue?";
+	menu "No",L_Negative,"Yes",-;
+	next;
+	delitem 2357,1;
+	set #CASHPOINTS,#CASHPOINTS+10;
+	mes "[Cash Shop Points]";
+	mes "Here are your points. Good luck.";
+	close;
+
+	L_VM:
+
+	next;
+	if (countitem(2324) > 1) goto L_NOPE2;
+	if (countitem(2524) == 0) goto L_NOPE;
+	mes "[Cash Shop Points]";
+	mes "Are you sure you wish to exchange this item for Cash Points? The trade cannot be undone, and recovery of any items";
+	mes "accidentally lost in this manner is not possible. Continue?";
+	menu "No",L_Negative,"Yes",-;
+	next;
+	delitem 2524,1;
+	set #CASHPOINTS,#CASHPOINTS+10;
+	mes "[Cash Shop Points]";
+	mes "Here are your points. Good luck.";
+	close;
+
+	L_TER:
+
+	next;
+	if (countitem(13413) > 1) goto L_NOPE2;
+	if (countitem(13413) == 0) goto L_NOPE;
+	mes "[Cash Shop Points]";
+	mes "Are you sure you wish to exchange this item for Cash Points? The trade cannot be undone, and recovery of any items";
+	mes "accidentally lost in this manner is not possible. Continue?";
+	menu "No",L_Negative,"Yes",-;
+	next;
+	delitem 13413,1;
+	set #CASHPOINTS,#CASHPOINTS+15;
+	mes "[Cash Shop Points]";
+	mes "Here are your points. Good luck.";
+	close;
+
+	L_TEB:
+
+	next;
+	if (countitem(13412) > 1) goto L_NOPE2;
+	if (countitem(13412) == 0) goto L_NOPE;
+	mes "[Cash Shop Points]";
+	mes "Are you sure you wish to exchange this item for Cash Points? The trade cannot be undone, and recovery of any items";
+	mes "accidentally lost in this manner is not possible. Continue?";
+	menu "No",L_Negative,"Yes",-;
+	next;
+	delitem 13412,1;
+	set #CASHPOINTS,#CASHPOINTS+15;
+	mes "[Cash Shop Points]";
+	mes "Here are your points. Good luck.";
+	close;
+
+	L_2HC:
+
+	next;
+	if (countitem(1196) > 1) goto L_NOPE2;
+	if (countitem(1196) == 0) goto L_NOPE;
+	mes "[Cash Shop Points]";
+	mes "Are you sure you wish to exchange this item for Cash Points? The trade cannot be undone, and recovery of any items";
+	mes "accidentally lost in this manner is not possible. Continue?";
+	menu "No",L_Negative,"Yes",-;
+	next;
+	delitem 1196,1;
+	set #CASHPOINTS,#CASHPOINTS+5;
+	mes "[Cash Shop Points]";
+	mes "Here are your points. Good luck.";
+	close;
+
+	L_SG:
+
+	next;
+	if (countitem(2554) > 1) goto L_NOPE2;
+	if (countitem(2554) == 0) goto L_NOPE;
+	mes "[Cash Shop Points]";
+	mes "Are you sure you wish to exchange this item for Cash Points? The trade cannot be undone, and recovery of any items";
+	mes "accidentally lost in this manner is not possible. Continue?";
+	menu "No",L_Negative,"Yes",-;
+	next;
+	delitem 2554,1;
+	set #CASHPOINTS,#CASHPOINTS+5;
+	mes "[Cash Shop Points]";
+	mes "Here are your points. Good luck.";
+	close;
+
+	L_Rofl:
+
+	next;
+	if (countitem(2678) > 1) goto L_NOPE2;
+	if (countitem(2678) == 0) goto L_NOPE;
+	mes "[Cash Shop Points]";
+	mes "Are you sure you wish to exchange this item for Cash Points? The trade cannot be undone, and recovery of any items";
+	mes "accidentally lost in this manner is not possible. Continue?";
+	menu "No",L_Negative,"Yes",-;
+	next;
+	delitem 2678,1;
+	set #CASHPOINTS,#CASHPOINTS+2;
+	mes "[Cash Shop Points]";
+	mes "Here are your points. Good luck.";
+	close;
+
+	L_Ror:
+
+	next;
+	if (countitem(2679) > 1) goto L_NOPE2;
+	if (countitem(2679) == 0) goto L_NOPE;
+	mes "[Cash Shop Points]";
+	mes "Are you sure you wish to exchange this item for Cash Points? The trade cannot be undone, and recovery of any items";
+	mes "accidentally lost in this manner is not possible. Continue?";
+	menu "No",L_Negative,"Yes",-;
+	next;
+	delitem 2679,1;
+	set #CASHPOINTS,#CASHPOINTS+2;
+	mes "[Cash Shop Points]";
+	mes "Here are your points. Good luck.";
+	close;
+
+	L_Bod:
+
+	next;
+	if (countitem(1565) > 1) goto L_NOPE2;
+	if (countitem(1565) == 0) goto L_NOPE;
+	mes "[Cash Shop Points]";
+	mes "Are you sure you wish to exchange this item for Cash Points? The trade cannot be undone, and recovery of any items";
+	mes "accidentally lost in this manner is not possible. Continue?";
+	menu "No",L_Negative,"Yes",-;
+	next;
+	delitem 1565,1;
+	set #CASHPOINTS,#CASHPOINTS+5;
+	mes "[Cash Shop Points]";
+	mes "Here are your points. Good luck.";
+	close;
+
+	L_NOPE:
+
+	next;
+	mes "[Cash Shop Points]";
+	mes "You don't have any of that item. Please check again..";
+	close;
+
+	L_NOPE2:
+
+	next;
+	mes "[Cash Shop Points]";
+	mes "You have more than one of the selected item. Please bring a single unit of the equipment you're exchanging.";
+	close;
+
+
+	L_List:
+
+	next;
+	mes "[Cash Shop Points]";
+	mes "Valkyrian Armor: ^FF000010 Points^000000";
+	mes "Valkyrie Manteau: ^FF000010 Points^000000";
+	mes "Twin Edge of Naght Seiger(Both Types): ^FF000015 Points^000000";
+	mes "Two-Handed Chrome Metal Sword: ^FF00005 Points^000000";
+	mes "Nidhoggur's Shadow Garb: ^FF00005 Points^000000";
+	mes "Ring of Flame Lord: ^FF00002 Points^000000";
+	mes "Ring of Resonance: ^FF00002 Points^000000";
+	mes "Ledger of Death: ^FF00005 Points^000000";
+	mes "";
+	goto L_Trade;
+
+
+	L_Exit:
+
+	next;
+	mes "[Cash Shop Points]";
+	mes "Come back when you get items to trade.";
+	close;
+
+	L_Negative:
+
+	close;
+
+}
+
+prontera,148,189,4	duplicate(csp1)	Cash Shop Points#prt	603
+payon,135,226,4	duplicate(csp1)	Cash Shop Points#pay	603
+rachel,105,139,4	duplicate(csp1)	Cash Shop Points#rac	603

@@ -41,7 +41,5 @@ lhz_que01,80,158,5	script	Lucy	405,{
 		end;
 
 	Hello:
-		mes "[Lucy]";
-		mes "Good day to you!";
-		close;
+		dispbottom "Good day to you!";
 }

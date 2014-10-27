@@ -1,0 +1,70 @@
+regicide,59,60,5	script	RegicideWall	1187,{
+	end;
+	Part1:
+		if(getgmlevel() < 51){
+			end;
+		}
+		areamonster "regicide",58,38,61,38,"Wall",1905,40;
+		areamonster "regicide",58,49,61,49,"Wall",1905,40;
+		areamonster "regicide",81,58,81,61,"Wall",1905,40;
+		areamonster "regicide",70,58,70,61,"Wall",1905,40;
+		areamonster "regicide",38,58,38,61,"Wall",1905,40;
+		areamonster "regicide",49,58,49,61,"Wall",1905,40;
+		areamonster "regicide",58,70,61,70,"Wall",1905,40;
+		areamonster "regicide",58,81,61,81,"Wall",1905,40;
+
+		setwall "regicide",58,38,4,6,0,"reg_wall01";
+		setwall "regicide",58,49,4,6,0,"reg_wall02";
+		setwall "regicide",81,58,4,0,0,"reg_wall03";
+		setwall "regicide",70,58,4,0,0,"reg_wall04";
+		setwall "regicide",38,58,4,0,0,"reg_wall05";
+		setwall "regicide",49,58,4,0,0,"reg_wall06";
+		setwall "regicide",58,70,4,6,0,"reg_wall07";
+		setwall "regicide",58,81,4,6,0,"reg_wall08";
+		dispbottom "Walls has been enabled.";
+		end;
+
+	Part2:
+		if(getgmlevel() < 51){
+			end;
+		}
+		delwall "reg_wall01";
+		delwall "reg_wall02";
+		delwall "reg_wall03";
+		delwall "reg_wall04";
+		delwall "reg_wall05";
+		delwall "reg_wall06";
+		delwall "reg_wall07";
+		delwall "reg_wall08";
+		killmonsterall "regicide";
+		dispbottom "Walls has been disabled.";
+		end;
+
+	Part3:
+		if(getgmlevel() < 51){
+			end;
+		}
+		dispbottom "Hello, this is help panel.";
+		sleep2 2000;
+		dispbottom "I will guide you through the NPC.";
+		sleep2 2000;
+		dispbottom "There's 3 avaiable commands for now: /help/, ";
+		sleep2 2000;
+		dispbottom "which you just activated. Also there's /set walls/, ";
+		sleep2 2000;
+		dispbottom "which activate walls. And there's /remove walls/, ";
+		sleep2 2000;
+		dispbottom "which will remove all active walls.";
+		sleep2 4000;
+		dispbottom "Remember to firstly remove all walls and next to activate them.";
+		sleep2 2000;
+		dispbottom "That's all for now. Enjoy.";
+		end;
+
+	OnInit:
+		defpattern 1, "set walls", "Part1";
+		defpattern 1, "remove walls", "Part2";
+		defpattern 1, "help", "Part3";
+		activatepset 1;
+		end;
+}

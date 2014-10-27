@@ -16,7 +16,7 @@
 
 	OnPCLoginEvent:
 		getmapxy (.@map$, .@x, .@y, 0);
-		if( .@map$ == "karin_chan" || .@map$ == "regicide" || .@map$ == "06guild_01" || .@map$ == "edit_map7" || .@map$ == "event_map1"){
+		if( .@map$ == "quiz_01" || .@map$ == "quiz_02" || .@map$ == "06guild_01" || .@map$ == "edit_map7" || .@map$ == "event_map1"){
 			if(hidden > 0){
 				atcommand "@costume Xmas";
 				atcommand "@hide";
@@ -47,7 +47,7 @@ prt_fild08,167,362,6	script	Spectator Mode	72,{
 		mes "Hello, " + strcharinfo(0) + ".";
 		mes "Sorry, but you cannot join while being in party.";
 		mes "Leave your party and talk to me again.";
-		close;		
+		close;
 	}
 	mes "[Spectator Mode]";
 	mes "Hello, " + strcharinfo(0) + ".";
@@ -68,22 +68,22 @@ prt_fild08,167,362,6	script	Spectator Mode	72,{
 			detachrid;
 			switch($pvp_map){
 				case 1:
-					warpchar "06guild_01",49,49,.@player2;
+					warpchar "quiz_01",63,183,.@player2;
 					close;
 				case 2:
-					warpchar "edit_map7",50,50,.@player2;
+					warpchar "06guild_01",49,49,.@player2;
 					close;
 				case 3:
-					warpchar "event_map1",48,67,.@player2;
+					warpchar "quiz_02",304,249,.@player2;
 					close;
 				case 4:
-					warpchar "karin_chan",74,70,.@player2;
+					warpchar "edit_map7",50,50,.@player2;
 					close;
 				case 5:
-					warpchar "regicide",59,60,.@player2;
+					warpchar "event_map1",51,49,.@player2;
 					close;
 			}
-			end;	
+			end;
 		case 2:
 			mes "[Spectator Mode]";
 			mes "You got no idea what you're going to miss...";
@@ -92,7 +92,7 @@ prt_fild08,167,362,6	script	Spectator Mode	72,{
 	}
 }
 
-karin_chan,59,83,6	script	Exit Arena	49,{
+quiz_01,63,195,6	script	Exit Arena	49,{
 	if(select("No:Yes")==1){
 		close;
 	}
@@ -111,8 +111,8 @@ karin_chan,59,83,6	script	Exit Arena	49,{
 }
 
 06guild_01,50,95,6	duplicate(Exit Arena)	Exit Arena#2	49
-regicide,60,95,6	duplicate(Exit Arena)	Exit Arena#3	49
-edit_map7,58,66,6	duplicate(Exit Arena)	Exit Arena#4	49	
+quiz_02,303,230,6	duplicate(Exit Arena)	Exit Arena#3	49
+edit_map7,49,100,6	duplicate(Exit Arena)	Exit Arena#4	49
 event_map1,48,67,6	duplicate(Exit Arena)	Exit Arena#5	49
 
 lhz_que01,86,165,5	script	Event Assistant	811,{
@@ -129,28 +129,24 @@ lhz_que01,86,165,5	script	Event Assistant	811,{
 				mes "Which NPC version do you want?";
 				switch(select("General PvP:General PvP(no ValkC):General PVP(No HwC,FBHC,ValkC):Magic Classes:None")){
 					case 1:
-						setarray $itemsnotallowed[0],2541,2382,1530,1132,1565,1369,1141,2629,2545,2383,1579;
-		 				setarray $cardsnotallowed[0],4128,4276,4361;
+						set $pvp_npc, 1;
 						close;
 					case 2:
-						setarray $itemsnotallowed[0],2541,2382,1530,1132,1565,1369,1141,2629,2545,2383,1579;
-		 				setarray $cardsnotallowed[0],4407,4128,4276,4361;
+						set $pvp_npc, 2;
 						close;
 					case 3:
-						setarray $itemsnotallowed[0],2541,2382,1530,1132,1565,1369,1141,2629,2545,2383,1579;
-		 				setarray $cardsnotallowed[0],4441,4365,4407,4128,4276,4361;
+						set $pvp_npc, 3;
 						close;
 					case 4:
-						setarray $itemsnotallowed[0],28209,28218,28105,28106,5058,5230,5231,5232,5233,5234,5219,5124,2541,2382,1530,1132,1565,1369,1141,2629,2545,2383,1579;
-		 				setarray $cardsnotallowed[0],4146,4414,4087,4441,4365,4128,4276,4361,4128,4276,4361;
+						set $pvp_npc, 4;
 						close;
 					case 5:
 						close;
-				}		
+				}
 			case 2:
 				mes "[Event Assistant]";
 				mes "Which map do you want to enable?";
-				switch(select("06guild_01:edit_map7:event_map1:karin_chan:regicide:None")){
+				switch(select("quiz_01:06guild_01:quiz_02:Jette's Map:event_map1:None")){
 					case 1:
 						set $pvp_map, 1;
 						close;
@@ -169,12 +165,12 @@ lhz_que01,86,165,5	script	Event Assistant	811,{
 					case 6:
 						close;
 				}
-			case 3:	
+			case 3:
 				mes "[Event Assistant]";
 				mes "I've enabled Tom";
 				enablenpc "Tom";
 				close;
-			case 4:	
+			case 4:
 				mes "[Event Assistant]";
 				mes "I've enabled Spectator Mode";
 				enablenpc "Spectator Mode";
@@ -195,10 +191,32 @@ lhz_que01,86,165,5	script	Event Assistant	811,{
 		mes "Sorry, but don't have power to activate the npc.";
 		close;
 	}
-	
+
 	OnInit:
 		disablenpc "Tom";
 		disablenpc "Spectator Mode";
+		setmapflag "quiz_01", mf_partylock;
+		setmapflag "quiz_01", mf_guildlock;
+		setmapflag "quiz_01", mf_notrade;
+		setmapflag "quiz_01", mf_noreturn;
+		setmapflag "quiz_01", mf_nobranch;
+		setmapflag "quiz_01", mf_pvp_noguild;
+		setmapflag "quiz_01", mf_nomemo;
+		setmapflag "quiz_01", mf_noteleport;
+		setmapflag "quiz_01", mf_nochat;
+		setmapflag "quiz_01", mf_nodrop;
+		setmapflag "quiz_01", mf_nocommand,40;
+		setmapflag "quiz_02", mf_partylock;
+		setmapflag "quiz_02", mf_guildlock;
+		setmapflag "quiz_02", mf_notrade;
+		setmapflag "quiz_02", mf_noreturn;
+		setmapflag "quiz_02", mf_nobranch;
+		setmapflag "quiz_02", mf_pvp_noguild;
+		setmapflag "quiz_02", mf_nomemo;
+		setmapflag "quiz_02", mf_noteleport;
+		setmapflag "quiz_02", mf_nochat;
+		setmapflag "quiz_02", mf_nodrop;
+		setmapflag "quiz_02", mf_nocommand,40;
 		setmapflag "06guild_01", mf_partylock;
 		setmapflag "06guild_01", mf_guildlock;
 		setmapflag "06guild_01", mf_notrade;
@@ -210,50 +228,6 @@ lhz_que01,86,165,5	script	Event Assistant	811,{
 		setmapflag "06guild_01", mf_nochat;
 		setmapflag "06guild_01", mf_nodrop;
 		setmapflag "06guild_01", mf_nocommand,40;
-		setmapflag "regicide", mf_partylock;
-		setmapflag "regicide", mf_guildlock;
-		setmapflag "regicide", mf_notrade;
-		setmapflag "regicide", mf_noreturn;
-		setmapflag "regicide", mf_nobranch;
-		setmapflag "regicide", mf_pvp_noguild;
-		setmapflag "regicide", mf_nomemo;
-		setmapflag "regicide", mf_noteleport;
-		setmapflag "regicide", mf_nochat;
-		setmapflag "regicide", mf_nodrop;
-		setmapflag "regicide", mf_nocommand,40;
-		setmapflag "karin_chan", mf_partylock;
-		setmapflag "karin_chan", mf_guildlock;
-		setmapflag "karin_chan", mf_notrade;
-		setmapflag "karin_chan", mf_noreturn;
-		setmapflag "karin_chan", mf_nobranch;
-		setmapflag "karin_chan", mf_pvp_noguild;
-		setmapflag "karin_chan", mf_nomemo;
-		setmapflag "karin_chan", mf_noteleport;
-		setmapflag "karin_chan", mf_nochat;
-		setmapflag "karin_chan", mf_nodrop;
-		setmapflag "karin_chan", mf_nocommand,40;
-		setmapflag "edit_map7", mf_partylock;
-		setmapflag "edit_map7", mf_guildlock;
-		setmapflag "edit_map7", mf_notrade;
-		setmapflag "edit_map7", mf_noreturn;
-		setmapflag "edit_map7", mf_nobranch;
-		setmapflag "edit_map7", mf_pvp_noguild;
-		setmapflag "edit_map7", mf_nomemo;
-		setmapflag "edit_map7", mf_noteleport;
-		setmapflag "edit_map7", mf_nochat;
-		setmapflag "edit_map7", mf_nodrop;
-		setmapflag "edit_map7", mf_nocommand,40;
-		setmapflag "event_map1", mf_partylock;
-		setmapflag "event_map1", mf_guildlock;
-		setmapflag "event_map1", mf_notrade;
-		setmapflag "event_map1", mf_noreturn;
-		setmapflag "event_map1", mf_nobranch;
-		setmapflag "event_map1", mf_pvp_noguild;
-		setmapflag "event_map1", mf_nomemo;
-		setmapflag "event_map1", mf_noteleport;
-		setmapflag "event_map1", mf_nochat;
-		setmapflag "event_map1", mf_nodrop;
-		setmapflag "event_map1", mf_nocommand,40;
 		end;
 }
 
@@ -290,21 +264,21 @@ z_agit,24,187,6	script	Tom	70,{
 			mes "Get ready! Geronimoooooooooooooo!!";
 			switch($pvp_map){
 				case 1:
-					warp "06guild_01",49,49;
+					warp "quiz_01",63,165;
 					close;
 				case 2:
-					warp "edit_map7",50,50;
+					warp "06guild_01",49,49;
 					close;
 				case 3:
-					warp "event_map1",48,67;
+					warp "quiz_02",304,249;
 					close;
 				case 4:
-					warp "karin_chan",74,70;
+					warp "edit_map7",50,50;
 					close;
 				case 5:
-					warp "regicide",59,60;
+					warp "event_map1",48,67;
 			}
-			end;	
+			end;
 		case 2:
 			mes "[Tom]";
 			mes "You got no idea what you're going to miss...";
@@ -377,24 +351,43 @@ z_agit,24,187,6	script	Tom	70,{
  			end;
  		}
  		getmapxy(.@map$,.@x,.@y,0);
- 		setarray .@restrictedmaps$[0],"06guild_01","edit_map7","event_map1","karin_chan","regicide"; 		
+ 		setarray .@restrictedmaps$[0], "quiz_01","quiz_02","06guild_01","quiz_test","bob04","guild_vs5","edit_map7","event_map1";
+
  		for(set .@m, 0; .@m < getarraysize(.@restrictedmaps$); set .@m, .@m + 1) {
  			while(.@map$ == .@restrictedmaps$[.@m]){
+	 			switch($pvp_npc){
+		 			case 1:
+		 				setarray .@itemsnotallowed[0],2541,2382,1530,1132,1565,1369,1141,2629,2545,2383,1579;
+		 				setarray .@cardsnotallowed[0],4128,4276,4361;
+		 				break;
+		 			case 2:
+		 				setarray .@itemsnotallowed[0],2541,2382,1530,1132,1565,1369,1141,2629,2545,2383,1579;
+		 				setarray .@cardsnotallowed[0],4407,4128,4276,4361;
+		 				break;
+		 			case 3:
+		 				setarray .@itemsnotallowed[0],2541,2382,1530,1132,1565,1369,1141,2629,2545,2383,1579;
+		 				setarray .@cardsnotallowed[0],4441,4365,4407,4128,4276,4361;
+		 				break;
+		 			case 4:
+		 				setarray .@itemsnotallowed[0],28209,28218,28105,28106,5058,5230,5231,5232,5233,5234,5219,5124,2541,2382,1530,1132,1565,1369,1141,2629,2545,2383,1579;
+		 				setarray .@cardsnotallowed[0],4146,4414,4087,4441,4365,4128,4276,4361,4128,4276,4361;
+		 				break;
+		 		}
  				for(set .@e, 1; .@e < 11; set .@e, .@e + 1) {
  					if(getequipid(.@e) != -1) {
- 						for(set .@n, 0; .@n < getarraysize($cardsnotallowed); set .@n, .@n + 1){
-	 						if(getequipcardid(.@e, 0) == $cardsnotallowed[.@n] || getequipcardid(.@e, 1) == $cardsnotallowed[.@n] || getequipcardid(.@e, 2) == $cardsnotallowed[.@n] || getequipcardid(.@e, 3) == $cardsnotallowed[.@n]){
+ 						for(set .@n, 0; .@n < getarraysize(.@cardsnotallowed); set .@n, .@n + 1){
+	 						if(getequipcardid(.@e, 0) == .@cardsnotallowed[.@n] || getequipcardid(.@e, 1) == .@cardsnotallowed[.@n] || getequipcardid(.@e, 2) == .@cardsnotallowed[.@n] || getequipcardid(.@e, 3) == .@cardsnotallowed[.@n]){
 	 							dispbottom "Item '"+getitemname(getequipcardid(.@e, .@b))+"' is not allowed in this map. It has been unequiped.";
 	 							unequip .@e;
 	 							break;
 	 						}
 	 					}
-	 					for(set .@i, 0; .@i < getarraysize($itemsnotallowed); set .@i, .@i + 1) {
-	 						if(getequipid(.@e) == $itemsnotallowed[.@i]) {
+	 					for(set .@i, 0; .@i < getarraysize(.@itemsnotallowed); set .@i, .@i + 1) {
+	 						if(getequipid(.@e) == .@itemsnotallowed[.@i]) {
 	 							dispbottom "Item '"+getitemname(getequipid(.@e))+"' is not allowed in this map. It has been unequiped.";
 	 							unequip .@e;
-	 							break; 							
-	 						}				
+	 							break;
+	 						}
 	 					}
  					}
  				}
@@ -406,7 +399,8 @@ z_agit,24,187,6	script	Tom	70,{
 }
 
 06guild_01	mapflag	loadevent
+quiz_01	mapflag	loadevent
+quiz_02	mapflag	loadevent
 edit_map7 mapflag loadevent
 event_map1 mapflag loadevent
 karin_chan mapflag loadevent
-regicide mapflag loadevent

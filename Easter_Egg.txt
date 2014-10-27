@@ -199,7 +199,7 @@ izlude,150,150,2	script	Easter Egg Fairy	624,{
 		mes "[Easter Egg Fairy]";
 		mes "Sorry but you don't have enough Easter Eggs.";
 		close;
-		
+
 	MakeHat:
 		mes "[Easter Egg Fairy]";
 		mes "Here you go!";
@@ -207,7 +207,7 @@ izlude,150,150,2	script	Easter Egg Fairy	624,{
 		set $egg_npc_avaiable, 1;
 		disablenpc "Easter Egg Fairy";
 		close;
-		
+
 }
 
 izlude,1,1,5	duplicate(Easter Egg Fairy)	Easter Egg Fairy#1	624
