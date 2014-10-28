@@ -4,15 +4,15 @@ karin_chan,74,70,5	script	KarinChanWall	1187,{
 		if(getgmlevel() < 51){
 			end;
 		}
-		areamonster "regicide",88,73,88,68,"Wall",1905,40;
-		areamonster "regicide",53,73,53,68,"Wall",1905,40;
-		areamonster "regicide",68,80,73,80,"Wall",1905,40;
-		areamonster "regicide",68,61,73,61,"Wall",1905,40;
+		areamonster "karin_chan",88,73,88,68,"Wall",1905,40;
+		areamonster "karin_chan",53,73,53,68,"Wall",1905,40;
+		areamonster "karin_chan",68,80,73,80,"Wall",1905,40;
+		areamonster "karin_chan",68,61,73,61,"Wall",1905,40;
 
-		setwall "regicide",88,73,6,4,0,"wall01";
-		setwall "regicide",53,73,6,4,0,"wall02";
-		setwall "regicide",68,80,6,6,0,"wall01";
-		setwall "regicide",68,61,6,6,0,"wall02";
+		setwall "karin_chan",88,73,6,4,0,"kc_wall01";
+		setwall "karin_chan",53,73,6,4,0,"kc_wall02";
+		setwall "karin_chan",68,80,6,6,0,"kc_wall03";
+		setwall "karin_chan",68,61,6,6,0,"kc_wall04";
 		dispbottom "Walls has been enabled.";
 		end;
 
@@ -20,9 +20,11 @@ karin_chan,74,70,5	script	KarinChanWall	1187,{
 		if(getgmlevel() < 51){
 			end;
 		}
-		delwall "wall01";
-		delwall "wall02";
-		killmonsterall "regicide";
+		delwall "kc_wall01";
+		delwall "kc_wall02";
+		delwall "kc_wall03";
+		delwall "kc_wall04";
+		killmonsterall "karin_chan";
 		dispbottom "Walls has been disabled.";
 		end;
 

@@ -18,7 +18,7 @@ casp_wmill,12,21,5	script	Cash Shop Points::csp1	603,{
 	next;
 	setarray .@cash_point_items$[0],"Valk Armor","Valk Manteau","^FF0000Twin Edge of Naght Seiger R^000000","^0000FFTwin Edge of Naght Seiger B^000000","Two-Handed Chrome Metal Sword",
 			"Nidhoggur's Shadow Garb","Ring of Flame Lord","Ring of Resonance","Ledger of Death";
-	if(gettime(4) == 6 && $saved == 0){		
+	if(gettime(4) == 2 && $saved == 0){		
 		set $csp_random, rand(0,getarraysize(.@cash_point_items$)-1);
 		set $csp_random2, rand(0,getarraysize(.@cash_point_items$)-1);
 		while($csp_random2 == $csp_random){
@@ -26,11 +26,18 @@ casp_wmill,12,21,5	script	Cash Shop Points::csp1	603,{
 		}
 		set $saved, 1;
 	}
-	if(gettime(4) != 6 && $saved == 1){
-		set $saved, 0;
-		if($csp_random2 == $csp_random){
+	else{
+		if($csp_random == 0 && $csp_random2 == 0){
+			set $csp_random, rand(0,getarraysize(.@cash_point_items$)-1);
 			set $csp_random2, rand(0,getarraysize(.@cash_point_items$)-1);
+			while($csp_random2 == $csp_random){
+				set $csp_random2, rand(0,getarraysize(.@cash_point_items$)-1);
+			}
+			set $saved, 1;
 		}
+	}
+	if(gettime(4) != 2 && $saved == 1){
+		set $saved, 0;
 	}
 	mes "[Cash Shop Points]";
 	mes "Select which item you'd like to trade:";
