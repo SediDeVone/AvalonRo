@@ -6,20 +6,19 @@ AvalonRo (avalonro.net) is the set of scripts made by me for private Ragnaron On
 Hercules is a collaborative software development project revolving around the creation of a robust massively multiplayer online role playing game (MMORPG) server package. Written in C, the program is very versatile and provides NPCs, warps and modifications. The project is jointly managed by a group of volunteers located around the world as well as a tremendous community providing QA and support. Hercules is a continuation of the original Athena project. You can find the github page at https://github.com/HerculesWS/Hercules.
 
 Scripts
-
+---------
 Easter Egg
 ---------
-	Script is spreading 15 spots all over the server. Each player can interact with each spot only once per day, and the spots last for 7 days, meaning a player can only have a maximum of 15 eggs each day and a total of 105 eggs for the whole duration of event.
-	Script is supporting an NPC that jumps from town to town. Players can interact with NPC to covert their eggs into awesome prizes. Once a price is chosen the Fairy is taking a 1 hour break after which she jumps to another city. Once the Fairy jumps the broadcast informs players that the Fairy has moved. 
-	Implemented spot locations:
-	``` C
-	Prontera (27, 161)
-	Payon (173, 242)
-	Knight_3-1 (82, 82)	
-	lhz_dun03 (75, 154)
-	thor_v03 (216, 51)
-	prt_church (180, 29)
-	Umbala (139, 197)
+Script is spreading 15 spots all over the server. Each player can interact with each spot only once per day, and the spots last for 7 days, meaning a player can only have a maximum of 15 eggs each day and a total of 105 eggs for the whole duration of event.
+Script is supporting an NPC that jumps from town to town. Players can interact with NPC to covert their eggs into awesome prizes. Once a price is chosen the Fairy is taking a 1 hour break after which she jumps to another city. Once the Fairy jumps the broadcast informs players that the Fairy has moved. 
+Implemented spot locations:
+* Prontera (27, 161)
+* Payon (173, 242)
+* Knight_3-1 (82, 82)	
+* lhz_dun03 (75, 154)
+* thor_v03 (216, 51)
+* prt_church (180, 29)
+Umbala (139, 197)
 	prt_fild08 (74, 318)
 	moc_pryd06 (148, 64)
 	ice_dun03 (150, 100)
