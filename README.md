@@ -70,10 +70,10 @@ The data provided by WoW Token Info in the links below is made available under t
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 ```
 
-## There is no warranty with this service, neither expressed nor implied.
-   * This is an unofficial service, provided by a guy with a computer at his house.
+## There is no warranty with this code, neither expressed nor implied.
+   * Trigger Warning. This is an unofficial code, provided by a guy with a computer at his house. Consider yourself warned.
    * We may miss engine updates due to the many factors out of our control. The engine upgrade might break script, my cable modem might fail, solar flares...
-   * We may need to change the format of the script without warning. Though we'll try not to do that.
+   * We may need to change the format of the scripts without warning. Though we'll try not to do that.
 
 If you use data from this website for a public work, we ask that you mention and link to https://github.com/Alvaren/AvalonRo in your work.
 
