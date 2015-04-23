@@ -18,46 +18,51 @@ Implemented spot locations:
 * lhz_dun03 (75, 154)
 * thor_v03 (216, 51)
 * prt_church (180, 29)
-Umbala (139, 197)
-	prt_fild08 (74, 318)
-	moc_pryd06 (148, 64)
-	ice_dun03 (150, 100)
-	louyang (91, 253)
-	anthell01 (29, 266)
-	gef_tower (119, 22)
-	moc_fild18 (48, 204)
-	Geffen (173, 98)
-	```
+* Umbala (139, 197)
+* prt_fild08 (74, 318)
+* moc_pryd06 (148, 64)
+* ice_dun03 (150, 100)
+* louyang (91, 253)
+* anthell01 (29, 266)
+* gef_tower (119, 22)
+* moc_fild18 (48, 204)
+* Geffen (173, 98)
 
 EventMap1Wall, KarinChanWall, Regicide Wall and buff_test
 ---------
-	Simple script support custom maps. Game Masters are able to create walls, that are filled with monsters, to prepare for certain events. Once they feel that they are ready, and people participating in the event too, they can remove the walls so the event can start.
+Simple script support custom maps. Game Masters are able to create walls, that are filled with monsters, to prepare for certain events. Once they feel that they are ready, and people participating in the event too, they can remove the walls so the event can start.
 
 Lucy
 ---------
-	Lucy is `adding` missing commands for Game Masters such as: guild recall, recall map, lock guild and unlock guild. The script is using OnWhisperGlobal function which means that people can whisper NPC (NPC:Lucy). It lets GMs recall whole guild to you, recall whole map to you, add or remove mf_guildlock mapflag.
+Lucy is 'adding' missing commands for Game Masters such as: guild recall, recall map, lock guild and unlock guild. The script is using OnWhisperGlobal function which means that people can whisper NPC (NPC:Lucy). It lets GMs recall whole guild to you, recall whole map to you, add or remove mf_guildlock mapflag.
 
 PVPreward and PVPreward_old
 ---------
-	Both scripts do the same thing. They support PvP system on your server. The major difference between this two files is how arrays of items are initalised.
-	System supports spectator map, mostly used for PvP events. When player who wants to spectate talks to NPC he is being muted, hiden and costumed (they can't cast spells or speak). Players who wants to spectate can't have homunculus or pets with them. They also can't join while being in party, to prevent party invite spam.
-	System supports multiple PvP restrictions such as: General PvP, General PvP without Valkyrie Card, General PvP without High Wizard Card, Fallen Bishop Card or Valkyrie Card or Magic Classes. Game Masters are able to choose the specific map for the event as well.
-	The whole system got implemented two item checks. One of them checks if you don't own consumable foods plus the items set in restrictions. All of this is checked while talking to NPC. The second scripts checks every player on event map for resctricted items, if that item is equipped it is being deequipped. 
+Both scripts do the same thing. They support PvP system on your server. The major difference between this two files is how arrays of items are initalised.
+System supports spectator map, mostly used for PvP events. When player who wants to spectate talks to NPC he is being muted, hiden and costumed (they can't cast spells or speak). Players who wants to spectate can't have homunculus or pets with them. They also can't join while being in party, to prevent party invite spam.
+System supports multiple PvP restrictions such as: General PvP, General PvP without Valkyrie Card, General PvP without High Wizard Card, Fallen Bishop Card or Valkyrie Card or Magic Classes. Game Masters are able to choose the specific map for the event as well.
+The whole system got implemented two item checks. One of them checks if you don't own consumable foods plus the items set in restrictions. All of this is checked while talking to NPC. The second scripts checks every player on event map for resctricted items, if that item is equipped it is being deequipped. 
+
 PVP_Ladder
 ---------
-	PvP Ladder is script that supports ... PvP Ladder. It tracks people's stats, their kills, their deaths, their last victim and their last killer. It has implemented few basic antifarm cheats in case someone would like to trade their kills into goodies. Game Masters above level 99 are able to reset whole ladder.
+PvP Ladder is script that supports ... PvP Ladder. It tracks people's stats, their kills, their deaths, their last victim and their last killer. It has implemented few basic antifarm cheats in case someone would like to trade their kills into goodies. Game Masters above level 99 are able to reset whole ladder.
+
 leviathan
 ---------
-	Leviathan script is role playing script to summon custom MvP Leviathan. NPCs that you have to visit are spread around hugel and geffen. This lovely people will share their ways with you only if you prove worthy, which means that players got to bring certain items with them. Altough the requirements are quite high it is worthy, because who wouldn't want to meet Leviathan itself.
+Leviathan script is role playing script to summon custom MvP Leviathan. NPCs that you have to visit are spread around hugel and geffen. This lovely people will share their ways with you only if you prove worthy, which means that players got to bring certain items with them. Altough the requirements are quite high it is worthy, because who wouldn't want to meet Leviathan itself.
+
 premium_buffer
 ---------
-	Premium buffer is very basic script that supports buffing players with basic buffs for small fee. It also let's players create own list of buffs so they can get all wanted buffs with just one click.
+Premium buffer is very basic script that supports buffing players with basic buffs for small fee. It also let's players create own list of buffs so they can get all wanted buffs with just one click.
+
 premium_warper
 ---------
-	Premium warper is very basic script that supports warping players to certain places for small fee. 
+Premium warper is very basic script that supports warping players to certain places for small fee. 
+
 thana_quest
 ---------
-	It is official Thanatos Tower script with one small modification. Instead of opening portal from tha_t12 to thana_boss, the statues check which player/party inserted the most crystals and only they are warped inside the map. If for some reason the group of people who `won` the race for Thanatos failed in killing either monsters or boss, the script will open the portal at tha_t12 to thana_boss after 5 minutes.
+It is official Thanatos Tower script with one small modification. Instead of opening portal from tha_t12 to thana_boss, the statues check which player/party inserted the most crystals and only they are warped inside the map. If for some reason the group of people who `won` the race for Thanatos failed in killing either monsters or boss, the script will open the portal at tha_t12 to thana_boss after 5 minutes.
+
 
 # License
 The data provided by WoW Token Info in the links below is made available under the MIT License. You are free to share the data, to produce works from the data, and to modify and build upon the data, as long as you understand and follow the below conditions: 
