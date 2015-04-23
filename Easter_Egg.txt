@@ -1,5 +1,17 @@
-﻿// Script for Easter Egg Event. Author: Sebastian Łasisz.
-// AvalonRO
+﻿//===== Hercules Script ======================================
+//= Easter Egg Script
+//===== By: ================================================== 
+//= Original by Gurrath
+//===== Current Version: ===================================== 
+//= 1.0
+//===== Compatible With: ===================================== 
+//= Hercules
+//===== Description: ========================================= 
+//= Easter Egg Event
+//===== Additional Comments: ================================= 
+//= 1.0: initial release
+//============================================================ 
+
 prontera,238,313,3	script	Finn	436,{
 	if($egg_npc_avaiable == 0){
 		mes "[Finn]";

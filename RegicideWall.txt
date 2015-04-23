@@ -1,3 +1,17 @@
+//===== Hercules Script ======================================
+//= RegicideWall Script
+//===== By: ================================================== 
+//= Original by Gurrath
+//===== Current Version: ===================================== 
+//= 1.0
+//===== Compatible With: ===================================== 
+//= Hercules
+//===== Description: ========================================= 
+//= Regicide wall system
+//===== Additional Comments: ================================= 
+//= 1.0: initial release
+//============================================================ 
+
 regicide,59,60,5	script	RegicideWall	1187,{
 	end;
 	Part1:

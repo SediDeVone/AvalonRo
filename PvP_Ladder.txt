@@ -1,3 +1,17 @@
+//===== Hercules Script ======================================
+//= PvP Ladder Script
+//===== By: ================================================== 
+//= Original by Gurrath
+//===== Current Version: ===================================== 
+//= 1.0
+//===== Compatible With: ===================================== 
+//= Hercules
+//===== Description: ========================================= 
+//= PvP Ladder system
+//===== Additional Comments: ================================= 
+//= 1.0: initial release
+//============================================================ 
+
 prontera,138,172,4	script	PvP Ladder	857,{
 	mes "[PvP Ladder]";
 	mes "Hello " + strcharinfo(0) + ".";

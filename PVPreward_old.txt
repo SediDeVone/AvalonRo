@@ -1,5 +1,16 @@
-// Script for PvP System. Author: Sebastian Łasisz.
-// AvalonRO
+//===== Hercules Script ======================================
+//= PvPReward Script
+//===== By: ================================================== 
+//= Original by Gurrath
+//===== Current Version: ===================================== 
+//= 1.0
+//===== Compatible With: ===================================== 
+//= Hercules
+//===== Description: ========================================= 
+//= PvPReward system
+//===== Additional Comments: ================================= 
+//= 1.0: initial release
+//============================================================ 
 
 -	script	PvP Coordinator	-1,{
 	OnPCLogoutEvent:

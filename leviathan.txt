@@ -1,5 +1,16 @@
-// Script for PvP System. Author: Sebastian Lasisz.
-// AvalonRO
+//===== Hercules Script ====================================== 
+//= Leviathan Script
+//===== By: ================================================== 
+//= Original by Gurrath
+//===== Current Version: ===================================== 
+//= 1.0
+//===== Compatible With: ===================================== 
+//= Hercules
+//===== Description: ========================================= 
+//= Leviathan 
+//===== Additional Comments: ================================= 
+//= 1.0: initial release
+//============================================================ 
 
 geffen,96,203,4	script	Recruiting Board	837,2,2,{
 	OnTouch:

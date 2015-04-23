@@ -1,3 +1,17 @@
+//===== Hercules Script ======================================
+//= karin chan Script
+//===== By: ================================================== 
+//= Original by Gurrath
+//===== Current Version: ===================================== 
+//= 1.0
+//===== Compatible With: ===================================== 
+//= Hercules
+//===== Description: ========================================= 
+//= Karing Chan wall system. 
+//===== Additional Comments: ================================= 
+//= 1.0: initial release
+//============================================================ 
+
 karin_chan,74,70,5	script	KarinChanWall	1187,{
 	end;
 	Part1:

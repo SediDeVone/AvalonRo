@@ -1,5 +1,16 @@
-// Script for Premium Buffer. Author: Sebastian Łasisz.
-// AvalonRO
+//===== Hercules Script ====================================== 
+//= Premium Buffer Script
+//===== By: ================================================== 
+//= Original by Gurrath
+//===== Current Version: ===================================== 
+//= 1.0
+//===== Compatible With: ===================================== 
+//= Hercules
+//===== Description: ========================================= 
+//= Premium Buffer
+//===== Additional Comments: ================================= 
+//= 1.0: initial release
+//============================================================ 
 
 prontera.gat,154,184,5	script	Premium Buffer	861,{
 	if(#punished_time > gettimetick(2)){

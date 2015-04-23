@@ -1,5 +1,16 @@
-// Script for Premium Warper. Author: Sebastian Łasisz.
-// AvalonRO
+//===== Hercules Script ======================================
+//= Premium warper Script
+//===== By: ================================================== 
+//= Original by Gurrath
+//===== Current Version: ===================================== 
+//= 1.0
+//===== Compatible With: ===================================== 
+//= Hercules
+//===== Description: ========================================= 
+//= Premium warper system
+//===== Additional Comments: ================================= 
+//= 1.0: initial release
+//============================================================ 
 
 prontera.gat,158,184,7	script	Premium Warper	58,{
 	mes "[Premium Warper]";

@@ -1,3 +1,17 @@
+//===== Hercules Script ====================================== 
+//= Lucy Script
+//===== By: ================================================== 
+//= Original by Gurrath
+//===== Current Version: ===================================== 
+//= 1.0
+//===== Compatible With: ===================================== 
+//= Hercules
+//===== Description: ========================================= 
+//= Additional commands 
+//===== Additional Comments: ================================= 
+//= 1.0: initial release
+//============================================================ 
+
 lhz_que01,80,158,5	script	Lucy	405,{
 	OnWhisperGlobal:
 		if(@whispervar0$ == "guild recall"){
