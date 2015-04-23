@@ -5,7 +5,7 @@ AvalonRo (avalonro.net) is the set of scripts made by me for private Ragnaron On
 # What is Hercules?
 Hercules is a collaborative software development project revolving around the creation of a robust massively multiplayer online role playing game (MMORPG) server package. Written in C, the program is very versatile and provides NPCs, warps and modifications. The project is jointly managed by a group of volunteers located around the world as well as a tremendous community providing QA and support. Hercules is a continuation of the original Athena project. You can find the github page at https://github.com/HerculesWS/Hercules.
 
-#Scripts
+Scripts
 
 Easter Egg
 ---------
