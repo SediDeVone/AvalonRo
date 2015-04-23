@@ -66,12 +66,8 @@ It is official Thanatos Tower script with one small modification. Instead of ope
 
 # License
 The scripts are made available under the MIT License. You are free to share the data, to produce works from them, and to modify and build upon them, as long as you understand and follow the below conditions: 
-```
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-```
-There is no warranty with this code, neither expressed nor implied.
+   * There is no warranty with this code, neither expressed nor implied.
    * Trigger Warning. This is an unofficial code, provided by a guy with a computer at his house. Consider yourself warned.
    * We may miss engine updates due to the many factors out of our control. The engine upgrade might break script, my cable modem might fail, solar flares...
    * We may need to change the format of the scripts without warning. Though we'll try not to do that.
-
-If you use data from this website for a public work, I ask that you mention and link to https://github.com/Alvaren/AvalonRo in your work.
+   *  If you use data from this website for a public work, I ask that you mention and link to https://github.com/Alvaren/AvalonRo in your work.
