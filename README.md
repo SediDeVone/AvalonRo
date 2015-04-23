@@ -61,11 +61,11 @@ Premium warper is very basic script that supports warping players to certain pla
 
 thana_quest
 ---------
-It is official Thanatos Tower script with one small modification. Instead of opening portal from tha_t12 to thana_boss, the statues check which player/party inserted the most crystals and only they are warped inside the map. If for some reason the group of people who `won` the race for Thanatos failed in killing either monsters or boss, the script will open the portal at tha_t12 to thana_boss after 5 minutes.
+It is official Thanatos Tower script with one small modification. Instead of opening portal from tha_t12 to thana_boss, the statues check which player/party inserted the most crystals and only they are warped inside the map. If for some reason the group of people who 'won' the race for Thanatos failed in killing either monsters or boss, the script will open the portal at tha_t12 to thana_boss after 5 minutes.
 
 
 # License
-The data provided by WoW Token Info in the links below is made available under the MIT License. You are free to share the data, to produce works from the data, and to modify and build upon the data, as long as you understand and follow the below conditions: 
+The scripts are made available under the MIT License. You are free to share the data, to produce works from them, and to modify and build upon them, as long as you understand and follow the below conditions: 
 ```
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 ```
@@ -75,6 +75,4 @@ The above copyright notice and this permission notice shall be included in all c
    * We may miss engine updates due to the many factors out of our control. The engine upgrade might break script, my cable modem might fail, solar flares...
    * We may need to change the format of the scripts without warning. Though we'll try not to do that.
 
-If you use data from this website for a public work, we ask that you mention and link to https://github.com/Alvaren/AvalonRo in your work.
-
-If your server has employees, then you probably don't want to rely on this, and should instead get your version of scripts.
+If you use data from this website for a public work, I ask that you mention and link to https://github.com/Alvaren/AvalonRo in your work.
